@@ -1,59 +1,41 @@
-# DashboardTesi
+# Dashboard Gestionale (Angular 19 + RxJS)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+Progetto di tesi sperimentale per il corso di Laurea in Ingegneria Informatica.
+L'applicazione è una Single Page Application (SPA) che simula un pannello di gestione clienti Enterprise.
 
-## Development server
+## 🚀 Tecnologie Utilizzate
 
-To start a local development server, run:
+- **Framework:** Angular 19 (Component-based architecture)
+- **State Management:** RxJS (BehaviorSubject, Observable streams)
+- **Styling:** SCSS con design responsive personalizzato
+- **Routing:** Lazy Loading dei moduli per ottimizzazione performance
 
-```bash
-ng serve
-```
+## 🏗 Architettura
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Il progetto segue una struttura modulare scalabile:
 
-## Code scaffolding
+- `Core Module`: Servizi Singleton, Interfacce e Mock Data.
+- `Shared Module`: Componenti UI riutilizzabili.
+- `Features Modules`: Logica di business specifica (es. Dashboard), caricata in Lazy Loading.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 💡 Key Features
 
-```bash
-ng generate component component-name
-```
+- **Gestione Asincrona:** Utilizzo di `AsyncPipe` per la gestione automatica delle sottoscrizioni e prevenzione memory leaks.
+- **Mock API:** Simulazione di latenza di rete tramite operatori RxJS (`delay`, `of`).
+- **Data Visualization:** Tabella interattiva con rendering condizionale basato sullo stato dei dati.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📦 Come avviare il progetto
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1.  Clona il repository:
+    ```bash
+    git clone [https://github.com/xdelmo/dashboard-tesi.git](https://github.com/xdelmo/dashboard-tesi.git)
+    ```
+2.  Installa le dipendenze:
+    ```bash
+    npm install
+    ```
+3.  Avvia il server di sviluppo:
+    ```bash
+    ng serve
+    ```
+4.  Apri il browser su `http://localhost:4200`
