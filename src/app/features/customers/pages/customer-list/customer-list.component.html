@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div>
+      <h1>Dashboard Clienti</h1>
+      <p>Gestione anagrafica e monitoraggio revenue</p>
+    </div>
+
+    <div class="kpi-card">
+      <span class="label">Fatturato Totale</span>
+      <span class="value">{{ totalRevenue$ | async | currency : "EUR" }}</span>
+    </div>
+  </header>
+
+  <main class="content-area">
+    <div *ngIf="customers$ | async as customers; else loading">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Azienda</th>
+            <th>Stato</th>
+            <th>Fatturato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>#{{ customer.id }}</td>
+            <td>
+              <div class="user-info">
+                <strong>{{ customer.name }}</strong>
+                <small>{{ customer.email }}</small>
+              </div>
+            </td>
+            <td>{{ customer.company }}</td>
+            <td>
+              <span
+                class="status-badge"
+                [ngClass]="customer.status.toLowerCase()"
+              >
+                {{ customer.status }}
+              </span>
+            </td>
+            <td class="revenue">{{ customer.revenue | currency : "EUR" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #loading>
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Caricamento dati aziendali...</p>
+      </div>
+    </ng-template>
+  </main>
+</div>

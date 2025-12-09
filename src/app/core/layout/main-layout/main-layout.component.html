@@ -1,0 +1,40 @@
+<div class="app-container">
+  <aside class="sidebar">
+    <div class="logo-area">
+      <h3>Gestionale</h3>
+    </div>
+    <nav class="nav-links">
+      <div class="nav-label">MENU PRINCIPALE</div>
+
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <span>📊</span> Dashboard
+      </a>
+
+      <div class="nav-label">GESTIONE</div>
+
+      <a routerLink="/customers" routerLinkActive="active">
+        <span>👥</span> Anagrafica Clienti
+      </a>
+
+      <a routerLink="/orders" routerLinkActive="active" class="disabled">
+        <span>📦</span> Ordini
+      </a>
+
+      <div class="nav-spacer"></div>
+      <a routerLink="/settings" routerLinkActive="active" class="disabled">
+        <span>⚙️</span> Impostazioni
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-bar">
+      <span class="page-title">Benvenuto, Admin</span>
+      <button class="logout-btn" (click)="logout()">Esci 🔒</button>
+    </header>
+
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

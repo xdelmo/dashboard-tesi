@@ -1,0 +1,134 @@
+// Contenitore Principale: Occupa tutto lo schermo
+.app-container {
+  display: flex; // <--- QUESTO È FONDAMENTALE per mettere sidebar e contenuto vicini
+  height: 100vh; // 100% dell'altezza viewport
+  width: 100vw;
+  overflow: hidden; // Niente scrollbar sulla pagina intera
+  background-color: #f4f6f8;
+}
+
+// Sidebar (Colonna Sinistra)
+.sidebar {
+  width: 260px; // Larghezza fissa
+  background-color: #ffffff;
+  border-right: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; // Impedisce alla sidebar di schiacciarsi
+
+  .logo-area {
+    height: 64px; // Stessa altezza della top-bar
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid #f0f0f0;
+
+    h3 {
+      margin: 0;
+      color: #3f51b5;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+
+  .nav-links {
+    padding: 20px 15px;
+    overflow-y: auto;
+
+    // Etichette (MENU PRINCIPALE, GESTIONE)
+    .nav-label {
+      padding: 15px 10px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #a0aec0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    // Link di navigazione
+    a {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      color: #555;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+
+      span {
+        margin-right: 12px;
+        font-size: 1.1rem;
+      }
+
+      &:hover {
+        background-color: #f5f7fa;
+        color: #333;
+        transform: translateX(3px); // Piccolo effetto movimento
+      }
+
+      &.active {
+        background-color: #e8eaf6;
+        color: #3f51b5;
+        font-weight: 600;
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+// Area Contenuto (Colonna Destra)
+.main-content {
+  flex-grow: 1; // Prende tutto lo spazio rimanente
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // Importante per lo scroll interno
+
+  .top-bar {
+    height: 64px;
+    background-color: white;
+    border-bottom: 1px solid #e1e4e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    flex-shrink: 0;
+
+    .page-title {
+      font-weight: 600;
+      color: #333;
+      font-size: 1.1rem;
+    }
+
+    .logout-btn {
+      background: white;
+      border: 1px solid #ff5252;
+      color: #ff5252;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &:hover {
+        background-color: #ff5252;
+        color: white;
+      }
+    }
+  }
+
+  // Wrapper per le pagine (Qui finisce la router-outlet)
+  .content-wrapper {
+    flex-grow: 1;
+    overflow-y: auto; // <--- SOLO QUESTO deve scrollare
+    padding: 30px;
+  }
+}
