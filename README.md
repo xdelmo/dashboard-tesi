@@ -25,6 +25,13 @@ Il progetto dimostra l'utilizzo avanzato di **RxJS**, **Lazy Loading**, **Authen
 - **Modulo Separato:** La feature "Customers" è caricata in **Lazy Loading** per performance ottimali.
 - **Reactive Forms & Template Driven:** Validazione avanzata degli input con feedback visivo immediato.
 
+### 🎨 UI/UX & Layout Moderno
+
+- **Sidebar Dinamica:** Sidebar collassabile intelligente che mostra solo le icone a riposo e si espande fluidamente (80px -> 260px) al passaggio del mouse.
+- **Micro-interactions:** Transizioni curate per hover, focus e cambi di stato per un'esperienza utente reattiva e "premium".
+- **Design System:** Palette colori professionale, tipografia bilanciata e utilizzo consistente di spaziature e ombreggiature.
+- **Iconografia:** Integrazione completa con **Material Icons** per una navigazione intuitiva.
+
 ---
 
 ## 🛠 Tech Stack
