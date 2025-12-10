@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { APP_CONSTANTS } from '../../../constants/app.constants';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class LoginComponent {
-  email = 'admin@demo.com'; // Precompilato per comodità
-  password = 'password';
+  email = APP_CONSTANTS.AUTH.DEMO_EMAIL;
+  password = APP_CONSTANTS.AUTH.DEMO_PASSWORD;
   error = '';
   isLoading = false;
 

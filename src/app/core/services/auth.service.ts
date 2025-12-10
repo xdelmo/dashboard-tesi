@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { APP_CONSTANTS } from '../constants/app.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +16,18 @@ export class AuthService {
 
   // Simula il Login
   login(email: string, password: string): Observable<boolean> {
-    if (email === 'admin@demo.com' && password === 'password') {
+    if (
+      email === APP_CONSTANTS.AUTH.DEMO_EMAIL &&
+      password === APP_CONSTANTS.AUTH.DEMO_PASSWORD
+    ) {
       // Qui simuli una chiamata API reale
       return of(true).pipe(
         delay(1000), // Finto ritardo di rete
         tap(() => {
-          localStorage.setItem('auth_token', 'fake-jwt-token'); // Salviamo un finto token
+          localStorage.setItem(
+            APP_CONSTANTS.AUTH.TOKEN_KEY,
+            APP_CONSTANTS.AUTH.MOCK_TOKEN_VALUE
+          ); // Salviamo un finto token
           this.isLoggedInSubject.next(true);
         })
       );
@@ -36,14 +43,14 @@ export class AuthService {
 
   // Logout
   logout(): void {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem(APP_CONSTANTS.AUTH.TOKEN_KEY);
     this.isLoggedInSubject.next(false);
     this.router.navigate(['/login']);
   }
 
   // Verifica se c'è il token salvato
   private hasToken(): boolean {
-    return !!localStorage.getItem('auth_token');
+    return !!localStorage.getItem(APP_CONSTANTS.AUTH.TOKEN_KEY);
   }
 
   isAuthenticated(): boolean {
