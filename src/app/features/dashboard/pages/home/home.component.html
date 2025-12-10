@@ -1,16 +1,54 @@
 <div class="dashboard-home">
-  <h1>📊 Business Overview</h1>
-  <p>Qui metteremo le Stat Cards e i Grafici (Chart.js)</p>
+  <header class="page-header">
+    <h1>Dashboard Overview</h1>
+    <p>Benvenuto nel pannello di controllo Enterprise.</p>
+  </header>
 
-  <div style="display: flex; gap: 20px; margin-top: 20px">
-    <div style="background: white; padding: 20px; flex: 1; border-radius: 8px">
-      Fatturato
-    </div>
-    <div style="background: white; padding: 20px; flex: 1; border-radius: 8px">
-      Clienti
-    </div>
-    <div style="background: white; padding: 20px; flex: 1; border-radius: 8px">
-      Ordini
+  <div class="stats-grid">
+    <app-stat-card
+      title="Fatturato Totale"
+      value="€ 579,000"
+      icon="💰"
+      colorClass="blue"
+    >
+    </app-stat-card>
+
+    <app-stat-card
+      title="Spese Operative"
+      value="€ 79,000"
+      icon="💸"
+      colorClass="purple"
+    >
+    </app-stat-card>
+
+    <app-stat-card
+      title="Utile Netto"
+      value="€ 179,000"
+      icon="📈"
+      colorClass="green"
+    >
+    </app-stat-card>
+
+    <app-stat-card
+      title="Nuovi Clienti"
+      value="+ 1,240"
+      icon="👥"
+      colorClass="orange"
+    >
+    </app-stat-card>
+  </div>
+
+  <div class="charts-section">
+    <div class="chart-container main-chart">
+      <div class="chart-header">
+        <h3>Andamento Finanziario 2025</h3>
+        <select class="chart-filter">
+          <option>Ultimi 6 Mesi</option>
+          <option>Anno Corrente</option>
+        </select>
+      </div>
+
+      <app-revenue-chart></app-revenue-chart>
     </div>
   </div>
 </div>

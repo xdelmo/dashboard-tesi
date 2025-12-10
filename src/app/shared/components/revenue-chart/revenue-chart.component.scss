@@ -1,0 +1,6 @@
+.chart-wrapper {
+  position: relative;
+  height: 350px; // <--- SE QUESTO MANCA O È TROPPO ALTO, IL GRAFICO ESPLODE
+  width: 100%;
+  overflow: hidden; // Taglia tutto ciò che esce
+}
