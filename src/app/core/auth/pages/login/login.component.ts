@@ -11,23 +11,37 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email = 'admin@demo.com'; // Precompilato per comodità
   password = 'password';
-  isLoading = false;
   error = '';
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(event: Event) {
-    event.preventDefault(); // Evita il reload della pagina
-    this.isLoading = true;
-    this.error = '';
+    event.preventDefault();
 
+    // 1. Resetta stato
+    this.error = '';
+    this.isLoading = true;
+
+    // 2. Chiama il servizio (che ora ritorna un Observable)
     this.authService.login(this.email, this.password).subscribe({
-      next: () => {
-        this.router.navigate(['/dashboard']);
+      next: (isSuccess) => {
+        // Questa funzione viene eseguita DOPO il delay di 1 secondo
+        this.isLoading = false; // Spegni lo spinner
+
+        if (isSuccess) {
+          // Login OK -> Vai alla dashboard
+          this.router.navigate(['/dashboard']);
+        } else {
+          // Login Fallito -> Mostra errore
+          this.error = 'Credenziali non valide. Riprova.';
+        }
       },
-      error: () => {
-        this.error = 'Credenziali non valide';
+      error: (err) => {
+        // Gestione errori imprevisti (es. server down)
         this.isLoading = false;
+        this.error = 'Errore di connessione. Riprova più tardi.';
+        console.error(err);
       },
     });
   }

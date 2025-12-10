@@ -15,14 +15,23 @@ export class AuthService {
 
   // Simula il Login
   login(email: string, password: string): Observable<boolean> {
-    // Qui simuli una chiamata API reale
-    return of(true).pipe(
-      delay(1000), // Finto ritardo di rete
-      tap(() => {
-        localStorage.setItem('auth_token', 'fake-jwt-token'); // Salviamo un finto token
-        this.isLoggedInSubject.next(true);
-      })
-    );
+    if (email === 'admin@demo.com' && password === 'password') {
+      // Qui simuli una chiamata API reale
+      return of(true).pipe(
+        delay(1000), // Finto ritardo di rete
+        tap(() => {
+          localStorage.setItem('auth_token', 'fake-jwt-token'); // Salviamo un finto token
+          this.isLoggedInSubject.next(true);
+        })
+      );
+    } else {
+      return of(false).pipe(
+        delay(1000), // Finto ritardo di rete
+        tap(() => {
+          this.isLoggedInSubject.next(false);
+        })
+      );
+    }
   }
 
   // Logout
