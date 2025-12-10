@@ -16,6 +16,7 @@
           email
           #emailInput="ngModel"
           placeholder="name@company.com"
+          [disabled]="isLoading"
           [class.error-border]="emailInput.invalid && emailInput.touched"
         />
 
@@ -42,6 +43,7 @@
           minlength="6"
           #passwordInput="ngModel"
           placeholder="••••••••"
+          [disabled]="isLoading"
           [class.error-border]="passwordInput.invalid && passwordInput.touched"
         />
 
