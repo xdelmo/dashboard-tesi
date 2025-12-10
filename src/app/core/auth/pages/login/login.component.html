@@ -66,9 +66,14 @@
       <div
         *ngIf="error"
         class="error-message"
-        style="text-align: center; margin-bottom: 15px"
+        style="text-align: center; margin-bottom: 15px;"
       >
-        ⚠️ {{ error }}
+        <span
+          class="material-icons"
+          style="vertical-align: middle; font-size: 18px; margin-right: 5px"
+          >warning</span
+        >
+        {{ error }}
       </div>
 
       <button

@@ -7,22 +7,22 @@
       <div class="nav-label">MENU PRINCIPALE</div>
 
       <a routerLink="/dashboard" routerLinkActive="active">
-        <span>📊</span> Dashboard
+        <span class="material-icons">dashboard</span> Dashboard
       </a>
 
       <div class="nav-label">GESTIONE</div>
 
       <a routerLink="/customers" routerLinkActive="active">
-        <span>👥</span> Anagrafica Clienti
+        <span class="material-icons">people</span> Anagrafica Clienti
       </a>
 
       <a routerLink="/orders" routerLinkActive="active" class="disabled">
-        <span>📦</span> Ordini
+        <span class="material-icons">inventory_2</span> Ordini
       </a>
 
       <div class="nav-spacer"></div>
       <a routerLink="/settings" routerLinkActive="active" class="disabled">
-        <span>⚙️</span> Impostazioni
+        <span class="material-icons">settings</span> Impostazioni
       </a>
     </nav>
   </aside>
@@ -30,7 +30,7 @@
   <main class="main-content">
     <header class="top-bar">
       <span class="page-title">Benvenuto, Admin</span>
-      <button class="logout-btn" (click)="logout()">Esci 🔒</button>
+      <button class="logout-btn" (click)="logout()">Esci <span class="material-icons" style="font-size: 16px;">lock</span></button>
     </header>
 
     <div class="content-wrapper">
