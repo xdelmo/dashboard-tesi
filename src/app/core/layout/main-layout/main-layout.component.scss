@@ -9,63 +9,117 @@
 
 // Sidebar (Colonna Sinistra)
 .sidebar {
-  width: 260px; // Larghezza fissa
+  width: 80px; // Default collapsed width
   background-color: #ffffff;
   border-right: 1px solid #e1e4e8;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0; // Impedisce alla sidebar di schiacciarsi
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); // Smooth easing
+  overflow-x: hidden; // Prevent content spill during transition
+  position: relative;
+  z-index: 100; // Ensure it overlays correctly if needed
+
+  &:hover {
+    width: 260px;
+
+    .logo-area {
+      padding-left: 20px;
+      justify-content: flex-start;
+    }
+
+    .nav-links {
+      .nav-label {
+        display: block; // Reveal labels
+        opacity: 1;
+        transition: opacity 0.3s ease 0.1s;
+      }
+
+      a {
+        justify-content: flex-start; // Align left
+        padding: 12px 15px; // Restore padding
+
+        .material-icons {
+          margin-right: 12px; // Restore gap
+        }
+
+        .link-text {
+          display: inline;
+          opacity: 1;
+          white-space: nowrap;
+          transition: opacity 0.2s ease-in 0.1s;
+        }
+      }
+    }
+  }
 
   .logo-area {
-    height: 64px; // Stessa altezza della top-bar
+    height: 64px;
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    justify-content: center; // Center content by default
+    padding-left: 0;
     border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
 
     h3 {
+      display: block;
       margin: 0;
       color: #3f51b5;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: 700;
+      white-space: nowrap;
     }
   }
 
   .nav-links {
-    padding: 20px 15px;
+    padding: 20px 10px; // Adjust horizontal padding for narrow state
     overflow-y: auto;
+    overflow-x: hidden;
 
     // Etichette (MENU PRINCIPALE, GESTIONE)
     .nav-label {
+      display: none; // Hidden by default
       padding: 15px 10px 10px;
       font-size: 0.75rem;
       font-weight: 700;
       color: #a0aec0;
       letter-spacing: 1px;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     // Link di navigazione
     a {
       display: flex;
       align-items: center;
-      padding: 12px 15px;
+      justify-content: center; // Center by default
+      padding: 12px 0; // Reduce toggle to fit
       color: #555;
       text-decoration: none;
       border-radius: 8px;
       margin-bottom: 5px;
       transition: all 0.2s ease;
       font-weight: 500;
+      min-height: 48px;
 
-      span {
-        margin-right: 12px;
-        font-size: 1.1rem;
+      .material-icons {
+        margin-right: 0; // No margin by default
+        font-size: 1.5rem; // Icon size
+        transition: margin-right 0.3s ease;
+      }
+
+      .link-text {
+        display: none; // Hidden by default
+        opacity: 0;
+        font-size: 1rem; // Correct text size for link
+        white-space: nowrap; // Prevent wrapping
       }
 
       &:hover {
         background-color: #f5f7fa;
         color: #333;
-        transform: translateX(3px); // Piccolo effetto movimento
+        transform: none;
       }
 
       &.active {
