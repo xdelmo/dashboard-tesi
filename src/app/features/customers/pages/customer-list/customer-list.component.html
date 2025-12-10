@@ -1,15 +1,8 @@
 <div class="dashboard-container">
-  <header class="dashboard-header">
-    <div>
-      <h1>Dashboard Clienti</h1>
-      <p>Gestione anagrafica e monitoraggio revenue</p>
-    </div>
-
-    <div class="kpi-card">
-      <span class="label">Fatturato Totale</span>
-      <span class="value">{{ totalRevenue$ | async | currency : "EUR" }}</span>
-    </div>
-  </header>
+  <app-page-header
+    title="Dashboard Clienti"
+    subtitle="Gestione anagrafica e monitoraggio revenue"
+  ></app-page-header>
 
   <main class="content-area">
     <div *ngIf="customers$ | async as customers; else loading">
