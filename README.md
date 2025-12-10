@@ -1,41 +1,75 @@
-# Dashboard Gestionale (Angular 19 + RxJS)
+# 🔹 Enterprise Dashboard (Angular 19)
 
-Progetto di tesi sperimentale per il corso di Laurea in Ingegneria Informatica.
-L'applicazione è una Single Page Application (SPA) che simula un pannello di gestione clienti Enterprise.
+Applicazione gestionale Single Page Application (SPA) sviluppata con **Angular 19**, progettata seguendo architetture Enterprise modulari e scalabili.
+Il progetto dimostra l'utilizzo avanzato di **RxJS**, **Lazy Loading**, **Authentication Flows** e **Data Visualization**.
 
-## 🚀 Tecnologie Utilizzate
+## 🚀 Funzionalità Chiave
 
-- **Framework:** Angular 19 (Component-based architecture)
-- **State Management:** RxJS (BehaviorSubject, Observable streams)
-- **Styling:** SCSS con design responsive personalizzato
-- **Routing:** Lazy Loading dei moduli per ottimizzazione performance
+### 🔐 Autenticazione & Sicurezza
 
-## 🏗 Architettura
+- **Login Flow:** Gestione accesso con validazione form e feedback utente.
+- **Guards:**
+  - `AuthGuard`: Protegge le rotte private (Dashboard, Clienti).
+  - `PublicGuard`: Impedisce l'accesso al login agli utenti già autenticati.
+- **Simulazione Backend:** AuthService basato su `Observable` e `BehaviorSubject` con delay artificiale per simulare latenza di rete.
 
-Il progetto segue una struttura modulare scalabile:
+### 📊 Dashboard & Analytics
 
-- `Core Module`: Servizi Singleton, Interfacce e Mock Data.
-- `Shared Module`: Componenti UI riutilizzabili.
-- `Features Modules`: Logica di business specifica (es. Dashboard), caricata in Lazy Loading.
+- Integrazione di **Chart.js** (tramite `ng2-charts`) per la visualizzazione dati.
+- Stat Cards riutilizzabili (Componenti "Dumb" con `@Input`).
+- Layout Responsivo con Sidebar e Header fissi.
 
-## 💡 Key Features
+### 👥 Gestione Anagrafiche (CRUD)
 
-- **Gestione Asincrona:** Utilizzo di `AsyncPipe` per la gestione automatica delle sottoscrizioni e prevenzione memory leaks.
-- **Mock API:** Simulazione di latenza di rete tramite operatori RxJS (`delay`, `of`).
-- **Data Visualization:** Tabella interattiva con rendering condizionale basato sullo stato dei dati.
+- Tabella clienti con rendering ottimizzato.
+- **Modulo Separato:** La feature "Customers" è caricata in **Lazy Loading** per performance ottimali.
+- **Reactive Forms & Template Driven:** Validazione avanzata degli input con feedback visivo immediato.
 
-## 📦 Come avviare il progetto
+---
 
-1.  Clona il repository:
+## 🛠 Tech Stack
+
+- **Framework:** Angular 19
+- **Linguaggio:** TypeScript 5.x
+- **Stili:** SCSS (Architettura modulare con Partials e BEM-like naming)
+- **Librerie:** ng2-charts, Chart.js
+- **Tooling:** Angular CLI, RxJS
+
+---
+
+## 📂 Architettura del Progetto
+
+La struttura segue le best practices per la scalabilità:
+
+- `src/app/core`: Servizi singleton (Auth, Data), Guard, Interfacce, Costanti.
+- `src/app/shared`: Componenti riutilizzabili (Cards, Charts), Direttive, Pipe.
+- `src/app/features`: Moduli funzionali (Dashboard, Customers, Login) caricati in lazy loading.
+
+---
+
+## ▶️ Come Avviare il Progetto
+
+1.  **Clona il repository:**
     ```bash
     git clone [https://github.com/xdelmo/dashboard-tesi.git](https://github.com/xdelmo/dashboard-tesi.git)
     ```
-2.  Installa le dipendenze:
+2.  **Installa le dipendenze:**
     ```bash
     npm install
+    # Nota: Se richiesto, usare --legacy-peer-deps per ng2-charts
+    npm install --legacy-peer-deps
     ```
-3.  Avvia il server di sviluppo:
+3.  **Avvia il server di sviluppo:**
     ```bash
     ng serve
     ```
-4.  Apri il browser su `http://localhost:4200`
+4.  **Accedi:** Vai su `http://localhost:4200`
+
+### 🔑 Credenziali Demo
+
+- **Email:** `admin@demo.com`
+- **Password:** `password`
+
+---
+
+**Autore:** Emanuele Del Monte
