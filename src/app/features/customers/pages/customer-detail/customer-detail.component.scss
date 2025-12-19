@@ -92,6 +92,17 @@
       background-color: #e0e0e0;
     }
   }
+
+  .delete-btn {
+    margin-left: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+
+    &:hover {
+      background-color: #d32f2f;
+    }
+  }
 }
 
 /* Spinner Styles (riutilizzati) */

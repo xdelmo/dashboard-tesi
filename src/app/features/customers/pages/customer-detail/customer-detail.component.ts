@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Customer } from '../../../../core/models/customer.model';
@@ -14,8 +14,10 @@ import { DataService } from '../../../../core/services/data.services';
 export class CustomerDetailComponent implements OnInit {
   customer$!: Observable<Customer>;
 
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private dataService: DataService
   ) {}
 
@@ -28,4 +30,13 @@ export class CustomerDetailComponent implements OnInit {
       })
     );
   }
+
+  deleteCustomer(id: number): void {
+    if (confirm('Sei sicuro di voler eliminare questo cliente?')) {
+      this.dataService.deleteCustomer(id).subscribe(() => {
+        this.router.navigate(['/customers']);
+      });
+    }
+  }
 }
+

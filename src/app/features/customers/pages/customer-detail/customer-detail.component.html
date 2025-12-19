@@ -36,6 +36,7 @@
 
       <div class="actions">
         <button [routerLink]="['/customers']">Torna alla lista</button>
+        <button class="delete-btn" (click)="deleteCustomer(customer.id)">Elimina</button>
       </div>
     </div>
   </main>

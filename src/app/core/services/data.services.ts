@@ -56,4 +56,11 @@ export class DataService {
       })
     );
   }
+
+  // Elimina un cliente
+
+  deleteCustomer(id: number): Observable<void> {
+    return this.http.delete<void>(`${API_CONFIG.baseUrl}/customers/${id}`);
+  }
 }
+
