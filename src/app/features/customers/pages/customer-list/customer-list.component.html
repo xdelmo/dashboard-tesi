@@ -6,7 +6,7 @@
 
   <main class="content-area">
     <div style="margin-bottom: 20px;">
-      <button (click)="openModal()">Aggiungi Cliente</button>
+      <button class="btn-action" (click)="openModal()">Aggiungi Cliente</button>
     </div>
 
     <div *ngIf="customers$ | async as customers; else loading">
