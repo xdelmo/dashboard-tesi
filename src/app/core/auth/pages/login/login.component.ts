@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { APP_CONSTANTS } from '../../../constants/app.constants';
@@ -12,8 +12,8 @@ import { APP_CONSTANTS } from '../../../constants/app.constants';
 export class LoginComponent {
   email = APP_CONSTANTS.AUTH.DEMO_EMAIL;
   password = APP_CONSTANTS.AUTH.DEMO_PASSWORD;
-  error = '';
-  isLoading = false;
+  error = signal('');
+  isLoading = signal(false);
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -21,27 +21,27 @@ export class LoginComponent {
     event.preventDefault();
 
     // 1. Resetta stato
-    this.error = '';
-    this.isLoading = true;
+    this.error.set('');
+    this.isLoading.set(true);
 
     // 2. Chiama il servizio (che ora ritorna un Observable)
     this.authService.login(this.email, this.password).subscribe({
       next: (isSuccess) => {
         // Questa funzione viene eseguita DOPO il delay di 1 secondo
-        this.isLoading = false; // Spegni lo spinner
+        this.isLoading.set(false); // Spegni lo spinner
 
         if (isSuccess) {
           // Login OK -> Vai alla dashboard
           this.router.navigate(['/dashboard']);
         } else {
           // Login Fallito -> Mostra errore
-          this.error = 'Credenziali non valide. Riprova.';
+          this.error.set('Credenziali non valide. Riprova.');
         }
       },
       error: (err) => {
         // Gestione errori imprevisti (es. server down)
-        this.isLoading = false;
-        this.error = 'Errore di connessione. Riprova più tardi.';
+        this.isLoading.set(false);
+        this.error.set('Errore di connessione. Riprova più tardi.');
         console.error(err);
       },
     });

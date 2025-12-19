@@ -16,7 +16,7 @@
           email
           #emailInput="ngModel"
           placeholder="name@company.com"
-          [disabled]="isLoading"
+          [disabled]="isLoading()"
           [class.error-border]="emailInput.invalid && emailInput.touched"
         />
 
@@ -43,7 +43,7 @@
           minlength="6"
           #passwordInput="ngModel"
           placeholder="••••••••"
-          [disabled]="isLoading"
+          [disabled]="isLoading()"
           [class.error-border]="passwordInput.invalid && passwordInput.touched"
         />
 
@@ -64,7 +64,7 @@
       </div>
 
       <div
-        *ngIf="error"
+        *ngIf="error()"
         class="error-message"
         style="text-align: center; margin-bottom: 15px;"
       >
@@ -73,16 +73,16 @@
           style="vertical-align: middle; font-size: 18px; margin-right: 5px"
           >warning</span
         >
-        {{ error }}
+        {{ error() }}
       </div>
 
       <button
         type="submit"
-        [disabled]="loginForm.invalid || isLoading"
+        [disabled]="loginForm.invalid || isLoading()"
         class="btn-primary"
       >
-        <span *ngIf="!isLoading">Accedi</span>
-        <span *ngIf="isLoading">Caricamento...</span>
+        <span *ngIf="!isLoading()">Accedi</span>
+        <span *ngIf="isLoading()">Caricamento...</span>
       </button>
 
       <p class="footer-text">Credenziali Demo: admin&#64;demo.com / password</p>

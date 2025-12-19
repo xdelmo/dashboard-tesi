@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { APP_CONSTANTS } from '../constants/app.constants';
@@ -8,9 +8,8 @@ import { APP_CONSTANTS } from '../constants/app.constants';
   providedIn: 'root',
 })
 export class AuthService {
-  // BehaviorSubject tiene traccia dello stato corrente
-  private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  // Signal per lo stato di login
+  isLoggedIn = signal<boolean>(this.hasToken());
 
   constructor(private router: Router) {}
 
@@ -28,14 +27,14 @@ export class AuthService {
             APP_CONSTANTS.AUTH.TOKEN_KEY,
             APP_CONSTANTS.AUTH.MOCK_TOKEN_VALUE
           ); // Salviamo un finto token
-          this.isLoggedInSubject.next(true);
+          this.isLoggedIn.set(true);
         })
       );
     } else {
       return of(false).pipe(
         delay(1000), // Finto ritardo di rete
         tap(() => {
-          this.isLoggedInSubject.next(false);
+          this.isLoggedIn.set(false);
         })
       );
     }
@@ -44,7 +43,7 @@ export class AuthService {
   // Logout
   logout(): void {
     localStorage.removeItem(APP_CONSTANTS.AUTH.TOKEN_KEY);
-    this.isLoggedInSubject.next(false);
+    this.isLoggedIn.set(false);
     this.router.navigate(['/login']);
   }
 
@@ -54,6 +53,6 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedInSubject.value;
+    return this.isLoggedIn();
   }
 }

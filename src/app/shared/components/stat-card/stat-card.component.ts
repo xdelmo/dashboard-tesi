@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-stat-card',
@@ -7,9 +7,9 @@ import { Component, Input } from '@angular/core';
   standalone: false,
 })
 export class StatCardComponent {
-  @Input() title: string = '';
-  @Input() value: string = '';
-  @Input() subValue: string = '';
-  @Input() icon: string = '';
-  @Input() colorClass: string = 'blue'; // blue, purple, green, orange
+  title = input<string>('');
+  value = input<string>('');
+  subValue = input<string>('');
+  icon = input<string>('');
+  colorClass = input<string>('blue'); // blue, purple, green, orange
 }

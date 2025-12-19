@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { DataService } from '../../../../core/services/data.services';
 import { Customer } from '../../../../core/models/customer.model';
 
@@ -9,16 +9,10 @@ import { Customer } from '../../../../core/models/customer.model';
   styleUrls: ['./home.component.scss'],
   standalone: false,
 })
-export class HomeComponent implements OnInit {
-  // Definiamo i flussi di dati (non i dati stessi!)
-  customers$!: Observable<Customer[]>;
-  totalRevenue$!: Observable<number>;
+export class HomeComponent {
+  private dataService = inject(DataService);
 
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    // Colleghiamo il tubo. Non succede nulla finché l'HTML non lo chiede (lazy)
-    this.customers$ = this.dataService.getCustomers();
-    this.totalRevenue$ = this.dataService.getTotalRevenue();
-  }
+  // Definiamo i flussi di dati come Signals (lettura sincrona reattiva)
+  customers = toSignal(this.dataService.getCustomers());
+  totalRevenue = toSignal(this.dataService.getTotalRevenue());
 }
