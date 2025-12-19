@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { Customer } from '../../../../core/models/customer.model';
+import { Customer, CustomerStatus } from '../../../../core/models/customer.model';
 
 @Component({
   selector: 'app-customer-modal',
@@ -12,11 +12,14 @@ export class CustomerModalComponent {
   close = output<void>();
   save = output<Partial<Customer>>();
 
+  // Esponiamo l'enum al template
+  public CustomerStatus = CustomerStatus;
+
   newCustomer: Partial<Customer> = {
     name: '',
     email: '',
     company: '',
-    status: 'Active',
+    status: CustomerStatus.Active,
     revenue: 0,
   };
 
@@ -37,9 +40,10 @@ export class CustomerModalComponent {
       name: '',
       email: '',
       company: '',
-      status: 'Active',
+      status: CustomerStatus.Active,
       revenue: 0,
     };
   }
 }
+
 

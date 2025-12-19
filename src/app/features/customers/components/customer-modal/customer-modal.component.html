@@ -7,9 +7,9 @@
     <label>Azienda: <input type="text" [(ngModel)]="newCustomer.company" /></label>
     <label>Stato:
       <select [(ngModel)]="newCustomer.status">
-        <option value="Active">Active</option>
-        <option value="Pending">Pending</option>
-        <option value="Inactive">Inactive</option>
+        <option [value]="CustomerStatus.Active">{{ CustomerStatus.Active }}</option>
+        <option [value]="CustomerStatus.Pending">{{ CustomerStatus.Pending }}</option>
+        <option [value]="CustomerStatus.Inactive">{{ CustomerStatus.Inactive }}</option>
       </select>
     </label>
     <label>Fatturato: <input type="number" [(ngModel)]="newCustomer.revenue" /></label>

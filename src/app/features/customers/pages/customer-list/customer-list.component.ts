@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customer } from '../../../../core/models/customer.model';
+import { Customer, CustomerStatus } from '../../../../core/models/customer.model';
+
 import { DataService } from '../../../../core/services/data.services';
 
 // --- INIZIO DECORATORE (Questo è il pezzo che mancava o era rotto) ---
