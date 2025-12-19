@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Customer } from '../models/customer.model';
+import { API_CONFIG } from '../config/api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private apiUrl = 'http://localhost:3000/customers';
-
   constructor(private http: HttpClient) {}
 
   // Recupera i clienti dal JSON Server
   getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.apiUrl);
+    return this.http.get<Customer[]>(`${API_CONFIG.baseUrl}/customers`);
   }
 
   // Calcola il totale fatturato recuperando i dati dal server
