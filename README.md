@@ -1,46 +1,53 @@
 # 🔹 Enterprise Dashboard (Angular 19)
 
 Applicazione gestionale Single Page Application (SPA) sviluppata con **Angular 19**, progettata seguendo architetture Enterprise modulari e scalabili.
-Il progetto dimostra l'utilizzo avanzato di **RxJS**, **Lazy Loading**, **Authentication Flows** e **Data Visualization**.
+Il progetto dimostra l'utilizzo avanzato di **Signals**, **RxJS**, **Lazy Loading**, **Authentication Flows** e **Data Visualization**.
 
 ## 🚀 Funzionalità Chiave
 
 ### 🔐 Autenticazione & Sicurezza
 
 - **Login Flow:** Gestione accesso con validazione form e feedback utente.
+- **Signals:** Utilizzo delle nuove primitive reattive di Angular (`signal`, `computed`, `effect`) per la gestione dello stato moderna e performante.
 - **Guards:**
   - `AuthGuard`: Protegge le rotte private (Dashboard, Clienti).
   - `PublicGuard`: Impedisce l'accesso al login agli utenti già autenticati.
-- **Simulazione Backend:** AuthService basato su `Observable` e `BehaviorSubject` con delay artificiale per simulare latenza di rete.
+
+### 🌐 Backend Mock (JSON Server)
+
+- Integrazione di **JSON Server** per simulare un'API REST completa.
+- Dataset persistente su file `db.json`.
+- Script dedicato per avviare il server mock in parallelo all'app.
 
 ### 📊 Dashboard & Analytics
 
 - Integrazione di **Chart.js** (tramite `ng2-charts`) per la visualizzazione dati.
-- Stat Cards riutilizzabili (Componenti "Dumb" con `@Input`).
+- Stat Cards riutilizzabili (Componenti "Dumb" ottimizzati).
 - Layout Responsivo con Sidebar e Header fissi.
 
 ### 👥 Gestione Anagrafiche (CRUD)
 
 - Tabella clienti con rendering ottimizzato.
 - **Modulo Separato:** La feature "Customers" è caricata in **Lazy Loading** per performance ottimali.
-- **Reactive Forms & Template Driven:** Validazione avanzata degli input con feedback visivo immediato.
+- **Reactive Forms:** Validazione avanzata degli input con feedback visivo immediato.
 
 ### 🎨 UI/UX & Layout Moderno
 
-- **Sidebar Dinamica:** Sidebar collassabile intelligente che mostra solo le icone a riposo e si espande fluidamente (80px -> 260px) al passaggio del mouse.
-- **Micro-interactions:** Transizioni curate per hover, focus e cambi di stato per un'esperienza utente reattiva e "premium".
-- **Design System:** Palette colori professionale, tipografia bilanciata e utilizzo consistente di spaziature e ombreggiature.
-- **Iconografia:** Integrazione completa con **Material Icons** per una navigazione intuitiva.
+- **Sidebar Dinamica:** Sidebar collassabile intelligente che mostra solo le icone a riposo e si espande fluidamente al passaggio del mouse.
+- **Micro-interactions:** Transizioni curate per hover, focus e cambi di stato per un'esperienza utente "premium".
+- **Design System:** Palette colori professionale, tipografia bilanciata e utilizzo consistente di spaziature.
+- **Iconografia:** Integrazione completa con **Material Icons**.
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Framework:** Angular 19
+- **Core:** Signals, RxJS
 - **Linguaggio:** TypeScript 5.x
 - **Stili:** SCSS (Architettura modulare con Partials e BEM-like naming)
-- **Librerie:** ng2-charts, Chart.js
-- **Tooling:** Angular CLI, RxJS
+- **Visualizzazione Dati:** ng2-charts, Chart.js
+- **Tooling:** Angular CLI, JSON Server
 
 ---
 
@@ -58,7 +65,7 @@ La struttura segue le best practices per la scalabilità:
 
 1.  **Clona il repository:**
     ```bash
-    git clone [https://github.com/xdelmo/dashboard-tesi.git](https://github.com/xdelmo/dashboard-tesi.git)
+    git clone https://github.com/xdelmo/dashboard-tesi.git
     ```
 2.  **Installa le dipendenze:**
     ```bash
@@ -66,11 +73,16 @@ La struttura segue le best practices per la scalabilità:
     # Nota: Se richiesto, usare --legacy-peer-deps per ng2-charts
     npm install --legacy-peer-deps
     ```
-3.  **Avvia il server di sviluppo:**
+3.  **Avvia il Mock Server (Terminale 1):**
+    Questo avvierà l'API simulata su `http://localhost:3000`
+    ```bash
+    npm run server
+    ```
+4.  **Avvia l'applicazione Angular (Terminale 2):**
     ```bash
     ng serve
     ```
-4.  **Accedi:** Vai su `http://localhost:4200`
+5.  **Accedi:** Vai su `http://localhost:4200`
 
 ### 🔑 Credenziali Demo
 
