@@ -5,6 +5,10 @@
   ></app-page-header>
 
   <main class="content-area">
+    <div style="margin-bottom: 20px;">
+      <button (click)="openModal()">Aggiungi Cliente</button>
+    </div>
+
     <div *ngIf="customers$ | async as customers; else loading">
       <table class="custom-table">
         <thead>
@@ -40,7 +44,15 @@
       </table>
     </div>
 
+    <!-- Simple Modal Component -->
+    <app-customer-modal
+      [isOpen]="isModalOpen"
+      (close)="closeModal()"
+      (save)="saveCustomer($event)"
+    ></app-customer-modal>
+
     <ng-template #loading>
+
       <div class="loading-state">
         <div class="spinner"></div>
         <p>Caricamento dati aziendali...</p>

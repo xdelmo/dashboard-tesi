@@ -30,5 +30,11 @@ export class DataService {
   getRevenueStats(): Observable<RevenueStats> {
     return this.http.get<RevenueStats>(`${API_CONFIG.baseUrl}/revenueStats`);
   }
+
+  // Aggiunge un nuovo cliente
+  addCustomer(customer: Partial<Customer>): Observable<Customer> {
+    return this.http.post<Customer>(`${API_CONFIG.baseUrl}/customers`, customer);
+  }
 }
+
 

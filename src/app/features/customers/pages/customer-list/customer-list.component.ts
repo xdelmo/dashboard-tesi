@@ -15,11 +15,32 @@ export class CustomerListComponent implements OnInit {
   customers$!: Observable<Customer[]>;
   totalRevenue$!: Observable<number>;
 
+  isModalOpen = false;
+
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    // Colleghiamo il tubo. Non succede nulla finché l'HTML non lo chiede (lazy)
+    this.refreshData();
+  }
+
+  refreshData(): void {
     this.customers$ = this.dataService.getCustomers();
     this.totalRevenue$ = this.dataService.getTotalRevenue();
   }
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  saveCustomer(customer: Partial<Customer>): void {
+    this.dataService.addCustomer(customer).subscribe(() => {
+      this.refreshData();
+      this.closeModal();
+    });
+  }
 }
+

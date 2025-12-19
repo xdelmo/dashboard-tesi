@@ -1,0 +1,21 @@
+<div *ngIf="isOpen()" class="modal-overlay">
+
+  <div class="modal-content">
+    <h2>Nuovo Cliente</h2>
+    <label>Nome: <input type="text" [(ngModel)]="newCustomer.name" /></label>
+    <label>Email: <input type="email" [(ngModel)]="newCustomer.email" /></label>
+    <label>Azienda: <input type="text" [(ngModel)]="newCustomer.company" /></label>
+    <label>Stato:
+      <select [(ngModel)]="newCustomer.status">
+        <option value="Active">Active</option>
+        <option value="Pending">Pending</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </label>
+    <label>Fatturato: <input type="number" [(ngModel)]="newCustomer.revenue" /></label>
+    <div class="modal-actions">
+      <button (click)="onClose()">Annulla</button>
+      <button (click)="onSave()">Salva</button>
+    </div>
+  </div>
+</div>
