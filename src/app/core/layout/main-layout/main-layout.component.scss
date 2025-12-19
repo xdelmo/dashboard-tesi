@@ -34,6 +34,9 @@
   .nav-links {
     padding: 20px 15px;
     overflow-y: auto;
+    flex-grow: 1; // Occupies remaining space
+    display: flex;
+    flex-direction: column;
 
     // Etichette (MENU PRINCIPALE, GESTIONE)
     .nav-label {
@@ -78,6 +81,10 @@
         opacity: 0.5;
         pointer-events: none;
       }
+    }
+
+    .nav-spacer {
+      margin-top: auto;
     }
   }
 }
