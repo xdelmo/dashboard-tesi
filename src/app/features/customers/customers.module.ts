@@ -7,9 +7,10 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { CustomerModalComponent } from './components/customer-modal/customer-modal.component';
 import { SharedModule } from '../../shared/shared.module';
+import { CustomerDetailComponent } from './pages/customer-detail/customer-detail.component';
 
 @NgModule({
-  declarations: [CustomerListComponent, CustomerModalComponent],
+  declarations: [CustomerListComponent, CustomerModalComponent, CustomerDetailComponent],
   imports: [CommonModule, FormsModule, CustomersRoutingModule, SharedModule],
 })
 

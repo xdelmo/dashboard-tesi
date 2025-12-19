@@ -17,6 +17,11 @@ export class DataService {
     return this.http.get<Customer[]>(`${API_CONFIG.baseUrl}/customers`);
   }
 
+  // Recupera un singolo cliente per ID
+  getCustomer(id: number): Observable<Customer> {
+    return this.http.get<Customer>(`${API_CONFIG.baseUrl}/customers/${id}`);
+  }
+
   // Calcola il totale fatturato recuperando i dati dal server
   getTotalRevenue(): Observable<number> {
     return this.getCustomers().pipe(
