@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { Customer } from '../models/customer.model';
 import { RevenueStats } from '../models/chart.model';
 
@@ -31,10 +31,24 @@ export class DataService {
     return this.http.get<RevenueStats>(`${API_CONFIG.baseUrl}/revenueStats`);
   }
 
-  // Aggiunge un nuovo cliente
+  // Aggiunge un nuovo cliente con ID incrementale
   addCustomer(customer: Partial<Customer>): Observable<Customer> {
-    return this.http.post<Customer>(`${API_CONFIG.baseUrl}/customers`, customer);
+    return this.getCustomers().pipe(
+      map((customers) => {
+        // Prende l'ultimo customer e incrementa il suo ID
+        const lastCustomer = customers[customers.length - 1];
+        const lastId = lastCustomer ? Number(lastCustomer.id) : 0;
+        return String(lastId + 1);
+      }),
+      switchMap((newId) => {
+        const newCustomerWithId = { ...customer, id: newId };
+        // Nota: json-server potrebbe richiedere id come stringa o numero a seconda di come è stato inizializzato
+        // Qui lo forziamo a stringa per coerenza con il db.json visto prima
+        return this.http.post<Customer>(
+          `${API_CONFIG.baseUrl}/customers`,
+          newCustomerWithId
+        );
+      })
+    );
   }
 }
-
-
