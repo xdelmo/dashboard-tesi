@@ -40,5 +40,9 @@
       "status": "Active",
       "revenue": 45000
     }
-  ]
+  ],
+  "revenueStats": {
+    "labels": ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug"],
+    "data": [65, 59, 80, 81, 56, 55, 90]
+  }
 }

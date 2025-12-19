@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Customer } from '../models/customer.model';
+import { RevenueStats } from '../models/chart.model';
+
 import { API_CONFIG } from '../config/api.config';
 
 @Injectable({
@@ -23,4 +25,10 @@ export class DataService {
       )
     );
   }
+
+  // Recupera i dati del grafico fatturato
+  getRevenueStats(): Observable<RevenueStats> {
+    return this.http.get<RevenueStats>(`${API_CONFIG.baseUrl}/revenueStats`);
+  }
 }
+
