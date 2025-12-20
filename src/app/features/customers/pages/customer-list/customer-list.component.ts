@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer, CustomerStatus } from '../../../../core/models/customer.model';
 
-import { DataService } from '../../../../core/services/data.services';
+import { CustomerService } from '../../../../core/services/customer.service';
 
-// --- INIZIO DECORATORE (Questo è il pezzo che mancava o era rotto) ---
+// --- INIZIO DECORATORE 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
@@ -18,15 +18,15 @@ export class CustomerListComponent implements OnInit {
 
   isModalOpen = false;
 
-  constructor(private dataService: DataService) {}
+  constructor(private customerService: CustomerService) {}
 
   ngOnInit(): void {
     this.refreshData();
   }
 
   refreshData(): void {
-    this.customers$ = this.dataService.getCustomers();
-    this.totalRevenue$ = this.dataService.getTotalRevenue();
+    this.customers$ = this.customerService.getCustomers();
+    this.totalRevenue$ = this.customerService.getTotalRevenue();
   }
 
   openModal(): void {
@@ -38,10 +38,11 @@ export class CustomerListComponent implements OnInit {
   }
 
   saveCustomer(customer: Partial<Customer>): void {
-    this.dataService.addCustomer(customer).subscribe(() => {
+    this.customerService.addCustomer(customer).subscribe(() => {
       this.refreshData();
       this.closeModal();
     });
   }
 }
+
 

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Customer } from '../../../../core/models/customer.model';
-import { DataService } from '../../../../core/services/data.services';
+import { CustomerService } from '../../../../core/services/customer.service';
 
 @Component({
   selector: 'app-customer-detail',
@@ -18,7 +18,7 @@ export class CustomerDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dataService: DataService
+    private customerService: CustomerService
   ) {}
 
   ngOnInit(): void {
@@ -26,17 +26,18 @@ export class CustomerDetailComponent implements OnInit {
     this.customer$ = this.route.paramMap.pipe(
       switchMap((params) => {
         const id = Number(params.get('id'));
-        return this.dataService.getCustomer(id);
+        return this.customerService.getCustomer(id);
       })
     );
   }
 
   deleteCustomer(id: number): void {
     if (confirm('Sei sicuro di voler eliminare questo cliente?')) {
-      this.dataService.deleteCustomer(id).subscribe(() => {
+      this.customerService.deleteCustomer(id).subscribe(() => {
         this.router.navigate(['/customers']);
       });
     }
   }
 }
+
 
