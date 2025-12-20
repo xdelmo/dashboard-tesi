@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DataService } from '../../../../core/services/data.services';
-import { Customer } from '../../../../core/models/customer.model';
+import { CustomerService } from '../../../../core/services/customer.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +9,8 @@ import { Customer } from '../../../../core/models/customer.model';
   standalone: false,
 })
 export class HomeComponent {
-  private dataService = inject(DataService);
-
+  private customerService = inject(CustomerService);
   // Definiamo i flussi di dati come Signals (lettura sincrona reattiva)
-  customers = toSignal(this.dataService.getCustomers());
-  totalRevenue = toSignal(this.dataService.getTotalRevenue());
+  customers = toSignal(this.customerService.getCustomers());
+  totalRevenue = toSignal(this.customerService.getTotalRevenue());
 }
