@@ -93,6 +93,17 @@
     }
   }
 
+  .edit-btn {
+    margin-left: 10px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+
+    &:hover {
+      background-color: #f57c00;
+    }
+  }
+
   .delete-btn {
     margin-left: 10px;
     background-color: #f44336;

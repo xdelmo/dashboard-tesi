@@ -1,7 +1,7 @@
 <div *ngIf="isOpen()" class="modal-overlay">
 
   <div class="modal-content">
-    <h2>Nuovo Cliente</h2>
+    <h2>{{ customerToEdit() ? 'Modifica Cliente' : 'Nuovo Cliente' }}</h2>
     <label>Nome: <input type="text" [(ngModel)]="newCustomer.name" /></label>
     <label>Email: <input type="email" [(ngModel)]="newCustomer.email" /></label>
     <label>Azienda: <input type="text" [(ngModel)]="newCustomer.company" /></label>

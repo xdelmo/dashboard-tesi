@@ -54,4 +54,10 @@ export class CustomerService {
   deleteCustomer(id: number): Observable<void> {
     return this.http.delete<void>(`${API_CONFIG.baseUrl}/customers/${id}`);
   }
+
+  // Aggiorna un cliente esistente
+  updateCustomer(id: number, customer: Partial<Customer>): Observable<Customer> {
+    return this.http.put<Customer>(`${API_CONFIG.baseUrl}/customers/${id}`, customer);
+  }
 }
+

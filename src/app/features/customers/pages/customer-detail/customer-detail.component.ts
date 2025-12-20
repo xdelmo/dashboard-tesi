@@ -13,6 +13,8 @@ import { CustomerService } from '../../../../core/services/customer.service';
 })
 export class CustomerDetailComponent implements OnInit {
   customer$!: Observable<Customer>;
+  isModalOpen = false;
+  selectedCustomer: Customer | null = null;
 
 
   constructor(
@@ -22,7 +24,11 @@ export class CustomerDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Utilizziamo switchMap per gestire il cambio di parametro ID nell'URL
+    this.refreshData();
+  }
+
+  // Ricarica i dati del cliente in base all'ID presente nella rotta a seguito di modifica
+  refreshData(): void {
     this.customer$ = this.route.paramMap.pipe(
       switchMap((params) => {
         const id = Number(params.get('id'));
@@ -38,6 +44,28 @@ export class CustomerDetailComponent implements OnInit {
       });
     }
   }
+
+  openEditModal(customer: Customer): void {
+    this.selectedCustomer = customer;
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedCustomer = null;
+  }
+
+  saveCustomer(customerData: Partial<Customer>): void {
+    if (this.selectedCustomer) {
+      this.customerService
+        .updateCustomer(this.selectedCustomer.id, customerData)
+        .subscribe(() => {
+          this.refreshData();
+          this.closeModal();
+        });
+    }
+  }
 }
+
 
 

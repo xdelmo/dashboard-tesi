@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, effect } from '@angular/core';
 import { Customer, CustomerStatus } from '../../../../core/models/customer.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Customer, CustomerStatus } from '../../../../core/models/customer.model
 })
 export class CustomerModalComponent {
   isOpen = input(false);
+  customerToEdit = input<Customer | null>(null); // Input per il cliente da modificare
   close = output<void>();
   save = output<Partial<Customer>>();
 
@@ -23,6 +24,21 @@ export class CustomerModalComponent {
     revenue: 0,
   };
 
+  constructor() {
+    // EFFETTO REATTIVO:
+    // Questo blocco viene eseguito automaticamente ogni volta che il segnale 'customerToEdit' cambia.
+    // Se viene passato un cliente (modalità modifica), pre-compila il form.
+    // Se è null (modalità creazione), resetta il form.
+    effect(() => {
+      const customer = this.customerToEdit();
+      if (customer) {
+        this.newCustomer = { ...customer };
+      } else {
+        this.resetForm();
+      }
+    });
+  }
+
   onClose(): void {
     this.resetForm();
     this.close.emit();
@@ -31,7 +47,7 @@ export class CustomerModalComponent {
   onSave(): void {
     if (this.newCustomer.name && this.newCustomer.email) {
       this.save.emit({ ...this.newCustomer });
-      this.resetForm();
+      // Non resettiamo subito, lasciamo che sia il padre a chiudere
     }
   }
 
@@ -45,5 +61,6 @@ export class CustomerModalComponent {
     };
   }
 }
+
 
 

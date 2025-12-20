@@ -36,10 +36,18 @@
 
       <div class="actions">
         <button [routerLink]="['/customers']">Torna alla lista</button>
+        <button class="edit-btn" (click)="openEditModal(customer)">Modifica</button>
         <button class="delete-btn" (click)="deleteCustomer(customer.id)">Elimina</button>
       </div>
     </div>
   </main>
+
+  <app-customer-modal
+    [isOpen]="isModalOpen"
+    [customerToEdit]="selectedCustomer"
+    (close)="closeModal()"
+    (save)="saveCustomer($event)"
+  ></app-customer-modal>
 </div>
 
 <ng-template #loading>
