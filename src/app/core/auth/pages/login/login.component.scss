@@ -1,3 +1,5 @@
+@use '../../../../shared/styles/cards';
+
 // Layout pagina intera
 .login-container {
   height: 100vh;
@@ -8,12 +10,10 @@
   padding: 20px;
 }
 
+
 // La Card Bianca al centro
 .login-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  @include cards.base-card;
   width: 100%;
   max-width: 400px;
   text-align: center;

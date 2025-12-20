@@ -1,3 +1,6 @@
+@use '../../../../shared/styles/forms';
+@use '../../../../shared/styles/cards';
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -12,9 +15,7 @@
 }
 
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
+  @include cards.base-card;
   width: 300px;
   display: flex;
   flex-direction: column;

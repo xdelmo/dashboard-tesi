@@ -2,20 +2,38 @@
 
   <div class="modal-content">
     <h2>{{ customerToEdit() ? 'Modifica Cliente' : 'Nuovo Cliente' }}</h2>
-    <label>Nome: <input type="text" [(ngModel)]="newCustomer.name" /></label>
-    <label>Email: <input type="email" [(ngModel)]="newCustomer.email" /></label>
-    <label>Azienda: <input type="text" [(ngModel)]="newCustomer.company" /></label>
-    <label>Stato:
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" [(ngModel)]="newCustomer.name" />
+    </div>
+    
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="newCustomer.email" />
+    </div>
+
+    <div class="form-group">
+      <label>Azienda</label>
+      <input type="text" [(ngModel)]="newCustomer.company" />
+    </div>
+
+    <div class="form-group">
+      <label>Stato</label>
       <select [(ngModel)]="newCustomer.status">
         <option [value]="CustomerStatus.Active">{{ CustomerStatus.Active }}</option>
         <option [value]="CustomerStatus.Pending">{{ CustomerStatus.Pending }}</option>
         <option [value]="CustomerStatus.Inactive">{{ CustomerStatus.Inactive }}</option>
       </select>
-    </label>
-    <label>Fatturato: <input type="number" [(ngModel)]="newCustomer.revenue" /></label>
+    </div>
+
+    <div class="form-group">
+      <label>Fatturato</label>
+      <input type="number" [(ngModel)]="newCustomer.revenue" />
+    </div>
+
     <div class="modal-actions">
       <button (click)="onClose()">Annulla</button>
-      <button (click)="onSave()">Salva</button>
+      <button class="btn-primary" (click)="onSave()">Salva</button>
     </div>
   </div>
 </div>

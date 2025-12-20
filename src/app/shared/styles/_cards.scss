@@ -1,0 +1,14 @@
+/* --- DESIGN SYSTEM: CARDS & CONTAINERS --- */
+
+// Mixin per card base
+@mixin base-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+// Classe riutilizzabile
+.card-style {
+  @include base-card;
+}
