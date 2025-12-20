@@ -25,11 +25,22 @@ Il progetto dimostra l'utilizzo avanzato di **Signals**, **RxJS**, **Lazy Loadin
 - Stat Cards riutilizzabili (Componenti "Dumb" ottimizzati).
 - Layout Responsivo con Sidebar e Header fissi.
 
-### 👥 Gestione Anagrafiche (CRUD)
+### 👥 Gestione Anagrafiche (CRUD Completo)
+**Aggiornato:** Il sistema implementa un ciclo di vita completo per la gestione clienti, interamente reattivo:
 
-- Tabella clienti con rendering ottimizzato.
-- **Modulo Separato:** La feature "Customers" è caricata in **Lazy Loading** per performance ottimali.
-- **Reactive Forms:** Validazione avanzata degli input con feedback visivo immediato.
+- **Create:** Modale di inserimento con validazione.
+- **Read:**
+  - Lista tabellare con indicatori di stato.
+  - Pagina di dettaglio cliente (`/customers/:id`) con routing dedicato.
+- **Update:** Modifica dati esistenti riutilizzando la modale intelligente (pre-compilazione tramite Signals).
+- **Delete:** Rimozione sicura dei record.
+- **Architettura:** Logica separata in `CustomerService` dedicato per una maggiore pulizia del codice.
+
+### ⚠️ Limitazioni Demo Online (Vercel)
+L'applicazione deployata utilizza **My JSON Server** come backend mock.
+> **Nota:** Questo servizio è **stateless** (sola lettura persistente). Le operazioni di modifica (POST, PUT, DELETE) vengono simulate con successo (risposta 200 OK) e riflesse nella UI locale, ma **non modificano realmente il database remoto**. Ricaricando la pagina, i dati torneranno allo stato originale.
+>
+> Per testare la persistenza reale, avviare il progetto in locale con `npm run server` (che scrive sul file `db.json`).
 
 ### 🎨 UI/UX & Layout Moderno
 
