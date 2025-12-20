@@ -22,14 +22,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let customer of customers">
-            <td>
-              <span class="id-link" [routerLink]="['/customers', customer.id]">
-                #{{ customer.id }}
-              </span>
-            </td>
+            <td>#{{ customer.id }}</td>
             <td>
               <div class="user-info">
-                <strong>{{ customer.name }}</strong>
+                <strong class="id-link" [routerLink]="['/customers', customer.id]">{{ customer.name }}</strong>
                 <small>{{ customer.email }}</small>
               </div>
             </td>
