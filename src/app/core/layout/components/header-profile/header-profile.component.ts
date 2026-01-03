@@ -20,7 +20,7 @@ export class HeaderProfileComponent implements OnInit {
   ngOnInit() {
     this.userMenuItems = [
       {
-        label: 'Sign Out',
+        label: 'Esci',
         icon: 'pi pi-power-off',
         iconClass: 'text-red-500',
         labelClass: 'text-red-500',
