@@ -2,7 +2,7 @@
 
 <div class="user-trigger" (click)="userMenu.toggle($event)">
   <p-avatar
-    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+    image="{{ currentUser()?.avatar }}"
     shape="circle"
     size="normal"
     styleClass="mr-2"

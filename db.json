@@ -67,14 +67,16 @@
       "email": "admin@demo.com",
       "password": "password",
       "name": "Admin User",
-      "role": "admin"
+      "role": "admin",
+      "avatar": "https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
     },
     {
       "id": 2,
       "email": "user@demo.com",
       "password": "password",
       "name": "User",
-      "role": "user"
+      "role": "user",
+      "avatar": "https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
     }
   ]
 }
