@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { Avatar } from 'primeng/avatar';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
+import { InputText } from 'primeng/inputtext';
+import { Password } from 'primeng/password';
+import { Message } from 'primeng/message';
+import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { RouterOutlet } from '@angular/router';
@@ -15,9 +19,13 @@ import { HeaderProfileComponent } from './layout/components/header-profile/heade
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterOutlet,
     RouterModule,
     Button,
+    InputText,
+    Password,
+    Message,
     Avatar,
     Menu,
   ],
