@@ -1,6 +1,10 @@
 // --- IMPORTA I MODULI CONDIVISI ---
 @use "./app/shared/styles/_forms.scss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // PrimeNG Styles
 @import "primeicons/primeicons.css";
 
