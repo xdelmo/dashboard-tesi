@@ -54,10 +54,6 @@ import Aura from '@primeuix/themes/aura';
         },
         options: {
           darkModeSelector: false,
-          cssLayer: {
-            name: 'primeng',
-            order: 'primeng, app-styles',
-          },
         },
       },
     }),

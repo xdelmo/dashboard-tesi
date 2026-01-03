@@ -1,5 +1,5 @@
-@use '../../../../shared/styles/forms';
-@use '../../../../shared/styles/cards';
+@use "../../../../shared/styles/forms";
+@use "../../../../shared/styles/cards";
 
 .modal-overlay {
   position: fixed;
@@ -12,19 +12,24 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(4px); // Effetto sfocato
 }
 
 .modal-content {
   @include cards.base-card;
-  width: 300px;
+  width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
+  gap: 1.5rem; // Più spazio tra i campi
+  padding: 2rem;
+  background: var(--surface-card, #ffffff); // Usa variabile PrimeNG o default
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 10px;
+  h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--text-color, #333);
+    font-weight: 600;
+  }
 }
