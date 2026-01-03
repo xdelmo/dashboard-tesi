@@ -5,9 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,10 +25,12 @@ import Aura from '@primeuix/themes/aura';
     AppRoutingModule,
     FormsModule,
     CoreModule,
+    ToastModule,
   ],
   providers: [
     provideCharts(withDefaultRegisterables()),
-    provideHttpClient(withInterceptors([authInterceptor])), // provideHttpClient ora ha l'interceptor su ogni chiamata http
+    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
+    MessageService, // provideHttpClient ora ha interceptor dell'autenticazione e degli errori BE su ogni chiamata HTTP
     providePrimeNG({
       theme: {
         preset: {
