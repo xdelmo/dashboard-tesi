@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -15,10 +16,16 @@ import Aura from '@primeuix/themes/aura';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, FormsModule, CoreModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    CoreModule,
+  ],
   providers: [
     provideCharts(withDefaultRegisterables()),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])), // provideHttpClient ora ha l'interceptor su ogni chiamata http
     providePrimeNG({
       theme: {
         preset: {
@@ -36,17 +43,17 @@ import Aura from '@primeuix/themes/aura';
               700: '{blue.700}',
               800: '{blue.800}',
               900: '{blue.900}',
-              950: '{blue.950}'
-            }
-          }
+              950: '{blue.950}',
+            },
+          },
         },
         options: {
           darkModeSelector: false,
           cssLayer: {
             name: 'primeng',
-            order: 'primeng, app-styles'
-          }
-        }
+            order: 'primeng, app-styles',
+          },
+        },
       },
     }),
   ],
