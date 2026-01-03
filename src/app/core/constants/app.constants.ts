@@ -5,5 +5,6 @@ export const APP_CONSTANTS = {
     DEMO_PASSWORD: 'password',
     TOKEN_KEY: 'auth_token',
     MOCK_TOKEN_VALUE: 'fake-jwt-token-12345',
+    CURRENT_USER_KEY: 'currentUser',
   },
 };
