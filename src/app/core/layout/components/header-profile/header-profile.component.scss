@@ -1,0 +1,40 @@
+.user-trigger {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  gap: 10px;
+
+  &:hover {
+    background-color: #f5f7fa;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    text-align: left;
+
+    .user-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #2d3748;
+    }
+
+    .user-role {
+      font-size: 0.8rem;
+      color: #718096;
+    }
+  }
+}
+
+// Utilità per il menu
+::ng-deep .text-red-500 {
+  color: #ef4444 !important;
+
+  .p-menuitem-icon {
+    color: #ef4444 !important;
+  }
+}

@@ -33,8 +33,7 @@
 
   <main class="main-content">
     <header class="top-bar">
-      <span class="page-title">Benvenuto, {{ currentUser()?.name }}</span>
-      <button class="logout-btn" (click)="logout()">Esci <span class="material-icons" style="font-size: 16px;">lock</span></button>
+      <app-header-profile></app-header-profile>
     </header>
 
     <div class="content-wrapper">

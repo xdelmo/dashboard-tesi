@@ -1,6 +1,4 @@
-import { Component, Signal } from '@angular/core';
-import { AuthService } from '../../services/auth.service'; // Controlla il percorso
-import { User } from '../../models/user.model';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-layout',
@@ -8,14 +6,8 @@ import { User } from '../../models/user.model';
   styleUrls: ['./main-layout.component.scss'],
   standalone: false,
 })
-export class MainLayoutComponent {
-  currentUser: Signal<User | null>;
+export class MainLayoutComponent implements OnInit {
+  constructor() {}
 
-  constructor(private authService: AuthService) {
-    this.currentUser = this.authService.currentUser;
-  }
-
-  logout() {
-    this.authService.logout();
-  }
+  ngOnInit() {}
 }

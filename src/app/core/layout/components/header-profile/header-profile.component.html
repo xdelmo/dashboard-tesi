@@ -1,0 +1,17 @@
+<p-menu #userMenu [model]="userMenuItems" [popup]="true" />
+
+<div class="user-trigger" (click)="userMenu.toggle($event)">
+  <p-avatar
+    image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+    shape="circle"
+    size="normal"
+    styleClass="mr-2"
+  />
+
+  <div class="user-info">
+    <span class="user-name">{{ currentUser()?.name }}</span>
+    <span class="user-role">{{ currentUser()?.role || "Developer" }}</span>
+  </div>
+
+  <i class="pi pi-chevron-down ml-2" style="font-size: 0.8rem; color: #666"></i>
+</div>
