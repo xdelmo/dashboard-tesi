@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { AuthService } from '../../services/auth.service'; // Controlla il percorso
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-main-layout',
@@ -8,7 +9,11 @@ import { AuthService } from '../../services/auth.service'; // Controlla il perco
   standalone: false,
 })
 export class MainLayoutComponent {
-  constructor(private authService: AuthService) {}
+  currentUser: Signal<User | null>;
+
+  constructor(private authService: AuthService) {
+    this.currentUser = this.authService.currentUser;
+  }
 
   logout() {
     this.authService.logout();
