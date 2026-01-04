@@ -21,7 +21,7 @@ export class CustomerModalComponent {
 
   // Form con Validatori
   customerForm = this.fb.group({
-    id: [null as number | null],
+    id: [null as string | null],
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     company: ['', Validators.required],

@@ -16,16 +16,14 @@ export class CustomerService {
   }
 
   // Recupera un singolo cliente per ID
-  getCustomer(id: number): Observable<Customer> {
+  getCustomer(id: string): Observable<Customer> {
     return this.http.get<Customer>(`${API_CONFIG.baseUrl}/customers/${id}`);
   }
 
   // Calcola il totale fatturato recuperando i dati dal server
   getTotalRevenue(): Observable<number> {
     return this.getCustomers().pipe(
-      map((customers) =>
-        customers.reduce((acc, curr) => acc + curr.revenue, 0)
-      )
+      map((customers) => customers.reduce((acc, curr) => acc + curr.revenue, 0))
     );
   }
 
@@ -51,13 +49,18 @@ export class CustomerService {
   }
 
   // Elimina un cliente
-  deleteCustomer(id: number): Observable<void> {
+  deleteCustomer(id: string): Observable<void> {
     return this.http.delete<void>(`${API_CONFIG.baseUrl}/customers/${id}`);
   }
 
   // Aggiorna un cliente esistente
-  updateCustomer(id: number, customer: Partial<Customer>): Observable<Customer> {
-    return this.http.put<Customer>(`${API_CONFIG.baseUrl}/customers/${id}`, customer);
+  updateCustomer(
+    id: string,
+    customer: Partial<Customer>
+  ): Observable<Customer> {
+    return this.http.put<Customer>(
+      `${API_CONFIG.baseUrl}/customers/${id}`,
+      customer
+    );
   }
 }
-

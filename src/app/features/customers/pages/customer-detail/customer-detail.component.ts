@@ -9,13 +9,12 @@ import { CustomerService } from '../../../../core/services/customer.service';
   selector: 'app-customer-detail',
   standalone: false,
   templateUrl: './customer-detail.component.html',
-  styleUrl: './customer-detail.component.scss'
+  styleUrl: './customer-detail.component.scss',
 })
 export class CustomerDetailComponent implements OnInit {
   customer$!: Observable<Customer>;
   isModalOpen = false;
   selectedCustomer: Customer | null = null;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -31,13 +30,16 @@ export class CustomerDetailComponent implements OnInit {
   refreshData(): void {
     this.customer$ = this.route.paramMap.pipe(
       switchMap((params) => {
-        const id = Number(params.get('id'));
-        return this.customerService.getCustomer(id);
+        const id = params.get('id');
+        if (id) {
+          return this.customerService.getCustomer(id);
+        }
+        return new Observable<Customer>(); // Return empty if no ID (should handle better practically)
       })
     );
   }
 
-  deleteCustomer(id: number): void {
+  deleteCustomer(id: string): void {
     if (confirm('Sei sicuro di voler eliminare questo cliente?')) {
       this.customerService.deleteCustomer(id).subscribe(() => {
         this.router.navigate(['/customers']);
@@ -66,6 +68,3 @@ export class CustomerDetailComponent implements OnInit {
     }
   }
 }
-
-
-

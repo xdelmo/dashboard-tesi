@@ -5,10 +5,12 @@ export enum CustomerStatus {
 }
 
 export interface Customer {
-  id: number;
+  id: string;
   name: string;
   email: string;
   company: string;
   status: CustomerStatus;
   revenue: number;
+  industry?: string;
+  plan?: 'Basic' | 'Professional' | 'Enterprise';
 }

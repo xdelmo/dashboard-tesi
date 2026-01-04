@@ -3,42 +3,128 @@
     {
       "id": "1",
       "name": "Mario Rossi",
-      "email": "mario@test.com",
+      "email": "mario@rossi.tech",
       "company": "Tech Spa",
       "status": "Active",
-      "revenue": 12000
+      "revenue": 12000,
+      "industry": "Software",
+      "plan": "Enterprise"
     },
     {
       "id": "2",
       "name": "Luca Bianchi",
-      "email": "luca@demo.it",
+      "email": "l.bianchi@consulting.it",
       "company": "Consulting Srl",
       "status": "Pending",
-      "revenue": 5000
+      "revenue": 5000,
+      "industry": "Professional Services",
+      "plan": "Professional"
     },
     {
       "id": "3",
       "name": "Giulia Verdi",
-      "email": "giulia@web.com",
+      "email": "g.verdi@design.it",
       "company": "Design Studio",
       "status": "Active",
-      "revenue": 8500
+      "revenue": 8500,
+      "industry": "Creative",
+      "plan": "Professional"
     },
     {
       "id": "4",
       "name": "Anna Neri",
-      "email": "anna@store.it",
+      "email": "a.neri@ecommerce.com",
       "company": "E-commerce Plus",
       "status": "Inactive",
-      "revenue": 0
+      "revenue": 3200,
+      "industry": "Retail",
+      "plan": "Basic"
     },
     {
       "id": "5",
       "name": "Paolo Gialli",
-      "email": "paolo@logistica.eu",
+      "email": "p.gialli@logistica.eu",
       "company": "Fast Delivery",
       "status": "Active",
-      "revenue": 45000
+      "revenue": 45000,
+      "industry": "Logistics",
+      "plan": "Enterprise"
+    },
+    {
+      "id": "6",
+      "name": "Elena Blu",
+      "email": "elena@cyber.io",
+      "company": "Cyber Shield",
+      "status": "Active",
+      "revenue": 28000,
+      "industry": "Cybersecurity",
+      "plan": "Enterprise"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-001",
+      "customerId": "1",
+      "amount": 2500,
+      "date": "2023-12-01",
+      "status": "Paid",
+      "type": "Subscription"
+    },
+    {
+      "id": "ORD-002",
+      "customerId": "5",
+      "amount": 5000,
+      "date": "2023-12-05",
+      "status": "Paid",
+      "type": "Professional Services"
+    },
+    {
+      "id": "ORD-003",
+      "customerId": "2",
+      "amount": 450,
+      "date": "2023-12-10",
+      "status": "Pending",
+      "type": "Subscription"
+    },
+    {
+      "id": "ORD-004",
+      "customerId": "6",
+      "amount": 3500,
+      "date": "2023-12-15",
+      "status": "Paid",
+      "type": "Subscription"
+    },
+    {
+      "id": "ORD-005",
+      "customerId": "3",
+      "amount": 800,
+      "date": "2023-12-20",
+      "status": "Paid",
+      "type": "Subscription"
+    },
+    {
+      "id": "ORD-006",
+      "customerId": "1",
+      "amount": 2500,
+      "date": "2024-01-01",
+      "status": "Paid",
+      "type": "Subscription"
+    },
+    {
+      "id": "ORD-007",
+      "customerId": "5",
+      "amount": 5000,
+      "date": "2024-01-05",
+      "status": "Paid",
+      "type": "Subscription"
+    },
+    {
+      "id": "ORD-008",
+      "customerId": "4",
+      "amount": 150,
+      "date": "2024-01-12",
+      "status": "Failed",
+      "type": "Subscription"
     }
   ],
   "revenueStats": {
@@ -49,16 +135,26 @@
       "Apr",
       "Mag",
       "Giu",
-      "Lug"
+      "Lug",
+      "Ago",
+      "Set",
+      "Ott",
+      "Nov",
+      "Dic"
     ],
     "data": [
-      65,
-      59,
-      80,
-      81,
-      56,
-      55,
-      90
+      45000,
+      52000,
+      48000,
+      61000,
+      55000,
+      67000,
+      72000,
+      68000,
+      79000,
+      85000,
+      92000,
+      105000
     ]
   },
   "users": [
