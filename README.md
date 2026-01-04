@@ -7,6 +7,7 @@ Applicazione gestionale Single Page Application (SPA) basata su un modello di bu
 ### 🔐 Autenticazione & Sicurezza
 
 - **Reactive Login Flow:** Gestione accesso tramite **Reactive Forms** con validazione avanzata e feedback in tempo reale.
+- **Role-Based Access Control (RBAC):** Gestione permessi granulare. Solo gli amministratori possono modificare dati sensibili (Stato, Fatturato) dei clienti.
 - **HTTP Interceptors:**
   - `AuthInterceptor`: Gestione centralizzata del token Bearer per ogni richiesta HTTP.
   - `ErrorInterceptor`: Gestione globale degli errori con notifiche toast tramite **PrimeNG MessageService**.
@@ -21,13 +22,14 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 
 ### 📊 Dashboard & Analytics
 
-- **Data Visualization:** Grafici dinamici tramite `Chart.js` e `ng2-charts` che mostrano 12 mesi di dati finanziari.
+- **Data Visualization:** Grafici dinamici tramite **PrimeNG Charts** (Chart.js wrapper) che mostrano dati finanziari in tempo reale basati sugli ordini effettivi.
+- **Dynamic Filtering:** Possibilità di filtrare le statistiche di fatturato per anno (2024, 2025, 2026) con aggiornamento immediato del grafico.
 - **Smart Stat Cards:** Indicatori di performance (KPI) reattivi basati sui dati del server.
 - **PrimeNG Integration:** Utilizzo del tema **Aura** personalizzato e icone **PrimeIcons** per un'interfaccia coerente.
 
 ### 🛠 Architettura Tecnica
 
-- **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`) e della nuova sintassi `@if` / `@for`.
+- **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`, `input`, `output`) e della nuova sintassi `@if` / `@for`.
 - **Reactive Architecture:** Componenti modulari con caricamento **Lazy Loading**.
 - **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
 - **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`).
@@ -37,10 +39,10 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 ## 🛠 Tech Stack
 
 - **Framework:** [Angular 19](https://angular.dev/)
-- **UI Library:** [PrimeNG v19](https://primeng.org/) (Theme: Aura)
+- **UI Library:** [PrimeNG v19+](https://primeng.org/) (Theme: Aura)
 - **Styling:** Tailwind CSS + SCSS Modules
 - **State Management:** Angular Signals & RxJS
-- **Visualizzazione Dati:** ng2-charts / Chart.js
+- **Visualizzazione Dati:** PrimeNG Charts (Chart.js)
 - **Tooling:** Angular CLI, JSON Server (Mock API)
 
 ---
@@ -50,7 +52,7 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 ```text
 src/app/
 ├── core/           # Singleton: Auth, Services, Guards, Interceptors, Models
-├── shared/         # Reusable: Components (Cards, Tables), Styles, Pipes
+├── shared/         # Reusable: Components (Cards, Tables, Charts), Styles, Pipes
 └── features/       # Modules: Dashboard, Customers, Login (Lazy Loaded)
 ```
 
@@ -79,8 +81,17 @@ src/app/
 
 ### 🔑 Credenziali Demo
 
+**Admin:**
+
 - **Email:** `admin@demo.com`
 - **Password:** `password`
+- _Accesso completo a tutte le funzionalità e modifica dati._
+
+**Utente Standard:**
+
+- **Email:** `user@demo.com`
+- **Password:** `password`
+- _Visualizzazione limitata (es. no modifica fatturato/stato)._
 
 ---
 
