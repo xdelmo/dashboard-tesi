@@ -1,78 +1,62 @@
-# 🔹 Enterprise Dashboard (Angular 19)
+# 🔹 SaaS Enterprise Dashboard (Angular 19 + PrimeNG)
 
-Applicazione gestionale Single Page Application (SPA) sviluppata con **Angular 19**, progettata seguendo architetture Enterprise modulari e scalabili.
-Il progetto dimostra l'utilizzo avanzato di **Signals**, **RxJS**, **Lazy Loading**, **Authentication Flows** e **Data Visualization**.
+Applicazione gestionale Single Page Application (SPA) basata su un modello di business **SaaS (Software as a Service)**, sviluppata con **Angular 19** e **PrimeNG**. Il progetto è progettato seguendo architetture enterprise moderne, focalizzate su performance, manutenibilità e un design system premium.
 
-## 🚀 Funzionalità Chiave
+## 🚀 Funzionalità Principali
 
 ### 🔐 Autenticazione & Sicurezza
 
-- **Login Flow:** Gestione accesso con validazione form e feedback utente.
-- **Signals:** Utilizzo delle nuove primitive reattive di Angular (`signal`, `computed`, `effect`) per la gestione dello stato moderna e performante.
-- **Guards:**
-  - `AuthGuard`: Protegge le rotte private (Dashboard, Clienti).
-  - `PublicGuard`: Impedisce l'accesso al login agli utenti già autenticati.
+- **Reactive Login Flow:** Gestione accesso tramite **Reactive Forms** con validazione avanzata e feedback in tempo reale.
+- **HTTP Interceptors:**
+  - `AuthInterceptor`: Gestione centralizzata del token Bearer per ogni richiesta HTTP.
+  - `ErrorInterceptor`: Gestione globale degli errori con notifiche toast tramite **PrimeNG MessageService**.
 
-### 🌐 Backend Mock (JSON Server)
+### 💼 Modello di Business (SaaS Domain)
 
-- Integrazione di **JSON Server** per simulare un'API REST completa.
-- Dataset persistente su file `db.json`.
-- Script dedicato per avviare il server mock in parallelo all'app.
+L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
+
+- **Clienti (Anagrafica):** Gestione di aziende con attributi specifici come `Industry` e `Subscription Plan` (Basic, Professional, Enterprise).
+- **Ordini:** Monitoraggio di transazioni storiche, rinnovi di abbonamenti e servizi professionali.
+- **Metriche Finanziarie:** Calcolo dinamico del fatturato totale, MRR (Monthly Recurring Revenue) e crescita mensile.
 
 ### 📊 Dashboard & Analytics
 
-- Integrazione di **Chart.js** (tramite `ng2-charts`) per la visualizzazione dati.
-- Stat Cards riutilizzabili (Componenti "Dumb" ottimizzati).
-- Layout Responsivo con Sidebar e Header fissi.
+- **Data Visualization:** Grafici dinamici tramite `Chart.js` e `ng2-charts` che mostrano 12 mesi di dati finanziari.
+- **Smart Stat Cards:** Indicatori di performance (KPI) reattivi basati sui dati del server.
+- **PrimeNG Integration:** Utilizzo del tema **Aura** personalizzato e icone **PrimeIcons** per un'interfaccia coerente.
 
-### 👥 Gestione Anagrafiche (CRUD Completo)
-**Aggiornato:** Il sistema implementa un ciclo di vita completo per la gestione clienti, interamente reattivo:
+### 🛠 Architettura Tecnica
 
-- **Create:** Modale di inserimento con validazione.
-- **Read:**
-  - Lista tabellare con indicatori di stato.
-  - Pagina di dettaglio cliente (`/customers/:id`) con routing dedicato.
-- **Update:** Modifica dati esistenti riutilizzando la modale intelligente (pre-compilazione tramite Signals).
-- **Delete:** Rimozione sicura dei record.
-- **Architettura:** Logica separata in `CustomerService` dedicato per una maggiore pulizia del codice.
-
-### ⚠️ Limitazioni Demo Online (Vercel)
-L'applicazione deployata utilizza **My JSON Server** come backend mock.
-> **Nota:** Questo servizio è **stateless** (sola lettura persistente). Le operazioni di modifica (POST, PUT, DELETE) vengono simulate con successo (risposta 200 OK) e riflesse nella UI locale, ma **non modificano realmente il database remoto**. Ricaricando la pagina, i dati torneranno allo stato originale.
->
-> Per testare la persistenza reale, avviare il progetto in locale con `npm run server` (che scrive sul file `db.json`).
-
-### 🎨 UI/UX & Layout Moderno
-
-- **Sidebar Dinamica:** Sidebar collassabile intelligente che mostra solo le icone a riposo e si espande fluidamente al passaggio del mouse.
-- **Micro-interactions:** Transizioni curate per hover, focus e cambi di stato per un'esperienza utente "premium".
-- **Design System:** Palette colori professionale, tipografia bilanciata e utilizzo consistente di spaziature.
-- **Iconografia:** Integrazione completa con **Material Icons**.
+- **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`) e della nuova sintassi `@if` / `@for`.
+- **Reactive Architecture:** Componenti modulari con caricamento **Lazy Loading**.
+- **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
+- **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`).
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Framework:** Angular 19
-- **Core:** Signals, RxJS
-- **Linguaggio:** TypeScript 5.x
-- **Stili:** SCSS (Architettura modulare con Partials e BEM-like naming)
-- **Visualizzazione Dati:** ng2-charts, Chart.js
-- **Tooling:** Angular CLI, JSON Server
+- **Framework:** [Angular 19](https://angular.dev/)
+- **UI Library:** [PrimeNG v19](https://primeng.org/) (Theme: Aura)
+- **Styling:** Tailwind CSS + SCSS Modules
+- **State Management:** Angular Signals & RxJS
+- **Visualizzazione Dati:** ng2-charts / Chart.js
+- **Tooling:** Angular CLI, JSON Server (Mock API)
 
 ---
 
-## 📂 Architettura del Progetto
+## 📂 Struttura del Progetto
 
-La struttura segue le best practices per la scalabilità:
-
-- `src/app/core`: Servizi singleton (Auth, Data), Guard, Interfacce, Costanti.
-- `src/app/shared`: Componenti riutilizzabili (Cards, Charts), Direttive, Pipe.
-- `src/app/features`: Moduli funzionali (Dashboard, Customers, Login) caricati in lazy loading.
+```text
+src/app/
+├── core/           # Singleton: Auth, Services, Guards, Interceptors, Models
+├── shared/         # Reusable: Components (Cards, Tables), Styles, Pipes
+└── features/       # Modules: Dashboard, Customers, Login (Lazy Loaded)
+```
 
 ---
 
-## ▶️ Come Avviare il Progetto
+## ▶️ Setup & Installazione Locale
 
 1.  **Clona il repository:**
     ```bash
@@ -81,11 +65,9 @@ La struttura segue le best practices per la scalabilità:
 2.  **Installa le dipendenze:**
     ```bash
     npm install
-    # Nota: Se richiesto, usare --legacy-peer-deps per ng2-charts
-    npm install --legacy-peer-deps
     ```
 3.  **Avvia il Mock Server (Terminale 1):**
-    Questo avvierà l'API simulata su `http://localhost:3000`
+    Il server simula un'API REST persistente su `http://localhost:3000`
     ```bash
     npm run server
     ```
@@ -102,4 +84,5 @@ La struttura segue le best practices per la scalabilità:
 
 ---
 
-**Autore:** Emanuele Del Monte
+**Autore:** Emanuele Del Monte  
+**Progetto:** Advanced Web Development / Tesi Dashboard Reattiva
