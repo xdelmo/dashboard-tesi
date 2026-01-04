@@ -10,7 +10,9 @@
 
   <div class="user-info">
     <span class="user-name">{{ currentUser()?.name }}</span>
-    <span class="user-role">{{ currentUser()?.role || "Developer" }}</span>
+    <span class="user-role uppercase">{{
+      currentUser()?.role || "Developer"
+    }}</span>
   </div>
 
   <i class="pi pi-chevron-down ml-2" style="font-size: 0.8rem; color: #666"></i>

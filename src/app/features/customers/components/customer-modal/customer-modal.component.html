@@ -64,6 +64,7 @@
       }
     </div>
 
+    @if (isAdmin()) {
     <div class="form-group">
       <label>Stato</label>
       <p-select
@@ -101,6 +102,7 @@
       </p-message>
       }
     </div>
+    }
 
     <div class="form-actions">
       <p-button

@@ -1,9 +1,17 @@
-import { Component, input, output, effect, inject } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  effect,
+  inject,
+  computed,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   Customer,
   CustomerStatus,
 } from '../../../../core/models/customer.model';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-customer-modal',
@@ -18,6 +26,9 @@ export class CustomerModalComponent {
   save = output<Partial<Customer>>();
 
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+
+  isAdmin = computed(() => this.authService.isAdmin());
 
   // Form con Validatori
   customerForm = this.fb.group({
@@ -48,7 +59,7 @@ export class CustomerModalComponent {
         this.customerForm.patchValue(customer);
       } else {
         this.customerForm.reset({
-          status: CustomerStatus.Active,
+          status: CustomerStatus.Inactive,
           revenue: 0,
         });
       }

@@ -1,4 +1,22 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@demo.com",
+      "password": "password",
+      "name": "Utente Admin",
+      "role": "admin",
+      "avatar": "https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+    },
+    {
+      "id": 2,
+      "email": "user@demo.com",
+      "password": "password",
+      "name": "Utente Base",
+      "role": "user",
+      "avatar": "https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
+    }
+  ],
   "customers": [
     {
       "id": "1",
@@ -125,24 +143,6 @@
       "date": "2025-12-15",
       "status": "Pagato",
       "type": "Subscription"
-    }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "email": "admin@demo.com",
-      "password": "password",
-      "name": "Admin User",
-      "role": "admin",
-      "avatar": "https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-    },
-    {
-      "id": 2,
-      "email": "user@demo.com",
-      "password": "password",
-      "name": "User",
-      "role": "user",
-      "avatar": "https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
     }
   ]
 }
