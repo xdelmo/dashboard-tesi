@@ -7,7 +7,7 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Email Aziendale</label>
+        <label class="text-start">Email Aziendale</label>
         <input
           pInputText
           type="email"
@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <label>Password</label>
+        <label class="text-start">Password</label>
         <p-password
           formControlName="password"
           [toggleMask]="true"
