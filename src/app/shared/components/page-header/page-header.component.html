@@ -1,8 +1,8 @@
 <header class="dashboard-header">
   <div class="header-text">
-    <h1>{{ title }}</h1>
-    @if (subtitle) {
-    <p>{{ subtitle }}</p>
+    <h1>{{ title() }}</h1>
+    @if (subtitle()) {
+    <p>{{ subtitle() }}</p>
     }
   </div>
 

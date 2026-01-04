@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './page-header.component.scss',
 })
 export class PageHeaderComponent {
-  @Input() title: string = '';
-  @Input() subtitle: string = '';
+  title = input<string>('');
+  subtitle = input<string>('');
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService } from '../../../core/services/data.services';
 import { RevenueStats } from '../../../core/models/chart.model';
 
@@ -9,10 +9,10 @@ import { RevenueStats } from '../../../core/models/chart.model';
   standalone: false,
 })
 export class RevenueChartComponent implements OnInit {
+  private dataService = inject(DataService);
+
   data: any;
   options: any;
-
-  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.dataService.getRevenueStats().subscribe((stats: RevenueStats) => {
