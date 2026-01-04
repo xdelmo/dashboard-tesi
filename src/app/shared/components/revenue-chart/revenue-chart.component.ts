@@ -1,6 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { DataService } from '../../../core/services/data.services';
-import { RevenueStats } from '../../../core/models/chart.model';
+import { Component, input, effect } from '@angular/core';
+import { Order, OrderStatus } from '../../../core/models/order.model';
 
 @Component({
   selector: 'app-revenue-chart',
@@ -8,19 +7,32 @@ import { RevenueStats } from '../../../core/models/chart.model';
   styleUrls: ['./revenue-chart.component.scss'],
   standalone: false,
 })
-export class RevenueChartComponent implements OnInit {
-  private dataService = inject(DataService);
+export class RevenueChartComponent {
+  orders = input<Order[]>([]);
+  year = input<number>(new Date().getFullYear());
 
   data: any;
   options: any;
 
-  ngOnInit() {
-    this.dataService.getRevenueStats().subscribe((stats: RevenueStats) => {
-      this.initChart(stats);
+  constructor() {
+    effect(() => {
+      this.updateChart(this.orders(), this.year());
     });
   }
 
-  private initChart(stats: RevenueStats) {
+  private updateChart(orders: Order[], year: number) {
+    const monthlyRevenue = new Array(12).fill(0);
+
+    orders.forEach((order) => {
+      const orderDate = new Date(order.date);
+      if (
+        orderDate.getFullYear() === year &&
+        order.status === OrderStatus.Paid
+      ) {
+        monthlyRevenue[orderDate.getMonth()] += order.amount;
+      }
+    });
+
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue(
@@ -29,11 +41,24 @@ export class RevenueChartComponent implements OnInit {
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.data = {
-      labels: stats.labels,
+      labels: [
+        'Gen',
+        'Feb',
+        'Mar',
+        'Apr',
+        'Mag',
+        'Giu',
+        'Lug',
+        'Ago',
+        'Set',
+        'Ott',
+        'Nov',
+        'Dic',
+      ],
       datasets: [
         {
-          label: 'Fatturato 2025',
-          data: stats.data,
+          label: `Fatturato ${year}`,
+          data: monthlyRevenue,
           fill: true,
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           backgroundColor: 'rgba(63, 81, 181, 0.2)',

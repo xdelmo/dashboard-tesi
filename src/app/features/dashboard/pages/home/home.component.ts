@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { OrderService } from '../../../../core/services/order.service';
@@ -38,4 +38,10 @@ export class HomeComponent {
   pendingOrders = computed(() => {
     return this.orders().filter((o) => o.status === OrderStatus.Pending).length;
   });
+  // Gestione anno selezionato per il grafico
+  selectedYear = signal(2025);
+
+  onYearChange(event: any): void {
+    this.selectedYear.set(parseInt(event.target.value, 10));
+  }
 }
