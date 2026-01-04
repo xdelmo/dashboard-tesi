@@ -5,7 +5,7 @@
   ></app-page-header>
 
   <main class="content-area">
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px">
       <button class="btn-action" (click)="openModal()">Aggiungi Cliente</button>
     </div>
 
@@ -25,18 +25,17 @@
             <td>#{{ customer.id }}</td>
             <td>
               <div class="user-info">
-                <strong class="id-link" [routerLink]="['/customers', customer.id]">{{ customer.name }}</strong>
+                <strong
+                  class="id-link"
+                  [routerLink]="['/customers', customer.id]"
+                  >{{ customer.name }}</strong
+                >
                 <small>{{ customer.email }}</small>
               </div>
             </td>
             <td>{{ customer.company }}</td>
             <td>
-              <span
-                class="status-badge"
-                [ngClass]="customer.status.toLowerCase()"
-              >
-                {{ customer.status }}
-              </span>
+              <app-status-tag [value]="customer.status"></app-status-tag>
             </td>
             <td class="revenue">{{ customer.revenue | currency : "EUR" }}</td>
           </tr>
@@ -52,7 +51,6 @@
     ></app-customer-modal>
 
     <ng-template #loading>
-
       <div class="loading-state">
         <div class="spinner"></div>
         <p>Caricamento dati aziendali...</p>
