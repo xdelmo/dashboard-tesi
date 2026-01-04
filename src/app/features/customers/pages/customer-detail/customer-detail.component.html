@@ -1,4 +1,5 @@
-<div class="dashboard-container" *ngIf="customer$ | async as customer">
+@if (customer$ | async; as customer) {
+<div class="dashboard-container">
   <app-page-header
     [title]="'Dettaglio Cliente: ' + customer.name"
     subtitle="Visualizza le informazioni complete del cliente"
@@ -84,10 +85,9 @@
     (save)="saveCustomer($event)"
   ></app-customer-modal>
 </div>
-
-<ng-template #loading>
-  <div class="loading-state">
-    <div class="spinner"></div>
-    <p>Caricamento dettagli cliente...</p>
-  </div>
-</ng-template>
+} @else {
+<div class="loading-state">
+  <div class="spinner"></div>
+  <p>Caricamento dettagli cliente...</p>
+</div>
+}

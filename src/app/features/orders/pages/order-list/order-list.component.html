@@ -5,39 +5,44 @@
   ></app-page-header>
 
   <main class="content-area">
-    <div *ngIf="orders() as ordersList">
-      <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
-        <p-table
-          [value]="ordersList"
-          [tableStyle]="{ 'min-width': '50rem' }"
-          [stripedRows]="true"
-        >
-          <ng-template pTemplate="header">
-            <tr>
-              <th>ID Ordine</th>
-              <th>Data</th>
-              <th>Cliente</th>
-              <th>Tipo Servizio</th>
-              <th>Importo</th>
-              <th>Stato</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-order>
-            <tr>
-              <td>#{{ order.id }}</td>
-              <td>{{ order.date | date : "dd/MM/yyyy" }}</td>
-              <td>
-                <span class="text-500">#{{ order.customerId }}</span>
-              </td>
-              <td>{{ order.type }}</td>
-              <td class="font-bold">{{ order.amount | currency : "EUR" }}</td>
-              <td>
-                <app-status-tag [value]="order.status"></app-status-tag>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+    @if (enrichedOrders(); as ordersList) {
+    <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
+      <p-table
+        [value]="ordersList"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [stripedRows]="true"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID Ordine</th>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Tipo Servizio</th>
+            <th>Importo</th>
+            <th>Stato</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+          <tr>
+            <td>#{{ order.id }}</td>
+            <td>{{ order.date | date : "dd/MM/yyyy" }}</td>
+            <td>
+              <strong
+                class="cursor-pointer text-primary hover:text-primary-600 underline"
+                [routerLink]="['/customers', order.customerId]"
+              >
+                {{ order.customerName }}
+              </strong>
+            </td>
+            <td>{{ order.type }}</td>
+            <td class="font-bold">{{ order.amount | currency : "EUR" }}</td>
+            <td>
+              <app-status-tag [value]="order.status"></app-status-tag>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
+    }
   </main>
 </div>

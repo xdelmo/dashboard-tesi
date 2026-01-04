@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { OrderService } from '../../../../core/services/order.service';
+import { CustomerService } from '../../../../core/services/customer.service';
 
 @Component({
   selector: 'app-order-list',
@@ -10,6 +11,22 @@ import { OrderService } from '../../../../core/services/order.service';
 })
 export class OrderListComponent {
   private orderService = inject(OrderService);
+  private customerService = inject(CustomerService);
 
   orders = toSignal(this.orderService.getOrders(), { initialValue: [] });
+  customers = toSignal(this.customerService.getCustomers(), {
+    initialValue: [],
+  });
+
+  enrichedOrders = computed(() => {
+    const orders = this.orders();
+    const customers = this.customers();
+    return orders.map((order) => {
+      const customer = customers.find((c) => c.id === order.customerId);
+      return {
+        ...order,
+        customerName: customer ? customer.name : 'Unknown Customer',
+      };
+    });
+  });
 }

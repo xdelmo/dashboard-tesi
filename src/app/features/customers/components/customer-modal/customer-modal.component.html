@@ -1,4 +1,5 @@
-<div *ngIf="isOpen()" class="modal-overlay">
+@if (isOpen()) {
+<div class="modal-overlay">
   <div class="modal-content" [formGroup]="customerForm">
     <h2>{{ customerToEdit() ? "Modifica Cliente" : "Nuovo Cliente" }}</h2>
 
@@ -115,3 +116,4 @@
     </div>
   </div>
 </div>
+}
