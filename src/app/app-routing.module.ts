@@ -48,7 +48,12 @@ const routes: Routes = [
           ),
       },
 
-      // Qui potrai aggiungere 'orders', 'settings', ecc. in futuro
+      // Modulo Ordini (Lazy Loading)
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./features/orders/orders.module').then((m) => m.OrdersModule),
+      },
     ],
   },
 
