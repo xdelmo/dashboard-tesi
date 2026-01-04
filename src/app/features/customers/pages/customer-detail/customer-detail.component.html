@@ -5,39 +5,74 @@
   ></app-page-header>
 
   <main class="content-area">
-    <div class="detail-card">
-      <div class="detail-header">
-        <h2>Informazioni Generali</h2>
-        <span
-          class="status-badge"
-          [ngClass]="customer.status.toLowerCase()"
-          >{{ customer.status }}</span
-        >
+    <div class="bg-white p-8 rounded-2xl shadow-lg mx-auto max-w-5xl">
+      <div
+        class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100"
+      >
+        <h2 class="m-0 text-2xl font-bold text-gray-800">
+          Informazioni Generali
+        </h2>
+        <app-status-tag [value]="customer.status"></app-status-tag>
       </div>
 
-      <div class="detail-grid">
-        <div class="field">
-          <label>ID CLiente</label>
-          <p>#{{ customer.id }}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <label
+            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+            >ID Cliente</label
+          >
+          <p class="m-0 text-lg font-medium text-gray-800">
+            #{{ customer.id }}
+          </p>
         </div>
-        <div class="field">
-          <label>Email</label>
-          <p>{{ customer.email }}</p>
+        <div>
+          <label
+            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+            >Email</label
+          >
+          <p class="m-0 text-lg font-medium text-gray-800">
+            {{ customer.email }}
+          </p>
         </div>
-        <div class="field">
-          <label>Azienda</label>
-          <p>{{ customer.company }}</p>
+        <div>
+          <label
+            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+            >Azienda</label
+          >
+          <p class="m-0 text-lg font-medium text-gray-800">
+            {{ customer.company }}
+          </p>
         </div>
-        <div class="field">
-          <label>Fatturato Annuo</label>
-          <p class="revenue">{{ customer.revenue | currency : "EUR" }}</p>
+        <div>
+          <label
+            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+            >Fatturato Annuo</label
+          >
+          <p class="m-0 text-xl font-mono font-bold text-green-600">
+            {{ customer.revenue | currency : "EUR" }}
+          </p>
         </div>
       </div>
 
-      <div class="actions">
-        <button [routerLink]="['/customers']">Torna alla lista</button>
-        <button class="edit-btn" (click)="openEditModal(customer)">Modifica</button>
-        <button class="delete-btn" (click)="deleteCustomer(customer.id)">Elimina</button>
+      <div class="flex justify-end border-t border-gray-100 pt-6 gap-4">
+        <p-button
+          label="Torna alla lista"
+          icon="pi pi-arrow-left"
+          [outlined]="true"
+          [routerLink]="['/customers']"
+        ></p-button>
+        <p-button
+          label="Modifica"
+          icon="pi pi-pencil"
+          severity="info"
+          (onClick)="openEditModal(customer)"
+        ></p-button>
+        <p-button
+          label="Elimina"
+          icon="pi pi-trash"
+          severity="danger"
+          (onClick)="deleteCustomer(customer.id)"
+        ></p-button>
       </div>
     </div>
   </main>
@@ -56,4 +91,3 @@
     <p>Caricamento dettagli cliente...</p>
   </div>
 </ng-template>
-

@@ -1,5 +1,6 @@
 // --- IMPORTA I MODULI CONDIVISI ---
 @use "./app/shared/styles/_forms.scss";
+@use "./app/shared/styles/_loading.scss";
 
 /* Define the layer order: Base (Tailwind) < Utilities (Tailwind) */
 @layer tailwind-base, tailwind-utilities;
