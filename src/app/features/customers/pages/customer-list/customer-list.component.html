@@ -10,40 +10,41 @@
     </div>
 
     <div *ngIf="customers$ | async as customers; else loading">
-      <table class="custom-table">
-        <thead>
+      <p-table
+        [value]="customers"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [stripedRows]="true"
+      >
+        <ng-template pTemplate="header">
           <tr>
-            <th>ID</th>
             <th>Nome</th>
             <th>Azienda</th>
             <th>Stato</th>
             <th>Fatturato</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let customer of customers">
-            <td>#{{ customer.id }}</td>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+          <tr>
             <td>
-              <div class="user-info">
+              <div class="flex flex-col">
                 <strong
-                  class="id-link"
+                  class="cursor-pointer text-primary hover:text-primary-600"
                   [routerLink]="['/customers', customer.id]"
                   >{{ customer.name }}</strong
                 >
-                <small>{{ customer.email }}</small>
+                <small class="text-500">{{ customer.email }}</small>
               </div>
             </td>
             <td>{{ customer.company }}</td>
             <td>
               <app-status-tag [value]="customer.status"></app-status-tag>
             </td>
-            <td class="revenue">{{ customer.revenue | currency : "EUR" }}</td>
+            <td class="font-bold">{{ customer.revenue | currency : "EUR" }}</td>
           </tr>
-        </tbody>
-      </table>
+        </ng-template>
+      </p-table>
     </div>
 
-    <!-- Simple Modal Component -->
     <app-customer-modal
       [isOpen]="isModalOpen"
       (close)="closeModal()"

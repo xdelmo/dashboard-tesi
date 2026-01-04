@@ -13,6 +13,7 @@ import { InputNumber } from 'primeng/inputnumber';
 import { Select } from 'primeng/select';
 import { Button } from 'primeng/button';
 import { Message } from 'primeng/message';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { Message } from 'primeng/message';
     Select,
     Button,
     Message,
+    TableModule,
   ],
 })
 export class CustomersModule {}
