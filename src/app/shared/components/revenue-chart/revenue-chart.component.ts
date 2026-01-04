@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { DataService } from '../../../core/services/data.services';
 import { RevenueStats } from '../../../core/models/chart.model';
 
@@ -10,52 +9,69 @@ import { RevenueStats } from '../../../core/models/chart.model';
   standalone: false,
 })
 export class RevenueChartComponent implements OnInit {
-  // Dati del grafico (Line Chart)
-  public lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: [],
-    datasets: [],
-  };
+  data: any;
+  options: any;
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.dataService.getRevenueStats().subscribe((stats: RevenueStats) => {
-      this.updateChartData(stats);
+      this.initChart(stats);
     });
   }
 
-  private updateChartData(stats: RevenueStats): void {
-    this.lineChartData = {
+  private initChart(stats: RevenueStats) {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue(
+      '--text-color-secondary'
+    );
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+
+    this.data = {
       labels: stats.labels,
       datasets: [
         {
-          data: stats.data,
           label: 'Fatturato 2025',
+          data: stats.data,
           fill: true,
-          tension: 0.4, // Curvatura morbida (Spline)
-          borderColor: '#3f51b5',
+          borderColor: documentStyle.getPropertyValue('--blue-500'),
           backgroundColor: 'rgba(63, 81, 181, 0.2)',
-          pointBackgroundColor: '#fff',
-          pointBorderColor: '#3f51b5',
-          pointHoverBackgroundColor: '#3f51b5',
-          pointHoverBorderColor: '#fff',
+          tension: 0.4,
         },
       ],
     };
+
+    this.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.6,
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary,
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false,
+          },
+        },
+        y: {
+          ticks: {
+            color: textColorSecondary,
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false,
+          },
+        },
+      },
+    };
   }
-
-  // Opzioni di stile (Nascondiamo la griglia brutta)
-  public lineChartOptions: ChartOptions<'line'> = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: true, position: 'top' },
-    },
-    scales: {
-      x: { grid: { display: false } }, // Nasconde griglia verticale
-      y: { grid: { color: '#f0f0f0' }, beginAtZero: true },
-    },
-  };
-
-  public lineChartLegend = true;
 }
