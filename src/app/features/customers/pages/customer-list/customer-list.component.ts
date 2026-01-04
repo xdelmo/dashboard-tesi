@@ -1,32 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Customer, CustomerStatus } from '../../../../core/models/customer.model';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import {
+  Customer,
+  CustomerStatus,
+} from '../../../../core/models/customer.model';
+import { OrderService } from '../../../../core/services/order.service';
+import { OrderStatus } from '../../../../core/models/order.model';
 
 import { CustomerService } from '../../../../core/services/customer.service';
 
-// --- INIZIO DECORATORE 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss'],
   standalone: false,
 })
-// --- FINE DECORATORE ---
-export class CustomerListComponent implements OnInit {
-  customers$!: Observable<Customer[]>;
-  totalRevenue$!: Observable<number>;
+export class CustomerListComponent {
+  private customerService = inject(CustomerService);
+  private orderService = inject(OrderService);
 
+  private refresh$ = new BehaviorSubject<void>(undefined);
   isModalOpen = false;
 
-  constructor(private customerService: CustomerService) {}
-
-  ngOnInit(): void {
-    this.refreshData();
-  }
+  customers = toSignal(
+    this.refresh$.pipe(
+      switchMap(() =>
+        combineLatest([
+          this.customerService.getCustomers(),
+          this.orderService.getOrders(),
+        ])
+      ),
+      map(([customers, orders]) => {
+        return customers.map((customer) => {
+          const revenue = orders
+            .filter(
+              (o) =>
+                o.customerId === customer.id && o.status === OrderStatus.Paid
+            )
+            .reduce((acc, curr) => acc + curr.amount, 0);
+          return { ...customer, revenue };
+        });
+      })
+    )
+  );
 
   refreshData(): void {
-    this.customers$ = this.customerService.getCustomers();
-    this.totalRevenue$ = this.customerService.getTotalRevenue();
+    this.refresh$.next();
   }
 
   openModal(): void {
@@ -44,5 +65,3 @@ export class CustomerListComponent implements OnInit {
     });
   }
 }
-
-

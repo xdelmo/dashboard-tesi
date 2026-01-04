@@ -13,7 +13,7 @@
       ></p-button>
     </div>
 
-    @if (customers$ | async; as customers) {
+    @if (customers(); as customers) {
     <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
       <p-table
         [value]="customers"

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Customer } from '../../../../core/models/customer.model';
 import { CustomerService } from '../../../../core/services/customer.service';
 
 import { Location } from '@angular/common';
+import { OrderService } from '../../../../core/services/order.service';
+import { OrderStatus } from '../../../../core/models/order.model';
 
 @Component({
   selector: 'app-customer-detail',
@@ -22,7 +24,8 @@ export class CustomerDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private customerService: CustomerService,
-    private location: Location
+    private location: Location,
+    private orderService: OrderService
   ) {}
 
   goBack(): void {
@@ -33,15 +36,28 @@ export class CustomerDetailComponent implements OnInit {
     this.refreshData();
   }
 
-  // Ricarica i dati del cliente in base all'ID presente nella rotta a seguito di modifica
   refreshData(): void {
     this.customer$ = this.route.paramMap.pipe(
       switchMap((params) => {
         const id = params.get('id');
         if (id) {
-          return this.customerService.getCustomer(id);
+          return combineLatest([
+            this.customerService.getCustomer(id),
+            this.orderService.getOrders(),
+          ]).pipe(
+            map(([customer, orders]) => {
+              const revenue = orders
+                .filter(
+                  (o) =>
+                    o.customerId === customer.id &&
+                    o.status === OrderStatus.Paid
+                )
+                .reduce((acc, curr) => acc + curr.amount, 0);
+              return { ...customer, revenue };
+            })
+          );
         }
-        return new Observable<Customer>(); // Return empty if no ID (should handle better practically)
+        return new Observable<Customer>();
       })
     );
   }
