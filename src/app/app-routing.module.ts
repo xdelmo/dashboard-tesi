@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
 // Guards (I buttafuori)
 import { authGuard } from './core/guards/auth.guard';
 import { publicGuard } from './core/guards/public.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   // -------------------------------------------------------------------------
@@ -53,6 +54,16 @@ const routes: Routes = [
         path: 'orders',
         loadChildren: () =>
           import('./features/orders/orders.module').then((m) => m.OrdersModule),
+      },
+
+      // Modulo Settings (Admin Only)
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./features/settings/settings.module').then(
+            (m) => m.SettingsModule
+          ),
+        canActivate: [adminGuard],
       },
     ],
   },

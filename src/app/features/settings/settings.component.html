@@ -1,0 +1,26 @@
+<app-page-header title="Impostazioni" subtitle="Area Riservata Amministratori">
+  <app-status-tag value="Admin Only" severity="danger"></app-status-tag>
+</app-page-header>
+
+<div class="card p-6">
+  <h3>Configurazione Sistema</h3>
+  <p class="mb-4">
+    Questa sezione è accessibile solo agli utenti con ruolo
+    <strong>Admin</strong>.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="p-4 border rounded-xl bg-gray-50">
+      <h4 class="font-bold mb-2">Manutenzione</h4>
+      <p class="text-sm text-gray-600 mb-3">
+        Strumenti di manutenzione del database.
+      </p>
+      <p-button
+        label="Esegui Backup"
+        icon="pi pi-database"
+        severity="warn"
+        (onClick)="downloadBackup()"
+      ></p-button>
+    </div>
+  </div>
+</div>
