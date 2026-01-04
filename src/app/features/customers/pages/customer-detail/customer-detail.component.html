@@ -57,10 +57,10 @@
 
       <div class="flex justify-end border-t border-gray-100 pt-6 gap-4">
         <p-button
-          label="Torna alla lista"
+          label="Indietro"
           icon="pi pi-arrow-left"
           [outlined]="true"
-          [routerLink]="['/customers']"
+          (onClick)="goBack()"
         ></p-button>
         <p-button
           label="Modifica"

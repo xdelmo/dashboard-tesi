@@ -5,6 +5,8 @@ import { switchMap } from 'rxjs/operators';
 import { Customer } from '../../../../core/models/customer.model';
 import { CustomerService } from '../../../../core/services/customer.service';
 
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-customer-detail',
   standalone: false,
@@ -19,8 +21,13 @@ export class CustomerDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private location: Location
   ) {}
+
+  goBack(): void {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.refreshData();
