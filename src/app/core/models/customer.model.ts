@@ -1,7 +1,7 @@
 export enum CustomerStatus {
-  Active = 'Active',
-  Pending = 'Pending',
-  Inactive = 'Inactive',
+  Active = 'Attivo',
+  Pending = 'In Attesa',
+  Inactive = 'Inattivo',
 }
 
 export interface Customer {

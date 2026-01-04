@@ -7,32 +7,34 @@
   <div class="stats-grid">
     <app-stat-card
       title="Fatturato Totale"
-      value="€ 579,000"
+      [value]="
+        (totalRevenue() | currency : 'EUR' : 'symbol' : '1.0-0') || '€ 0'
+      "
       icon="pi-dollar"
       colorClass="blue"
     >
     </app-stat-card>
 
     <app-stat-card
-      title="Spese Operative"
-      value="€ 79,000"
-      icon="pi-minus-circle"
+      title="Ordini in Attesa"
+      [value]="pendingOrders().toString()"
+      icon="pi-clock"
       colorClass="purple"
     >
     </app-stat-card>
 
     <app-stat-card
-      title="Utile Netto"
-      value="€ 179,000"
-      icon="pi-chart-line"
+      title="Clienti Attivi"
+      [value]="activeCustomers().toString()"
+      icon="pi-check-circle"
       colorClass="green"
     >
     </app-stat-card>
 
     <app-stat-card
-      title="Nuovi Clienti"
-      value="+ 1,240"
-      icon="pi-user-plus"
+      title="Totale Clienti"
+      [value]="totalCustomers().toString()"
+      icon="pi-users"
       colorClass="orange"
     >
     </app-stat-card>
