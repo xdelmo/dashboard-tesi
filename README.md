@@ -1,13 +1,13 @@
-# 🔹 SaaS Enterprise Dashboard (Angular 19 + PrimeNG)
+# 🔹 ApexFlow - SaaS Enterprise Dashboard (Angular 19 + PrimeNG)
 
-Applicazione gestionale Single Page Application (SPA) basata su un modello di business **SaaS (Software as a Service)**, sviluppata con **Angular 19** e **PrimeNG**. Il progetto è progettato seguendo architetture enterprise moderne, focalizzate su performance, manutenibilità e un design system premium.
+Applicazione gestionale Single Page Application (SPA) **ApexFlow**, basata su un modello di business **SaaS (Software as a Service)**, sviluppata con **Angular 19** e **PrimeNG**. Il progetto è progettato seguendo architetture enterprise moderne, focalizzate su performance, manutenibilità e un design system premium.
 
 ## 🚀 Funzionalità Principali
 
 ### 🔐 Autenticazione & Sicurezza
 
 - **Reactive Login Flow:** Gestione accesso tramite **Reactive Forms** con validazione avanzata e feedback in tempo reale.
-- **Role-Based Access Control (RBAC):** Gestione permessi granulare. Solo gli amministratori possono modificare dati sensibili (Stato, Fatturato) dei clienti e accedere all'area Impostazioni.
+- **Role-Based Access Control (RBAC):** Gestione permessi granulare. Solo gli amministratori possono modificare lo stato dei clienti e accedere all'area Impostazioni.
   - `adminGuard`: Protezione delle rotte amministrative.
   - `customerModal`: Visualizzazione condizionale dei campi sensibili.
 - **HTTP Interceptors:**
@@ -23,7 +23,10 @@ Applicazione gestionale Single Page Application (SPA) basata su un modello di bu
 
 L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 
-- **Clienti (Anagrafica):** Gestione di aziende con attributi specifici come `Industry` e `Subscription Plan` (Basic, Professional, Enterprise).
+- **Clienti (Anagrafica):**
+  - Gestione di aziende con attributi specifici come `Industry` e `Subscription Plan`.
+  - **Generazione ID Casuali:** Utilizzo di ID alfanumerici univoci a 16 caratteri (`IdGenerator`).
+  - **Form Ottimizzato:** Creazione/Modifica semplificata con gestione implicita dei valori di business (es. Revenue).
 - **Ordini:** Monitoraggio di transazioni storiche, rinnovi di abbonamenti e servizi professionali.
 - **Metriche Finanziarie:** Calcolo dinamico del fatturato totale, MRR (Monthly Recurring Revenue) e crescita mensile.
 
@@ -38,6 +41,7 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 
 - **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`, `input`, `output`) e della nuova sintassi `@if` / `@for`.
 - **Reactive Architecture:** Componenti modulari con caricamento **Lazy Loading**.
+- **Custom RxJS Operators:** Utilizzo di operatori custom (es. `notifySuccess`) per standardizzare il feedback utente e pulire il codice dei servizi.
 - **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
 - **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`).
 - **Quality Assurance:** Suite di Unit Test completa per `AuthService` utilizzando **Jasmine** e **Karma**, con mocking delle dipendenze HTTP (`provideHttpClientTesting`) e verifica dei flussi asincroni reattivi (`Observable`).
