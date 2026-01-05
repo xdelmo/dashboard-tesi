@@ -1,44 +1,40 @@
-// Contenitore Principale: Occupa tutto lo schermo
 .app-container {
-  display: flex; // <--- QUESTO È FONDAMENTALE per mettere sidebar e contenuto vicini
-  height: 100vh; // 100% dell'altezza viewport
+  display: flex;
+  height: 100vh;
   width: 100vw;
-  overflow: hidden; // Niente scrollbar sulla pagina intera
+  overflow: hidden;
   background-color: #f4f6f8;
 }
 
-// Sidebar (Colonna Sinistra)
 .sidebar {
-  width: 260px; // Larghezza fissa
+  width: 260px;
   background-color: #ffffff;
   border-right: 1px solid #e1e4e8;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0; // Impedisce alla sidebar di schiacciarsi
+  flex-shrink: 0;
 
   .logo-area {
-    height: 64px; // Stessa altezza della top-bar
+    height: 64px;
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    justify-content: center;
     border-bottom: 1px solid #f0f0f0;
 
-    h3 {
-      margin: 0;
-      color: #3f51b5;
-      font-size: 1.2rem;
-      font-weight: 700;
+    img {
+      max-height: 48px;
+      max-width: 90%;
+      object-fit: contain;
     }
   }
 
   .nav-links {
     padding: 20px 15px;
     overflow-y: auto;
-    flex-grow: 1; // Occupa lo spazio rimanente
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 
-    // Etichette (MENU PRINCIPALE, GESTIONE)
     .nav-label {
       padding: 15px 10px 10px;
       font-size: 0.75rem;
@@ -48,7 +44,6 @@
       text-transform: uppercase;
     }
 
-    // Link di navigazione
     a {
       display: flex;
       align-items: center;
@@ -68,7 +63,7 @@
       &:hover {
         background-color: #f5f7fa;
         color: #333;
-        transform: translateX(3px); // Piccolo effetto movimento
+        transform: translateX(3px);
       }
 
       &.active {
@@ -89,12 +84,11 @@
   }
 }
 
-// Area Contenuto (Colonna Destra)
 .main-content {
-  flex-grow: 1; // Prende tutto lo spazio rimanente
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden; // Importante per lo scroll interno
+  overflow: hidden;
 
   .top-bar {
     height: 64px;
@@ -113,10 +107,9 @@
     }
   }
 
-  // Wrapper per le pagine (Qui finisce la router-outlet)
   .content-wrapper {
     flex-grow: 1;
-    overflow-y: auto; // <--- SOLO QUESTO deve scrollare
+    overflow-y: auto;
     padding: 30px;
   }
 }

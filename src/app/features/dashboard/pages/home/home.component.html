@@ -43,7 +43,9 @@
   <div class="charts-section">
     <div class="chart-container main-chart">
       <div class="chart-header">
-        <h3>Andamento Finanziario {{ selectedYear() }}</h3>
+        <h3 class="font-bold mb-2">
+          Andamento Finanziario {{ selectedYear() }}
+        </h3>
         <select class="chart-filter" (change)="onYearChange($event)">
           <option [value]="2026" [selected]="selectedYear() === 2026">
             2026
