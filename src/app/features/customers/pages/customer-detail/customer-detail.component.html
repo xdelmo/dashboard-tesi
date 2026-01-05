@@ -47,6 +47,24 @@
         <div>
           <label
             class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+            >Settore</label
+          >
+          <p class="m-0 text-lg font-medium text-gray-800">
+            {{ customer.industry }}
+          </p>
+        </div>
+        <div>
+          <label
+            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+            >Piano</label
+          >
+          <p class="m-0 text-lg font-medium text-gray-800">
+            {{ customer.plan || "N/D" }}
+          </p>
+        </div>
+        <div>
+          <label
+            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
             >Fatturato Annuo</label
           >
           <p class="m-0 text-xl font-mono font-bold text-green-600">

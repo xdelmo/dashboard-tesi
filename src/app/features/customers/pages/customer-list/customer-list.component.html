@@ -40,7 +40,14 @@
                 <small class="text-500">{{ customer.email }}</small>
               </div>
             </td>
-            <td>{{ customer.company }}</td>
+
+            <td>
+              <div class="flex flex-col">
+                {{ customer.company }}
+                <small class="text-500">{{ customer.industry }}</small>
+              </div>
+            </td>
+
             <td>
               <app-status-tag [value]="customer.status"></app-status-tag>
             </td>

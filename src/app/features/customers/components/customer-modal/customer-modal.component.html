@@ -64,6 +64,29 @@
       }
     </div>
 
+    <div class="form-group">
+      <label>Settore</label>
+      <p-select
+        formControlName="industry"
+        [options]="industryOptions"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleziona un settore"
+        [style]="{ width: '100%' }"
+        [invalid]="
+          customerForm.get('industry')?.invalid &&
+          customerForm.get('industry')?.touched
+        "
+      >
+      </p-select>
+      @if (customerForm.get('industry')?.errors?.['required'] &&
+      customerForm.get('industry')?.touched) {
+      <p-message severity="error" variant="simple" size="small">
+        Settore richiesto
+      </p-message>
+      }
+    </div>
+
     @if (isAdmin()) {
     <div class="form-group">
       <label>Stato</label>
@@ -79,28 +102,6 @@
         "
       >
       </p-select>
-    </div>
-
-    <div class="form-group">
-      <label>Fatturato</label>
-      <p-inputNumber
-        formControlName="revenue"
-        mode="currency"
-        currency="EUR"
-        locale="it-IT"
-        [style]="{ width: '100%' }"
-        [invalid]="
-          customerForm.get('revenue')?.invalid &&
-          customerForm.get('revenue')?.touched
-        "
-      >
-      </p-inputNumber>
-      @if (customerForm.get('revenue')?.errors?.['min'] &&
-      customerForm.get('revenue')?.touched) {
-      <p-message severity="error" variant="simple" size="small">
-        Il fatturato non può essere negativo
-      </p-message>
-      }
     </div>
     }
 

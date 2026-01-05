@@ -36,8 +36,8 @@ export class CustomerModalComponent {
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     company: ['', Validators.required],
+    industry: ['', Validators.required],
     status: [CustomerStatus.Active, Validators.required],
-    revenue: [0, [Validators.required, Validators.min(0)]],
   });
 
   // Options per componente Select
@@ -45,6 +45,16 @@ export class CustomerModalComponent {
     { label: 'Attivo', value: CustomerStatus.Active },
     { label: 'In Attesa', value: CustomerStatus.Pending },
     { label: 'Inattivo', value: CustomerStatus.Inactive },
+  ];
+
+  industryOptions = [
+    { label: 'Software & IT', value: 'Software' },
+    { label: 'Servizi Professionali', value: 'Professional Services' },
+    { label: 'Creatività & Design', value: 'Creative' },
+    { label: 'Retail & E-commerce', value: 'Retail' },
+    { label: 'Logistica & Trasporti', value: 'Logistics' },
+    { label: 'Cybersecurity', value: 'Cybersecurity' },
+    { label: 'Altro', value: 'Other' },
   ];
 
   constructor() {
@@ -60,7 +70,6 @@ export class CustomerModalComponent {
       } else {
         this.customerForm.reset({
           status: CustomerStatus.Inactive,
-          revenue: 0,
         });
       }
     });
@@ -73,7 +82,13 @@ export class CustomerModalComponent {
 
   onSave(): void {
     if (this.customerForm.valid) {
-      this.save.emit(this.customerForm.value as Partial<Customer>);
+      let formValue = this.customerForm.value as Partial<Customer>;
+
+      if (!this.customerToEdit()) {
+        formValue = { ...formValue, revenue: 0 };
+      }
+
+      this.save.emit(formValue);
       // Non resettiamo subito, lasciamo che sia il padre a chiudere
     } else {
       this.customerForm.markAllAsTouched();

@@ -11,6 +11,6 @@ export interface Customer {
   company: string;
   status: CustomerStatus;
   revenue: number;
-  industry?: string;
+  industry: string;
   plan?: 'Basic' | 'Professional' | 'Enterprise';
 }
