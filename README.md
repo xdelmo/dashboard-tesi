@@ -7,10 +7,17 @@ Applicazione gestionale Single Page Application (SPA) basata su un modello di bu
 ### 🔐 Autenticazione & Sicurezza
 
 - **Reactive Login Flow:** Gestione accesso tramite **Reactive Forms** con validazione avanzata e feedback in tempo reale.
-- **Role-Based Access Control (RBAC):** Gestione permessi granulare. Solo gli amministratori possono modificare dati sensibili (Stato, Fatturato) dei clienti.
+- **Role-Based Access Control (RBAC):** Gestione permessi granulare. Solo gli amministratori possono modificare dati sensibili (Stato, Fatturato) dei clienti e accedere all'area Impostazioni.
+  - `adminGuard`: Protezione delle rotte amministrative.
+  - `customerModal`: Visualizzazione condizionale dei campi sensibili.
 - **HTTP Interceptors:**
   - `AuthInterceptor`: Gestione centralizzata del token Bearer per ogni richiesta HTTP.
   - `ErrorInterceptor`: Gestione globale degli errori con notifiche toast tramite **PrimeNG MessageService**.
+
+### ⚙️ Gestione & Manutenzione
+
+- **Area Impostazioni (Admin Only):** Sezione protetta per la manutenzione del sistema.
+- **Backup Dati:** Funzionalità di backup one-click che scarica un'istantanea completa del database (`db.json`) in formato JSON direttamente dal browser.
 
 ### 💼 Modello di Business (SaaS Domain)
 
@@ -33,6 +40,7 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 - **Reactive Architecture:** Componenti modulari con caricamento **Lazy Loading**.
 - **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
 - **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`).
+- **Quality Assurance:** Suite di Unit Test completa per `AuthService` utilizzando **Jasmine** e **Karma**, con mocking delle dipendenze HTTP (`provideHttpClientTesting`) e verifica dei flussi asincroni reattivi (`Observable`).
 
 ---
 
