@@ -1,12 +1,14 @@
 <p-menu #userMenu [model]="userMenuItems" [popup]="true" />
 
 <div class="user-trigger" (click)="userMenu.toggle($event)">
-  <p-avatar
-    image="{{ currentUser()?.avatar }}"
-    shape="circle"
-    size="normal"
-    styleClass="mr-2"
-  />
+  <div class="md:flex justify-center hidden">
+    <p-avatar
+      image="{{ currentUser()?.avatar }}"
+      shape="circle"
+      size="normal"
+      class="mr-2"
+    />
+  </div>
 
   <div class="user-info">
     <span class="user-name">{{ currentUser()?.name }}</span>
