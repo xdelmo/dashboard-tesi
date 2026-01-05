@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { Customer } from '../models/customer.model';
 import { API_CONFIG } from '../config/api.config';
 import { IdGenerator } from '../../shared/utils/id-generator.util';
+import { MessageService } from 'primeng/api';
+import { notifySuccess } from '../../shared/utils/notification.operator';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private messageService = inject(MessageService);
 
   // Recupera i clienti dal JSON Server
   getCustomers(): Observable<Customer[]> {
@@ -33,15 +36,20 @@ export class CustomerService {
     const newId = IdGenerator.generate();
     const newCustomerWithId = { ...customer, id: newId };
 
-    return this.http.post<Customer>(
-      `${API_CONFIG.baseUrl}/customers`,
-      newCustomerWithId
-    );
+    return this.http
+      .post<Customer>(`${API_CONFIG.baseUrl}/customers`, newCustomerWithId)
+      .pipe(
+        notifySuccess(this.messageService, 'Cliente aggiunto correttamente')
+      );
   }
 
   // Elimina un cliente
   deleteCustomer(id: string): Observable<void> {
-    return this.http.delete<void>(`${API_CONFIG.baseUrl}/customers/${id}`);
+    return this.http
+      .delete<void>(`${API_CONFIG.baseUrl}/customers/${id}`)
+      .pipe(
+        notifySuccess(this.messageService, 'Cliente eliminato correttamente')
+      );
   }
 
   // Aggiorna un cliente esistente
@@ -49,9 +57,10 @@ export class CustomerService {
     id: string,
     customer: Partial<Customer>
   ): Observable<Customer> {
-    return this.http.put<Customer>(
-      `${API_CONFIG.baseUrl}/customers/${id}`,
-      customer
-    );
+    return this.http
+      .patch<Customer>(`${API_CONFIG.baseUrl}/customers/${id}`, customer)
+      .pipe(
+        notifySuccess(this.messageService, 'Cliente aggiornato correttamente')
+      );
   }
 }
