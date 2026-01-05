@@ -16,7 +16,12 @@ export const adminGuard: CanActivateFn = (route, state) => {
       summary: 'Accesso Negato',
       detail: 'Non hai i permessi per accedere a questa sezione.',
     });
-    router.navigate(['/dashboard']);
+
+    // Se è la prima navigazione (es. refresh o accesso diretto via URL),
+    // non c'è una "pagina precedente" su cui rimanere, quindi redirigiamo alla dashboard.
+    if (!router.navigated) {
+      return router.createUrlTree(['/dashboard']);
+    }
     return false;
   }
 };
