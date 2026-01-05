@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { APP_CONSTANTS } from '../constants/app.constants';
 import { API_CONFIG } from '../config/api.config';
@@ -22,14 +22,19 @@ export class AuthService {
   // Login via API
   login(email: string, password: string): Observable<User | undefined> {
     return this.http.get<User[]>(`${API_CONFIG.baseUrl}/users`).pipe(
-      delay(1000),
       map((users) => {
         return users.find((u) => u.email === email && u.password === password);
       }),
       tap((user) => {
         if (user) {
-          localStorage.setItem(APP_CONSTANTS.AUTH.TOKEN_KEY, APP_CONSTANTS.AUTH.MOCK_TOKEN_VALUE);
-          localStorage.setItem(APP_CONSTANTS.AUTH.CURRENT_USER_KEY, JSON.stringify(user));
+          localStorage.setItem(
+            APP_CONSTANTS.AUTH.TOKEN_KEY,
+            APP_CONSTANTS.AUTH.MOCK_TOKEN_VALUE
+          );
+          localStorage.setItem(
+            APP_CONSTANTS.AUTH.CURRENT_USER_KEY,
+            JSON.stringify(user)
+          );
           this.isLoggedIn.set(true);
           this.currentUser.set(user);
         } else {
