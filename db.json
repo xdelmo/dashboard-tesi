@@ -19,7 +19,7 @@
   ],
   "customers": [
     {
-      "id": "1",
+      "id": "A1b2C3d4E5f6G7h8",
       "name": "Mario Rossi",
       "email": "mario@rossi.tech",
       "company": "Tech Spa",
@@ -29,7 +29,7 @@
       "plan": "Enterprise"
     },
     {
-      "id": "2",
+      "id": "I9j0K1l2M3n4O5p6",
       "name": "Luca Bianchi",
       "email": "l.bianchi@consulting.it",
       "company": "Consulting Srl",
@@ -39,7 +39,7 @@
       "plan": "Professional"
     },
     {
-      "id": "3",
+      "id": "Q7r8S9t0U1v2W3x4",
       "name": "Giulia Verdi",
       "email": "g.verdi@design.it",
       "company": "Design Studio",
@@ -49,7 +49,7 @@
       "plan": "Professional"
     },
     {
-      "id": "4",
+      "id": "Y5z6A7b8C9d0E1f2",
       "name": "Anna Neri",
       "email": "a.neri@ecommerce.com",
       "company": "E-commerce Plus",
@@ -59,7 +59,7 @@
       "plan": "Basic"
     },
     {
-      "id": "5",
+      "id": "G3h4I5j6K7l8M9n0",
       "name": "Paolo Gialli",
       "email": "p.gialli@logistica.eu",
       "company": "Fast Delivery",
@@ -69,7 +69,7 @@
       "plan": "Enterprise"
     },
     {
-      "id": "6",
+      "id": "O1p2Q3r4S5t6U7v8",
       "name": "Elena Blu",
       "email": "elena@cyber.io",
       "company": "Cyber Shield",
@@ -82,7 +82,7 @@
   "orders": [
     {
       "id": "ORD-001",
-      "customerId": "1",
+      "customerId": "A1b2C3d4E5f6G7h8",
       "amount": 2500,
       "date": "2024-01-01",
       "status": "Pagato",
@@ -90,7 +90,7 @@
     },
     {
       "id": "ORD-002",
-      "customerId": "5",
+      "customerId": "G3h4I5j6K7l8M9n0",
       "amount": 5000,
       "date": "2024-04-05",
       "status": "Pagato",
@@ -98,7 +98,7 @@
     },
     {
       "id": "ORD-003",
-      "customerId": "4",
+      "customerId": "Y5z6A7b8C9d0E1f2",
       "amount": 150,
       "date": "2024-12-12",
       "status": "Fallito",
@@ -106,7 +106,7 @@
     },
     {
       "id": "ORD-004",
-      "customerId": "1",
+      "customerId": "A1b2C3d4E5f6G7h8",
       "amount": 2500,
       "date": "2025-01-01",
       "status": "Pagato",
@@ -114,7 +114,7 @@
     },
     {
       "id": "ORD-005",
-      "customerId": "5",
+      "customerId": "G3h4I5j6K7l8M9n0",
       "amount": 5000,
       "date": "2025-02-05",
       "status": "Pagato",
@@ -122,7 +122,7 @@
     },
     {
       "id": "ORD-006",
-      "customerId": "3",
+      "customerId": "Q7r8S9t0U1v2W3x4",
       "amount": 800,
       "date": "2025-05-20",
       "status": "Pagato",
@@ -130,7 +130,7 @@
     },
     {
       "id": "ORD-007",
-      "customerId": "2",
+      "customerId": "I9j0K1l2M3n4O5p6",
       "amount": 450,
       "date": "2025-06-10",
       "status": "In Attesa",
@@ -138,7 +138,7 @@
     },
     {
       "id": "ORD-008",
-      "customerId": "6",
+      "customerId": "O1p2Q3r4S5t6U7v8",
       "amount": 3500,
       "date": "2025-12-15",
       "status": "Pagato",
