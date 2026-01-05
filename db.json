@@ -86,7 +86,7 @@
       "amount": 2500,
       "date": "2024-01-01",
       "status": "Pagato",
-      "type": "Subscription"
+      "type": "Abbonamento"
     },
     {
       "id": "ORD-002",
@@ -94,7 +94,7 @@
       "amount": 5000,
       "date": "2024-04-05",
       "status": "Pagato",
-      "type": "Subscription"
+      "type": "Abbonamento"
     },
     {
       "id": "ORD-003",
@@ -102,7 +102,7 @@
       "amount": 150,
       "date": "2024-12-12",
       "status": "Fallito",
-      "type": "Subscription"
+      "type": "Abbonamento"
     },
     {
       "id": "ORD-004",
@@ -110,7 +110,7 @@
       "amount": 2500,
       "date": "2025-01-01",
       "status": "Pagato",
-      "type": "Subscription"
+      "type": "Abbonamento"
     },
     {
       "id": "ORD-005",
@@ -118,7 +118,7 @@
       "amount": 5000,
       "date": "2025-02-05",
       "status": "Pagato",
-      "type": "Professional Services"
+      "type": "Servizi Professionali"
     },
     {
       "id": "ORD-006",
@@ -126,7 +126,7 @@
       "amount": 800,
       "date": "2025-05-20",
       "status": "Pagato",
-      "type": "Subscription"
+      "type": "Abbonamento"
     },
     {
       "id": "ORD-007",
@@ -134,7 +134,7 @@
       "amount": 450,
       "date": "2025-06-10",
       "status": "In Attesa",
-      "type": "Subscription"
+      "type": "Abbonamento"
     },
     {
       "id": "ORD-008",
@@ -142,7 +142,7 @@
       "amount": 3500,
       "date": "2025-12-15",
       "status": "Pagato",
-      "type": "Subscription"
+      "type": "Abbonamento"
     }
   ]
 }

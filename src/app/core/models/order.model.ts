@@ -10,5 +10,5 @@ export interface Order {
   amount: number;
   date: string;
   status: OrderStatus;
-  type: 'Subscription' | 'Professional Services';
+  type: 'Abbonamento' | 'Servizi Professionali';
 }
