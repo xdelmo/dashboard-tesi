@@ -2,6 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { OrderService } from '../../../../core/services/order.service';
 import { CustomerService } from '../../../../core/services/customer.service';
+import { MessageService } from 'primeng/api';
+import { BehaviorSubject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-order-list',
@@ -12,8 +14,14 @@ import { CustomerService } from '../../../../core/services/customer.service';
 export class OrderListComponent {
   private orderService = inject(OrderService);
   private customerService = inject(CustomerService);
+  private messageService = inject(MessageService);
 
-  orders = toSignal(this.orderService.getOrders(), { initialValue: [] });
+  private refresh$ = new BehaviorSubject<void>(undefined);
+
+  orders = toSignal(
+    this.refresh$.pipe(switchMap(() => this.orderService.getOrders())),
+    { initialValue: [] }
+  );
   customers = toSignal(this.customerService.getCustomers(), {
     initialValue: [],
   });
@@ -42,8 +50,13 @@ export class OrderListComponent {
 
   saveOrder(order: any) {
     this.orderService.addOrder(order).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successo',
+        detail: 'Ordine creato correttamente',
+      });
+      this.refresh$.next();
       this.closeModal();
-      window.location.reload();
     });
   }
 }
