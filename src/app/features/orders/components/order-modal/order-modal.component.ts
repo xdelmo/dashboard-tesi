@@ -13,6 +13,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Order } from '../../../../core/models/order.model';
 import { Product } from '../../../../core/models/product.model';
 
+import { map } from 'rxjs';
+
 @Component({
   selector: 'app-order-modal',
   templateUrl: './order-modal.component.html',
@@ -29,7 +31,9 @@ export class OrderModalComponent implements OnInit {
   private productService = inject(ProductService);
 
   customers$ = this.customerService.getCustomers();
-  products$ = this.productService.getProducts();
+  products$ = this.productService
+    .getProducts()
+    .pipe(map((products) => products.filter((p) => p.status === 'Attivo')));
 
   orderForm!: FormGroup;
 
