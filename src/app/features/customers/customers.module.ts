@@ -8,12 +8,13 @@ import { SharedModule } from '../../shared/shared.module';
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { InputText } from 'primeng/inputtext';
-import { InputNumber } from 'primeng/inputnumber';
-import { Select } from 'primeng/select';
-import { Button } from 'primeng/button';
-import { Message } from 'primeng/message';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { SelectModule } from 'primeng/select';
+import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,14 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     CustomersRoutingModule,
     SharedModule,
-    InputText,
-    InputNumber,
-    Select,
-    Button,
-    Message,
+    SharedModule,
+    InputTextModule,
+    InputNumberModule,
+    SelectModule,
+    ButtonModule,
+    MessageModule,
     TableModule,
+    DialogModule,
   ],
 })
 export class CustomersModule {}
