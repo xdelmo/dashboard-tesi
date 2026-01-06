@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
-import { API_CONFIG } from '../../core/config/api.config';
+import { API_CONFIG } from '../../../../core/config/api.config';
 
 @Component({
   selector: 'app-settings',
   standalone: false,
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
+  templateUrl: './setting-list.component.html',
+  styleUrl: './setting-list.component.scss',
 })
-export class SettingsComponent {
+export class SettingListComponent {
   private http = inject(HttpClient);
 
   downloadBackup() {

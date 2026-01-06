@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SettingsComponent } from './settings.component';
+import { SettingListComponent } from './pages/setting-list/setting-list.component';
 
-const routes: Routes = [{ path: '', component: SettingsComponent }];
+const routes: Routes = [{ path: '', component: SettingListComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SettingsRoutingModule { }
+export class SettingsRoutingModule {}
