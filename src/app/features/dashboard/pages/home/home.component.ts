@@ -41,8 +41,9 @@ export class HomeComponent {
 
   // Gestione anno selezionato per il grafico
   selectedYear = signal(new Date().getFullYear());
+  years = [2026, 2025, 2024];
 
   onYearChange(event: any): void {
-    this.selectedYear.set(parseInt(event.target.value, 10));
+    this.selectedYear.set(event.value);
   }
 }
