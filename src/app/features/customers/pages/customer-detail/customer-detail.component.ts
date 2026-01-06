@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -6,8 +6,7 @@ import { Customer } from '../../../../core/models/customer.model';
 import { CustomerService } from '../../../../core/services/customer.service';
 
 import { Location } from '@angular/common';
-import { OrderService } from '../../../../core/services/order.service';
-import { OrderStatus } from '../../../../core/models/order.model';
+import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 
 @Component({
   selector: 'app-customer-detail',
@@ -16,17 +15,15 @@ import { OrderStatus } from '../../../../core/models/order.model';
   styleUrl: './customer-detail.component.scss',
 })
 export class CustomerDetailComponent implements OnInit {
-  customer$!: Observable<Customer>;
+  customer$!: Observable<Customer & { revenue: number }>;
   isModalOpen = false;
   selectedCustomer: Customer | null = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private customerService: CustomerService,
-    private location: Location,
-    private orderService: OrderService
-  ) {}
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private customerService = inject(CustomerService);
+  private location = inject(Location);
+  private customerStatsService = inject(CustomerStatsService);
 
   goBack(): void {
     this.location.back();
@@ -43,21 +40,15 @@ export class CustomerDetailComponent implements OnInit {
         if (id) {
           return combineLatest([
             this.customerService.getCustomer(id),
-            this.orderService.getOrders(),
+            this.customerStatsService.getStatsByCustomerId(id),
           ]).pipe(
-            map(([customer, orders]) => {
-              const revenue = orders
-                .filter(
-                  (o) =>
-                    o.customerId === customer.id &&
-                    o.status === OrderStatus.Paid
-                )
-                .reduce((acc, curr) => acc + curr.amount, 0);
-              return { ...customer, revenue };
+            map(([customer, stats]) => {
+              const stat = stats[0];
+              return { ...customer, revenue: stat ? stat.totalRevenue : 0 };
             })
           );
         }
-        return new Observable<Customer>();
+        return new Observable<Customer & { revenue: number }>();
       })
     );
   }

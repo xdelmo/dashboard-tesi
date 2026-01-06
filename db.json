@@ -24,7 +24,6 @@
       "email": "mario@rossi.tech",
       "company": "Tech Spa",
       "status": "Attivo",
-      "revenue": 5000,
       "industry": "Software",
       "plan": "Enterprise"
     },
@@ -34,7 +33,6 @@
       "email": "l.bianchi@consulting.it",
       "company": "Consulting Srl",
       "status": "In Attesa",
-      "revenue": 0,
       "industry": "Software",
       "plan": "Professional"
     },
@@ -44,7 +42,6 @@
       "email": "g.verdi@design.it",
       "company": "Design Studio",
       "status": "Attivo",
-      "revenue": 800,
       "industry": "Creative",
       "plan": "Professional"
     },
@@ -54,7 +51,6 @@
       "email": "a.neri@ecommerce.com",
       "company": "E-commerce Plus",
       "status": "Inattivo",
-      "revenue": 0,
       "industry": "Retail",
       "plan": "Basic"
     },
@@ -64,7 +60,6 @@
       "email": "p.gialli@logistica.eu",
       "company": "Fast Delivery",
       "status": "Attivo",
-      "revenue": 10000,
       "industry": "Logistics",
       "plan": "Enterprise"
     },
@@ -74,9 +69,46 @@
       "email": "elena@cyber.io",
       "company": "Cyber Shield",
       "status": "Attivo",
-      "revenue": 3500,
       "industry": "Cybersecurity",
       "plan": "Enterprise"
+    }
+  ],
+  "customerStats": [
+    {
+      "id": "cs-1",
+      "customerId": "A1b2C3d4E5f6G7h8",
+      "totalRevenue": 5000,
+      "totalOrders": 2
+    },
+    {
+      "id": "cs-2",
+      "customerId": "I9j0K1l2M3n4O5p6",
+      "totalRevenue": 0,
+      "totalOrders": 1
+    },
+    {
+      "id": "cs-3",
+      "customerId": "Q7r8S9t0U1v2W3x4",
+      "totalRevenue": 800,
+      "totalOrders": 1
+    },
+    {
+      "id": "cs-4",
+      "customerId": "Y5z6A7b8C9d0E1f2",
+      "totalRevenue": 0,
+      "totalOrders": 1
+    },
+    {
+      "id": "cs-5",
+      "customerId": "G3h4I5j6K7l8M9n0",
+      "totalRevenue": 10000,
+      "totalOrders": 2
+    },
+    {
+      "id": "cs-6",
+      "customerId": "O1p2Q3r4S5t6U7v8",
+      "totalRevenue": 3500,
+      "totalOrders": 1
     }
   ],
   "orders": [
@@ -189,7 +221,7 @@
       "category": "AI",
       "price": 1500,
       "duration": "Mensile",
-      "status": "Attivo"
+      "status": "Inattivo"
     },
     {
       "id": "PROD-AI-002",

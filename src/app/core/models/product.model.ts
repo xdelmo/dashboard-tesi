@@ -7,5 +7,5 @@ export interface Product {
   category: ProductCategory;
   price: number;
   duration?: 'Mensile' | 'Annuale' | 'Una Tantum';
-  status: 'Attivo' | 'Bozza' | 'Archiviato';
+  status: 'Attivo' | 'Bozza' | 'Disattivato';
 }

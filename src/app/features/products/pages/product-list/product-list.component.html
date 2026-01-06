@@ -38,13 +38,7 @@
               {{ product.price | currency : "EUR" : "symbol" : "1.0-0" }}
             </td>
             <td class="text-gray-600">
-              {{
-                product.duration === "Monthly"
-                  ? "Mensile"
-                  : product.duration === "Yearly"
-                  ? "Annuale"
-                  : "Una Tantum"
-              }}
+              {{ product.duration }}
             </td>
             <td>
               <app-status-tag [value]="product.status"></app-status-tag>

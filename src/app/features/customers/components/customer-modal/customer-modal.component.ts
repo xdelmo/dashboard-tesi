@@ -86,7 +86,7 @@ export class CustomerModalComponent {
       let formValue = this.customerForm.value as Partial<Customer>;
 
       if (!this.customerToEdit()) {
-        formValue = { ...formValue, revenue: 0 };
+        formValue = { ...formValue };
       }
 
       this.save.emit(formValue);

@@ -8,6 +8,7 @@ import {
 } from '../../../../core/models/customer.model';
 import { OrderService } from '../../../../core/services/order.service';
 import { OrderStatus } from '../../../../core/models/order.model';
+import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 
 import { CustomerService } from '../../../../core/services/customer.service';
 
@@ -19,12 +20,30 @@ import { CustomerService } from '../../../../core/services/customer.service';
 })
 export class CustomerListComponent {
   private customerService = inject(CustomerService);
+  private customerStatsService = inject(CustomerStatsService);
 
   private refresh$ = new BehaviorSubject<void>(undefined);
   isModalOpen = false;
 
   customers = toSignal(
-    this.refresh$.pipe(switchMap(() => this.customerService.getCustomers()))
+    this.refresh$.pipe(
+      switchMap(() =>
+        combineLatest([
+          this.customerService.getCustomers(),
+          this.customerStatsService.getAllStats(),
+        ]).pipe(
+          map(([customers, stats]) => {
+            return customers.map((customer) => {
+              const stat = stats.find((s) => s.customerId === customer.id);
+              return {
+                ...customer,
+                revenue: stat ? stat.totalRevenue : 0,
+              };
+            });
+          })
+        )
+      )
+    )
   );
 
   refreshData(): void {
