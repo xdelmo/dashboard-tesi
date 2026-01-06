@@ -24,6 +24,7 @@ export class HeaderProfileComponent implements OnInit {
         icon: 'pi pi-power-off',
         iconClass: 'text-red-500',
         labelClass: 'text-red-500',
+        styleClass: 'logout-item',
         command: () => {
           this.logout();
         },

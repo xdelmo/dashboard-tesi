@@ -30,6 +30,20 @@
   }
 }
 
+// Custom Styles - Specific PrimeNG Override for Logout
+::ng-deep .logout-item {
+  // Override PrimeNG theme variables locally
+  --p-menu-item-focus-background: #fef2f2;
+  --p-menu-item-color: #ef4444;
+
+  // Forzo il background su hover dei figli diretti e non
+  & .p-menuitem-content:hover,
+  & > .p-menuitem-content:hover {
+    background-color: #fef2f2 !important;
+    color: #ef4444 !important;
+  }
+}
+
 // Utilità per il menu
 ::ng-deep .text-red-500 {
   color: #ef4444 !important;
