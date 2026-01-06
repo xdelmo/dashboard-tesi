@@ -33,9 +33,13 @@ export class OrderListComponent {
     const customers = this.customers();
     return orders.map((order) => {
       const customer = customers.find((c) => c.id === order.customerId);
+      const uniqueCategories = [
+        ...new Set(order.items?.map((i) => i.category) || []),
+      ];
       return {
         ...order,
         customerName: customer ? customer.name : 'Unknown Customer',
+        uniqueCategories,
       };
     });
   });
@@ -67,7 +71,7 @@ export class OrderListComponent {
                 };
 
                 if (newOrder.status === 'Pagato') {
-                  stat.totalRevenue += newOrder.amount;
+                  stat.totalRevenue += newOrder.total;
                 }
                 stat.totalOrders += 1;
                 stat.lastOrderDate = new Date().toISOString();

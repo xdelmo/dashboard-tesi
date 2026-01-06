@@ -116,118 +116,217 @@
     {
       "id": "ORD-001",
       "customerId": "A1b2C3d4E5f6G7h8",
-      "amount": 2500,
       "date": "2024-01-01",
       "status": "Pagato",
-      "type": [
-        "Analytics",
-        "AI",
-        "Consulenza"
+      "type": "Abbonamento",
+      "subtotal": 2500,
+      "tax": 550,
+      "discountAmount": 0,
+      "total": 3050,
+      "items": [
+        {
+          "productId": "PROD-AN-001",
+          "name": "Dashboard Predittiva",
+          "category": "Analytics",
+          "price": 800,
+          "quantity": 1
+        },
+        {
+          "productId": "PROD-AI-001",
+          "name": "Analisi del Sentiment NLP",
+          "category": "AI",
+          "price": 1700,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-002",
       "customerId": "G3h4I5j6K7l8M9n0",
-      "amount": 5000,
       "date": "2024-04-05",
       "status": "Pagato",
-      "type": [
-        "Analytics",
-        "AI"
+      "type": "Abbonamento",
+      "subtotal": 5000,
+      "tax": 1100,
+      "discountAmount": 0,
+      "total": 6100,
+      "items": [
+        {
+          "productId": "PROD-AN-001",
+          "name": "Dashboard Predittiva",
+          "category": "Analytics",
+          "price": 800,
+          "quantity": 1
+        },
+        {
+          "productId": "PROD-AI-002",
+          "name": "Riconoscimento Immagini API",
+          "category": "AI",
+          "price": 4200,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-003",
       "customerId": "Y5z6A7b8C9d0E1f2",
-      "amount": 150,
       "date": "2024-12-12",
       "status": "Fallito",
-      "type": [
-        "Analytics",
-        "Consulenza"
+      "type": "Abbonamento",
+      "subtotal": 150,
+      "tax": 33,
+      "discountAmount": 0,
+      "total": 183,
+      "items": [
+        {
+          "productId": "PROD-AN-002",
+          "name": "Connettore Data Warehouse",
+          "category": "Analytics",
+          "price": 150,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-004",
       "customerId": "A1b2C3d4E5f6G7h8",
-      "amount": 2500,
       "date": "2025-01-01",
       "status": "Pagato",
-      "type": [
-        "Analytics",
-        "AI",
-        "Consulenza"
+      "type": "Abbonamento",
+      "subtotal": 2500,
+      "tax": 550,
+      "discountAmount": 0,
+      "total": 3050,
+      "items": [
+        {
+          "productId": "PROD-AN-001",
+          "name": "Dashboard Predittiva",
+          "category": "Analytics",
+          "price": 800,
+          "quantity": 1
+        },
+        {
+          "productId": "PROD-AI-001",
+          "name": "Analisi del Sentiment NLP",
+          "category": "AI",
+          "price": 1700,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-005",
       "customerId": "G3h4I5j6K7l8M9n0",
-      "amount": 5000,
       "date": "2025-02-05",
       "status": "Pagato",
-      "type": [
-        "Consulenza"
+      "type": "Servizi Professionali",
+      "subtotal": 5000,
+      "tax": 1100,
+      "discountAmount": 0,
+      "total": 6100,
+      "items": [
+        {
+          "productId": "PROD-CONS-001",
+          "name": "Consulenza Strategica",
+          "category": "Consulenza",
+          "price": 5000,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-006",
       "customerId": "Q7r8S9t0U1v2W3x4",
-      "amount": 800,
       "date": "2025-05-20",
       "status": "Pagato",
-      "type": [
-        "Analytics"
+      "type": "Abbonamento",
+      "subtotal": 800,
+      "tax": 176,
+      "discountAmount": 0,
+      "total": 976,
+      "items": [
+        {
+          "productId": "PROD-AN-001",
+          "name": "Dashboard Predittiva",
+          "category": "Analytics",
+          "price": 800,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-007",
       "customerId": "I9j0K1l2M3n4O5p6",
-      "amount": 450,
       "date": "2025-06-10",
       "status": "In Attesa",
-      "type": [
-        "Consulenza"
+      "type": "Servizi Professionali",
+      "subtotal": 450,
+      "tax": 99,
+      "discountAmount": 0,
+      "total": 549,
+      "items": [
+        {
+          "productId": "PROD-CONS-002",
+          "name": "Audit Tecnico",
+          "category": "Consulenza",
+          "price": 450,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-008",
       "customerId": "O1p2Q3r4S5t6U7v8",
-      "amount": 3500,
       "date": "2025-12-15",
       "status": "Pagato",
-      "type": [
-        "Analytics",
-        "AI",
-        "Consulenza"
+      "type": "Abbonamento",
+      "subtotal": 3500,
+      "tax": 770,
+      "discountAmount": 0,
+      "total": 4270,
+      "items": [
+        {
+          "productId": "PROD-AI-002",
+          "name": "Riconoscimento Immagini API",
+          "category": "AI",
+          "price": 2000,
+          "quantity": 1
+        },
+        {
+          "productId": "PROD-AI-001",
+          "name": "Analisi del Sentiment NLP",
+          "category": "AI",
+          "price": 1500,
+          "quantity": 1
+        }
       ]
     },
     {
       "id": "ORD-4816",
       "customerId": "Y5z6A7b8C9d0E1f2",
       "date": "2026-01-06T21:38:15.831Z",
-      "amount": 1500,
       "status": "Pagato",
-      "products": [
+      "type": "Abbonamento",
+      "subtotal": 1500,
+      "tax": 330,
+      "discountAmount": 0,
+      "total": 1830,
+      "items": [
         {
-          "id": "PROD-CL-002",
+          "productId": "PROD-CL-002",
           "name": "Calcolo Serverless",
-          "description": "Risorse di calcolo on-demand",
           "category": "Cloud",
           "price": 1200,
-          "duration": "Mensile",
-          "status": "Attivo"
+          "quantity": 1
         },
         {
-          "id": "PROD-AN-002",
+          "productId": "PROD-AN-002",
           "name": "Connettore Data Warehouse",
-          "description": "Strumento di integrazione per i principali data warehouse",
           "category": "Analytics",
           "price": 300,
-          "duration": "Una Tantum",
-          "status": "Attivo"
+          "quantity": 1
         }
-      ],
-      "type": "Abbonamento"
+      ]
     }
   ],
   "products": [

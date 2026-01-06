@@ -45,12 +45,12 @@
             </td>
             <td>
               <div class="flex gap-2">
-                @for (products of order.products; track $index) {
-                <app-status-tag [value]="products.category"></app-status-tag>
+                @for (category of order.uniqueCategories; track $index) {
+                <app-status-tag [value]="category"></app-status-tag>
                 }
               </div>
             </td>
-            <td class="font-bold">{{ order.amount | currency : "EUR" }}</td>
+            <td class="font-bold">{{ order.total | currency : "EUR" }}</td>
             <td>
               <app-status-tag [value]="order.status"></app-status-tag>
             </td>

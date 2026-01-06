@@ -9,7 +9,6 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { ProductService } from '../../../../core/services/product.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Order } from '../../../../core/models/order.model';
 import { Product } from '../../../../core/models/product.model';
 
@@ -57,8 +56,8 @@ export class OrderModalComponent implements OnInit {
         [Validators.required, Validators.min(0)],
       ],
       status: ['In Attesa', Validators.required],
-      products: [[], Validators.required], // Products selection
-      type: ['Abbonamento'], // Default or calculated
+      products: [[], Validators.required],
+      type: ['Abbonamento'],
     });
   }
 
@@ -68,6 +67,13 @@ export class OrderModalComponent implements OnInit {
     discountAmount: 0,
     finalAmount: 0,
     plan: '',
+  };
+
+  calculatedFinancials = {
+    subtotal: 0,
+    tax: 0,
+    discountAmount: 0,
+    total: 0,
   };
 
   setupAmountCalculation() {
@@ -82,10 +88,12 @@ export class OrderModalComponent implements OnInit {
         const custId = customerId as string;
         const custs = (customers as any[]) || [];
 
-        const total = products.reduce((sum, product) => sum + product.price, 0);
+        const subtotal = products.reduce(
+          (sum, product) => sum + product.price,
+          0
+        );
 
-        this.discountDetails.originalAmount = total;
-        this.discountDetails.finalAmount = total;
+        this.discountDetails.originalAmount = subtotal;
         this.discountDetails.discountPercentage = 0;
         this.discountDetails.discountAmount = 0;
         this.discountDetails.plan = '';
@@ -107,17 +115,27 @@ export class OrderModalComponent implements OnInit {
 
             if (this.discountDetails.discountPercentage > 0) {
               this.discountDetails.discountAmount =
-                total * (this.discountDetails.discountPercentage / 100);
-              this.discountDetails.finalAmount =
-                total - this.discountDetails.discountAmount;
+                subtotal * (this.discountDetails.discountPercentage / 100);
             }
           }
         }
 
-        this.orderForm.patchValue(
-          { amount: this.discountDetails.finalAmount },
-          { emitEvent: false }
-        );
+        const discountedSubtotal =
+          subtotal - this.discountDetails.discountAmount;
+        const tax = 0;
+        const total = discountedSubtotal;
+
+        this.discountDetails.finalAmount = total;
+
+        // Store calculated values in the component to access them in onSave
+        this.calculatedFinancials = {
+          subtotal,
+          tax,
+          discountAmount: this.discountDetails.discountAmount,
+          total,
+        };
+
+        this.orderForm.patchValue({ amount: total }, { emitEvent: false });
       }
     );
   }
@@ -125,8 +143,29 @@ export class OrderModalComponent implements OnInit {
   onSave() {
     if (this.orderForm.valid) {
       const formValue = this.orderForm.getRawValue();
+      const selectedProducts = formValue.products as Product[];
 
-      this.save.emit(formValue);
+      const order: Partial<Order> = {
+        customerId: formValue.customerId,
+        date: formValue.date,
+        status: formValue.status,
+        type: formValue.type,
+
+        subtotal: this.calculatedFinancials.subtotal,
+        tax: this.calculatedFinancials.tax,
+        discountAmount: this.calculatedFinancials.discountAmount,
+        total: this.calculatedFinancials.total,
+
+        items: selectedProducts.map((p) => ({
+          productId: p.id,
+          name: p.name,
+          price: p.price,
+          quantity: 1, // Default
+          category: p.category,
+        })),
+      };
+
+      this.save.emit(order);
       this.orderForm.reset({
         date: new Date(),
         amount: 0,

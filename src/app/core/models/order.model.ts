@@ -6,12 +6,27 @@ export enum OrderStatus {
   Failed = 'Fallito',
 }
 
+export interface OrderItem {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  category: ProductCategory;
+}
+
 export interface Order {
   id: string;
   customerId: string;
-  amount: number;
   date: string;
   status: OrderStatus;
-  type: ProductCategory[];
+
+  subtotal: number;
+  tax: number;
+  discountAmount: number;
+  total: number;
+
+  type: string;
+  items: OrderItem[];
+
   products?: Product[];
 }
