@@ -14,8 +14,15 @@ import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { HeaderProfileComponent } from './layout/components/header-profile/header-profile.component';
 
+import { SidebarComponent } from './layout/components/sidebar/sidebar.component';
+
 @NgModule({
-  declarations: [LoginComponent, MainLayoutComponent, HeaderProfileComponent],
+  declarations: [
+    LoginComponent,
+    MainLayoutComponent,
+    HeaderProfileComponent,
+    SidebarComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
