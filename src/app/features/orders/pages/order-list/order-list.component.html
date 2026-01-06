@@ -5,6 +5,14 @@
   ></app-page-header>
 
   <main class="content-area">
+    <div class="mb-5">
+      <p-button
+        label="Nuovo Ordine"
+        icon="pi pi-plus"
+        (onClick)="openModal()"
+      ></p-button>
+    </div>
+
     @if (enrichedOrders(); as ordersList) {
     <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
       <p-table
@@ -44,5 +52,11 @@
       </p-table>
     </div>
     }
+    <app-order-modal
+      [isOpen]="isModalOpen"
+      (close)="closeModal()"
+      (save)="saveOrder($event)"
+    >
+    </app-order-modal>
   </main>
 </div>

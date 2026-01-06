@@ -13,4 +13,12 @@ export class OrderService {
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${API_CONFIG.baseUrl}/orders`);
   }
+
+  addOrder(order: Partial<Order>): Observable<Order> {
+    const newOrder = {
+      ...order,
+      id: `ORD-${Math.floor(Math.random() * 10000)}`,
+    };
+    return this.http.post<Order>(`${API_CONFIG.baseUrl}/orders`, newOrder);
+  }
 }

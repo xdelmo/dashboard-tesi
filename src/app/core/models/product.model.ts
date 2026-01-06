@@ -1,4 +1,4 @@
-export type ProductCategory = 'Cloud' | 'Analytics' | 'AI' | 'Consulting';
+export type ProductCategory = 'Cloud' | 'Analytics' | 'AI' | 'Consulenza';
 
 export interface Product {
   id: string;
@@ -6,6 +6,6 @@ export interface Product {
   description: string;
   category: ProductCategory;
   price: number;
-  duration?: 'Monthly' | 'Yearly' | 'One-Time';
-  status: 'Active' | 'Draft' | 'Archived';
+  duration?: 'Mensile' | 'Annuale' | 'Una Tantum';
+  status: 'Attivo' | 'Bozza' | 'Archiviato';
 }

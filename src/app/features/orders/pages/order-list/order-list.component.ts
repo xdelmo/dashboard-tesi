@@ -29,4 +29,21 @@ export class OrderListComponent {
       };
     });
   });
+
+  isModalOpen = false;
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  saveOrder(order: any) {
+    this.orderService.addOrder(order).subscribe(() => {
+      this.closeModal();
+      window.location.reload();
+    });
+  }
 }

@@ -152,8 +152,8 @@
       "description": "Storage cloud scalabile ad alta disponibilità",
       "category": "Cloud",
       "price": 500,
-      "duration": "Monthly",
-      "status": "Active"
+      "duration": "Mensile",
+      "status": "Attivo"
     },
     {
       "id": "PROD-CL-002",
@@ -161,8 +161,8 @@
       "description": "Risorse di calcolo on-demand",
       "category": "Cloud",
       "price": 1200,
-      "duration": "Monthly",
-      "status": "Active"
+      "duration": "Mensile",
+      "status": "Attivo"
     },
     {
       "id": "PROD-AN-001",
@@ -170,8 +170,8 @@
       "description": "Analisi avanzata con previsioni AI",
       "category": "Analytics",
       "price": 800,
-      "duration": "Yearly",
-      "status": "Active"
+      "duration": "Annuale",
+      "status": "Attivo"
     },
     {
       "id": "PROD-AN-002",
@@ -179,8 +179,8 @@
       "description": "Strumento di integrazione per i principali data warehouse",
       "category": "Analytics",
       "price": 300,
-      "duration": "One-Time",
-      "status": "Active"
+      "duration": "Una Tantum",
+      "status": "Attivo"
     },
     {
       "id": "PROD-AI-001",
@@ -188,8 +188,8 @@
       "description": "API di analisi del testo basata su AI",
       "category": "AI",
       "price": 1500,
-      "duration": "Monthly",
-      "status": "Active"
+      "duration": "Mensile",
+      "status": "Attivo"
     },
     {
       "id": "PROD-AI-002",
@@ -197,8 +197,8 @@
       "description": "Computer vision per la classificazione delle immagini",
       "category": "AI",
       "price": 2000,
-      "duration": "Monthly",
-      "status": "Active"
+      "duration": "Mensile",
+      "status": "Attivo"
     }
   ]
 }

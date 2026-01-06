@@ -1,3 +1,5 @@
+import { Product } from './product.model';
+
 export enum OrderStatus {
   Paid = 'Pagato',
   Pending = 'In Attesa',
@@ -10,5 +12,6 @@ export interface Order {
   amount: number;
   date: string;
   status: OrderStatus;
-  type: 'Abbonamento' | 'Servizi Professionali';
+  type?: 'Abbonamento' | 'Servizi Professionali';
+  products?: Product[];
 }

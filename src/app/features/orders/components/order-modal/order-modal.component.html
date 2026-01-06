@@ -1,0 +1,107 @@
+<p-dialog
+  header="Nuovo Ordine"
+  [(visible)]="isOpen"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onCancel()"
+>
+  <form [formGroup]="orderForm" class="flex flex-col gap-4 mt-4">
+    <div class="flex flex-col gap-2">
+      <label for="customer" class="font-semibold">Cliente</label>
+      <p-select
+        id="customer"
+        [options]="(customers$ | async) || []"
+        formControlName="customerId"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Seleziona un cliente"
+        [filter]="true"
+        filterBy="name"
+        [showClear]="true"
+        appendTo="body"
+        styleClass="w-full"
+      >
+      </p-select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col gap-2">
+        <label for="date" class="font-semibold">Data</label>
+        <p-datepicker
+          id="date"
+          formControlName="date"
+          appendTo="body"
+          dataType="date"
+          [showIcon]="true"
+          class="w-full"
+          inputStyleClass="w-full"
+        >
+        </p-datepicker>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="amount" class="font-semibold">Importo (€)</label>
+        <p-inputNumber
+          id="amount"
+          formControlName="amount"
+          mode="currency"
+          currency="EUR"
+          locale="it-IT"
+          class="w-full"
+          inputStyleClass="w-full"
+        >
+        </p-inputNumber>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col gap-2">
+        <label for="products" class="font-semibold">Prodotti</label>
+        <p-multiSelect
+          id="products"
+          [options]="(products$ | async) || []"
+          formControlName="products"
+          optionLabel="name"
+          placeholder="Seleziona prodotti"
+          [filter]="true"
+          display="chip"
+          appendTo="body"
+          styleClass="w-full"
+        >
+        </p-multiSelect>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="status" class="font-semibold">Stato</label>
+        <p-select
+          id="status"
+          [options]="orderStatuses"
+          formControlName="status"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleziona stato"
+          appendTo="body"
+          styleClass="w-full"
+        >
+        </p-select>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Annulla"
+      icon="pi pi-times"
+      (onClick)="onCancel()"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      label="Salva Ordine"
+      icon="pi pi-check"
+      (onClick)="onSave()"
+      [disabled]="orderForm.invalid"
+    ></p-button>
+  </ng-template>
+</p-dialog>
