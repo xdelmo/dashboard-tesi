@@ -33,7 +33,14 @@
         </ng-template>
         <ng-template pTemplate="body" let-order>
           <tr>
-            <td>#{{ order.id }}</td>
+            <td>
+              <a
+                [routerLink]="['/orders', order.id]"
+                class="text-primary hover:text-primary-600 font-medium hover:underline"
+              >
+                #{{ order.id }}
+              </a>
+            </td>
             <td>{{ order.date | date : "dd/MM/yyyy" }}</td>
             <td>
               <strong

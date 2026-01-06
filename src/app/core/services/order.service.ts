@@ -14,6 +14,10 @@ export class OrderService {
     return this.http.get<Order[]>(`${API_CONFIG.baseUrl}/orders`);
   }
 
+  getOrder(id: string): Observable<Order> {
+    return this.http.get<Order>(`${API_CONFIG.baseUrl}/orders/${id}`);
+  }
+
   addOrder(order: Partial<Order>): Observable<Order> {
     const newOrder = {
       ...order,

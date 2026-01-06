@@ -13,12 +13,13 @@ import { SelectModule } from 'primeng/select';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderModalComponent } from './components/order-modal/order-modal.component';
+import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @NgModule({
-  declarations: [OrderListComponent, OrderModalComponent],
+  declarations: [OrderListComponent, OrderModalComponent, OrderDetailComponent],
   imports: [
     CommonModule,
     OrdersRoutingModule,
