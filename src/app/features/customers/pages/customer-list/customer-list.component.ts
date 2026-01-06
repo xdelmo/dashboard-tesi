@@ -19,31 +19,12 @@ import { CustomerService } from '../../../../core/services/customer.service';
 })
 export class CustomerListComponent {
   private customerService = inject(CustomerService);
-  private orderService = inject(OrderService);
 
   private refresh$ = new BehaviorSubject<void>(undefined);
   isModalOpen = false;
 
   customers = toSignal(
-    this.refresh$.pipe(
-      switchMap(() =>
-        combineLatest([
-          this.customerService.getCustomers(),
-          this.orderService.getOrders(),
-        ])
-      ),
-      map(([customers, orders]) => {
-        return customers.map((customer) => {
-          const revenue = orders
-            .filter(
-              (o) =>
-                o.customerId === customer.id && o.status === OrderStatus.Paid
-            )
-            .reduce((acc, curr) => acc + curr.amount, 0);
-          return { ...customer, revenue };
-        });
-      })
-    )
+    this.refresh$.pipe(switchMap(() => this.customerService.getCustomers()))
   );
 
   refreshData(): void {

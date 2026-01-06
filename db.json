@@ -24,7 +24,7 @@
       "email": "mario@rossi.tech",
       "company": "Tech Spa",
       "status": "Attivo",
-      "revenue": 12000,
+      "revenue": 5000,
       "industry": "Software",
       "plan": "Enterprise"
     },
@@ -34,7 +34,7 @@
       "email": "l.bianchi@consulting.it",
       "company": "Consulting Srl",
       "status": "In Attesa",
-      "revenue": 5000,
+      "revenue": 0,
       "industry": "Software",
       "plan": "Professional"
     },
@@ -44,7 +44,7 @@
       "email": "g.verdi@design.it",
       "company": "Design Studio",
       "status": "Attivo",
-      "revenue": 8500,
+      "revenue": 800,
       "industry": "Creative",
       "plan": "Professional"
     },
@@ -54,7 +54,7 @@
       "email": "a.neri@ecommerce.com",
       "company": "E-commerce Plus",
       "status": "Inattivo",
-      "revenue": 3200,
+      "revenue": 0,
       "industry": "Retail",
       "plan": "Basic"
     },
@@ -64,7 +64,7 @@
       "email": "p.gialli@logistica.eu",
       "company": "Fast Delivery",
       "status": "Attivo",
-      "revenue": 45000,
+      "revenue": 10000,
       "industry": "Logistics",
       "plan": "Enterprise"
     },
@@ -74,7 +74,7 @@
       "email": "elena@cyber.io",
       "company": "Cyber Shield",
       "status": "Attivo",
-      "revenue": 28000,
+      "revenue": 3500,
       "industry": "Cybersecurity",
       "plan": "Enterprise"
     }
