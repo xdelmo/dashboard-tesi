@@ -38,8 +38,15 @@ export class CustomerModalComponent {
     company: ['', Validators.required],
     industry: ['', Validators.required],
     revenue: [0, [Validators.required, Validators.min(0)]],
-    status: [CustomerStatus.Active, Validators.required],
+    status: [CustomerStatus.Pending, Validators.required],
+    plan: ['Basic', Validators.required],
   });
+
+  planOptions = [
+    { label: 'Basic', value: 'Basic' },
+    { label: 'Professional', value: 'Professional' },
+    { label: 'Enterprise', value: 'Enterprise' },
+  ];
 
   // Options per componente Select
   statusOptions = [
@@ -71,7 +78,14 @@ export class CustomerModalComponent {
       } else {
         this.customerForm.reset({
           status: CustomerStatus.Inactive,
+          plan: 'Basic',
         });
+      }
+
+      if (!this.isAdmin()) {
+        this.customerForm.get('plan')?.disable();
+      } else {
+        this.customerForm.get('plan')?.enable();
       }
     });
   }

@@ -13,7 +13,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Order } from '../../../../core/models/order.model';
 import { Product } from '../../../../core/models/product.model';
 
-import { map } from 'rxjs';
+import { map, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-order-modal',
@@ -62,19 +62,64 @@ export class OrderModalComponent implements OnInit {
     });
   }
 
-  setupAmountCalculation() {
-    this.orderForm
-      .get('products')
-      ?.valueChanges.subscribe((selectedProducts: Product[]) => {
-        const total = selectedProducts.reduce(
-          (sum, product) => sum + product.price,
-          0
-        );
-        this.orderForm.patchValue({ amount: total });
+  discountDetails = {
+    originalAmount: 0,
+    discountPercentage: 0,
+    discountAmount: 0,
+    finalAmount: 0,
+    plan: '',
+  };
 
-        if (selectedProducts.length > 0) {
+  setupAmountCalculation() {
+    combineLatest([
+      this.orderForm.get('products')?.valueChanges || [],
+      this.orderForm.get('customerId')?.valueChanges || [],
+      this.customers$,
+    ]).subscribe(
+      ([selectedProducts, customerId, customers]: [any, any, any]) => {
+        // safe casting inside
+        const products = (selectedProducts as Product[]) || [];
+        const custId = customerId as string;
+        const custs = (customers as any[]) || [];
+
+        const total = products.reduce((sum, product) => sum + product.price, 0);
+
+        this.discountDetails.originalAmount = total;
+        this.discountDetails.finalAmount = total;
+        this.discountDetails.discountPercentage = 0;
+        this.discountDetails.discountAmount = 0;
+        this.discountDetails.plan = '';
+
+        if (custId && custs) {
+          const customer = custs.find((c: any) => c.id === custId);
+          if (customer && customer.plan) {
+            this.discountDetails.plan = customer.plan;
+            switch (customer.plan) {
+              case 'Professional':
+                this.discountDetails.discountPercentage = 10;
+                break;
+              case 'Enterprise':
+                this.discountDetails.discountPercentage = 20;
+                break;
+              default:
+                this.discountDetails.discountPercentage = 0;
+            }
+
+            if (this.discountDetails.discountPercentage > 0) {
+              this.discountDetails.discountAmount =
+                total * (this.discountDetails.discountPercentage / 100);
+              this.discountDetails.finalAmount =
+                total - this.discountDetails.discountAmount;
+            }
+          }
         }
-      });
+
+        this.orderForm.patchValue(
+          { amount: this.discountDetails.finalAmount },
+          { emitEvent: false }
+        );
+      }
+    );
   }
 
   onSave() {

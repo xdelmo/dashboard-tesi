@@ -140,6 +140,22 @@
         >
         </p-select>
       </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="plan" class="font-semibold">Piano (Admin)</label>
+        <p-select
+          id="plan"
+          formControlName="plan"
+          [options]="planOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleziona piano"
+          appendTo="body"
+          class="w-full"
+          [disabled]="!isAdmin()"
+        >
+        </p-select>
+      </div>
     </div>
   </form>
 

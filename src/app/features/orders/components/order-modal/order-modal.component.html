@@ -53,6 +53,13 @@
           inputStyleClass="w-full"
         >
         </p-inputNumber>
+        @if (discountDetails.discountPercentage > 0) {
+        <small class="text-green-600 font-semibold">
+          Sconto Piano {{ discountDetails.plan }}: -{{
+            discountDetails.discountPercentage
+          }}% (-{{ discountDetails.discountAmount | currency : "EUR" }})
+        </small>
+        }
       </div>
     </div>
 
