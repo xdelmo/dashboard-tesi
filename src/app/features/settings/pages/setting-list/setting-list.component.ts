@@ -17,6 +17,8 @@ export class SettingListComponent {
       customers: this.http.get(`${API_CONFIG.baseUrl}/customers`),
       orders: this.http.get(`${API_CONFIG.baseUrl}/orders`),
       users: this.http.get(`${API_CONFIG.baseUrl}/users`),
+      customerStats: this.http.get(`${API_CONFIG.baseUrl}/customerStats`),
+      products: this.http.get(`${API_CONFIG.baseUrl}/products`),
     }).subscribe((data) => {
       const blob = new Blob([JSON.stringify(data, null, 2)], {
         type: 'application/json',
