@@ -7,7 +7,7 @@ import { Component, input, computed } from '@angular/core';
       [value]="value()"
       [severity]="severity()"
       [rounded]="true"
-      styleClass="px-3"
+      class="px-3"
     ></p-tag>
   `,
   standalone: false,
@@ -17,15 +17,15 @@ export class StatusTagComponent {
 
   severity = computed(() => {
     switch (this.value()) {
-      case 'Active':
+      case 'Attivo':
       case 'Pagato':
         return 'success';
       case 'In Attesa':
-      case 'Draft':
+      case 'Bozza':
         return 'warn';
       case 'Inattivo':
       case 'Fallito':
-      case 'Archived':
+      case 'Archiviato':
         return 'danger';
       default:
         return 'info';
