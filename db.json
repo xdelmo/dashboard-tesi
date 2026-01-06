@@ -95,8 +95,9 @@
     {
       "id": "cs-4",
       "customerId": "Y5z6A7b8C9d0E1f2",
-      "totalRevenue": 0,
-      "totalOrders": 1
+      "totalRevenue": 1500,
+      "totalOrders": 2,
+      "lastOrderDate": "2026-01-06T21:38:48.215Z"
     },
     {
       "id": "cs-5",
@@ -118,7 +119,11 @@
       "amount": 2500,
       "date": "2024-01-01",
       "status": "Pagato",
-      "type": "Abbonamento"
+      "type": [
+        "Analytics",
+        "AI",
+        "Consulenza"
+      ]
     },
     {
       "id": "ORD-002",
@@ -126,7 +131,10 @@
       "amount": 5000,
       "date": "2024-04-05",
       "status": "Pagato",
-      "type": "Abbonamento"
+      "type": [
+        "Analytics",
+        "AI"
+      ]
     },
     {
       "id": "ORD-003",
@@ -134,7 +142,10 @@
       "amount": 150,
       "date": "2024-12-12",
       "status": "Fallito",
-      "type": "Abbonamento"
+      "type": [
+        "Analytics",
+        "Consulenza"
+      ]
     },
     {
       "id": "ORD-004",
@@ -142,7 +153,11 @@
       "amount": 2500,
       "date": "2025-01-01",
       "status": "Pagato",
-      "type": "Abbonamento"
+      "type": [
+        "Analytics",
+        "AI",
+        "Consulenza"
+      ]
     },
     {
       "id": "ORD-005",
@@ -150,7 +165,9 @@
       "amount": 5000,
       "date": "2025-02-05",
       "status": "Pagato",
-      "type": "Servizi Professionali"
+      "type": [
+        "Consulenza"
+      ]
     },
     {
       "id": "ORD-006",
@@ -158,7 +175,9 @@
       "amount": 800,
       "date": "2025-05-20",
       "status": "Pagato",
-      "type": "Abbonamento"
+      "type": [
+        "Analytics"
+      ]
     },
     {
       "id": "ORD-007",
@@ -166,7 +185,9 @@
       "amount": 450,
       "date": "2025-06-10",
       "status": "In Attesa",
-      "type": "Abbonamento"
+      "type": [
+        "Consulenza"
+      ]
     },
     {
       "id": "ORD-008",
@@ -174,6 +195,38 @@
       "amount": 3500,
       "date": "2025-12-15",
       "status": "Pagato",
+      "type": [
+        "Analytics",
+        "AI",
+        "Consulenza"
+      ]
+    },
+    {
+      "id": "ORD-4816",
+      "customerId": "Y5z6A7b8C9d0E1f2",
+      "date": "2026-01-06T21:38:15.831Z",
+      "amount": 1500,
+      "status": "Pagato",
+      "products": [
+        {
+          "id": "PROD-CL-002",
+          "name": "Calcolo Serverless",
+          "description": "Risorse di calcolo on-demand",
+          "category": "Cloud",
+          "price": 1200,
+          "duration": "Mensile",
+          "status": "Attivo"
+        },
+        {
+          "id": "PROD-AN-002",
+          "name": "Connettore Data Warehouse",
+          "description": "Strumento di integrazione per i principali data warehouse",
+          "category": "Analytics",
+          "price": 300,
+          "duration": "Una Tantum",
+          "status": "Attivo"
+        }
+      ],
       "type": "Abbonamento"
     }
   ],

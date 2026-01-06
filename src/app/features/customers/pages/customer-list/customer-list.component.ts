@@ -1,15 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
+import { combineLatest, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import {
-  Customer,
-  CustomerStatus,
-} from '../../../../core/models/customer.model';
-import { OrderService } from '../../../../core/services/order.service';
-import { OrderStatus } from '../../../../core/models/order.model';
+import { Customer } from '../../../../core/models/customer.model';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
-
 import { CustomerService } from '../../../../core/services/customer.service';
 
 @Component({

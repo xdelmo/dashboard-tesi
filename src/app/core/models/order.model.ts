@@ -1,4 +1,4 @@
-import { Product } from './product.model';
+import { Product, ProductCategory } from './product.model';
 
 export enum OrderStatus {
   Paid = 'Pagato',
@@ -12,6 +12,6 @@ export interface Order {
   amount: number;
   date: string;
   status: OrderStatus;
-  type?: 'Abbonamento' | 'Servizi Professionali';
+  type: ProductCategory[];
   products?: Product[];
 }
