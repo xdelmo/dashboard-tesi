@@ -17,13 +17,15 @@ export class StatusTagComponent {
 
   severity = computed(() => {
     switch (this.value()) {
-      case 'Attivo':
+      case 'Active':
       case 'Pagato':
         return 'success';
       case 'In Attesa':
+      case 'Draft':
         return 'warn';
       case 'Inattivo':
       case 'Fallito':
+      case 'Archived':
         return 'danger';
       default:
         return 'info';

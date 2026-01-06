@@ -144,5 +144,61 @@
       "status": "Pagato",
       "type": "Abbonamento"
     }
+  ],
+  "products": [
+    {
+      "id": "PROD-CL-001",
+      "name": "Archiviazione Enterprise",
+      "description": "Storage cloud scalabile ad alta disponibilità",
+      "category": "Cloud",
+      "price": 500,
+      "duration": "Monthly",
+      "status": "Active"
+    },
+    {
+      "id": "PROD-CL-002",
+      "name": "Calcolo Serverless",
+      "description": "Risorse di calcolo on-demand",
+      "category": "Cloud",
+      "price": 1200,
+      "duration": "Monthly",
+      "status": "Active"
+    },
+    {
+      "id": "PROD-AN-001",
+      "name": "Dashboard Predittiva",
+      "description": "Analisi avanzata con previsioni AI",
+      "category": "Analytics",
+      "price": 800,
+      "duration": "Yearly",
+      "status": "Active"
+    },
+    {
+      "id": "PROD-AN-002",
+      "name": "Connettore Data Warehouse",
+      "description": "Strumento di integrazione per i principali data warehouse",
+      "category": "Analytics",
+      "price": 300,
+      "duration": "One-Time",
+      "status": "Active"
+    },
+    {
+      "id": "PROD-AI-001",
+      "name": "Analisi del Sentiment NLP",
+      "description": "API di analisi del testo basata su AI",
+      "category": "AI",
+      "price": 1500,
+      "duration": "Monthly",
+      "status": "Active"
+    },
+    {
+      "id": "PROD-AI-002",
+      "name": "Riconoscimento Immagini API",
+      "description": "Computer vision per la classificazione delle immagini",
+      "category": "AI",
+      "price": 2000,
+      "duration": "Monthly",
+      "status": "Active"
+    }
   ]
 }

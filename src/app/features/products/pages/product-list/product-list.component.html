@@ -1,0 +1,58 @@
+<div class="dashboard-container">
+  <app-page-header
+    title="Prodotti & Servizi"
+    subtitle="Gestisci il catalogo dei servizi offerti"
+  ></app-page-header>
+
+  <main class="content-area">
+    @if (products(); as productsList) {
+    <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
+      <p-table
+        [value]="productsList"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [stripedRows]="true"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 40%">Prodotto</th>
+            <th style="width: 15%">Categoria</th>
+            <th style="width: 15%">Prezzo</th>
+            <th style="width: 15%">Durata</th>
+            <th style="width: 15%">Stato</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>
+              <div class="font-medium text-gray-800">{{ product.name }}</div>
+              <div class="text-xs text-gray-500">{{ product.description }}</div>
+            </td>
+            <td>
+              <p-tag
+                [value]="product.category"
+                severity="info"
+                [rounded]="true"
+              ></p-tag>
+            </td>
+            <td class="font-bold">
+              {{ product.price | currency : "EUR" : "symbol" : "1.0-0" }}
+            </td>
+            <td class="text-gray-600">
+              {{
+                product.duration === "Monthly"
+                  ? "Mensile"
+                  : product.duration === "Yearly"
+                  ? "Annuale"
+                  : "Una Tantum"
+              }}
+            </td>
+            <td>
+              <app-status-tag [value]="product.status"></app-status-tag>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    }
+  </main>
+</div>
