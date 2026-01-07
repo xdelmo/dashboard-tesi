@@ -13,7 +13,7 @@
       >
         <div>
           <h2 class="m-0 text-2xl font-bold text-gray-800">
-            Ordine del {{ order.date | date : "dd MMMM yyyy" }}
+            Ordine del {{ order.date | date : "dd MMMM yyyy" | titlecase }}
           </h2>
           <span class="text-gray-500 text-sm">ID: {{ order.id }}</span>
         </div>
