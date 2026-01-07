@@ -63,6 +63,17 @@
             </td>
           </tr>
         </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              <app-empty-state
+                title="Nessun ordine trovato"
+                subtitle="Crea un nuovo ordine per iniziare a tracciare le vendite."
+                icon="pi pi-inbox"
+              ></app-empty-state>
+            </td>
+          </tr>
+        </ng-template>
       </p-table>
     </div>
     }

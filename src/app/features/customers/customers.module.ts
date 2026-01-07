@@ -28,7 +28,7 @@ import { DialogModule } from 'primeng/dialog';
     ReactiveFormsModule,
     CustomersRoutingModule,
     SharedModule,
-    SharedModule,
+
     InputTextModule,
     InputNumberModule,
     SelectModule,

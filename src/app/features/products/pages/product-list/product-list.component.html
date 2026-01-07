@@ -50,6 +50,17 @@
             </td>
           </tr>
         </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="5">
+              <app-empty-state
+                title="Nessun prodotto disponibile"
+                subtitle="Aggiungi nuovi prodotti per popolare il catalogo."
+                icon="pi pi-box"
+              ></app-empty-state>
+            </td>
+          </tr>
+        </ng-template>
       </p-table>
     </div>
     }
