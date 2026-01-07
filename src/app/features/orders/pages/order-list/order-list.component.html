@@ -76,6 +76,8 @@
         </ng-template>
       </p-table>
     </div>
+    } @else {
+    <app-loading-state message="Caricamento ordini..."></app-loading-state>
     }
     <app-order-modal
       [isOpen]="isModalOpen"
