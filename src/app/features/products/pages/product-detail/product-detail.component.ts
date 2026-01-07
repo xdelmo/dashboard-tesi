@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs/operators';
 import { ProductService } from '../../../../core/services/product.service';
-import { Product } from '../../../../core/models/product.model';
 import { Location } from '@angular/common';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,24 +12,19 @@ import { Location } from '@angular/common';
   styleUrls: ['./product-detail.component.scss'],
   standalone: false,
 })
-export class ProductDetailComponent implements OnInit {
-  product$!: Observable<Product>;
-
+export class ProductDetailComponent {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
   private location = inject(Location);
 
-  ngOnInit(): void {
-    this.product$ = this.route.paramMap.pipe(
+  product = toSignal(
+    this.route.paramMap.pipe(
       switchMap((params) => {
         const id = params.get('id');
-        if (id) {
-          return this.productService.getProduct(id);
-        }
-        return new Observable<Product>();
+        return id ? this.productService.getProduct(id) : of(undefined);
       })
-    );
-  }
+    )
+  );
 
   goBack(): void {
     this.location.back();

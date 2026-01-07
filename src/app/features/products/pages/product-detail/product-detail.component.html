@@ -1,7 +1,7 @@
-@if (product$ | async; as product) {
+@if (product(); as p) {
 <div class="dashboard-container">
   <app-page-header
-    [title]="product.name"
+    [title]="p.name"
     subtitle="Dettagli servizio"
   ></app-page-header>
 
@@ -13,18 +13,18 @@
           <div class="flex justify-between items-start mb-6">
             <div>
               <h2 class="text-2xl font-bold text-gray-800 mb-2">
-                {{ product.name }}
+                {{ p.name }}
               </h2>
-              <app-status-tag [value]="product.category"></app-status-tag>
+              <app-status-tag [value]="p.category"></app-status-tag>
             </div>
-            <app-status-tag [value]="product.status"></app-status-tag>
+            <app-status-tag [value]="p.status"></app-status-tag>
           </div>
 
           <div class="prose max-w-none text-gray-600">
             <h3 class="text-lg font-semibold text-gray-800 mb-2">
               Descrizione
             </h3>
-            <p>{{ product.description }}</p>
+            <p>{{ p.description }}</p>
           </div>
         </div>
       </div>
@@ -42,14 +42,12 @@
             >
               <span class="text-gray-500">Prezzo</span>
               <span class="text-2xl font-bold text-primary">{{
-                product.price | currency : "EUR" : "symbol" : "1.0-0"
+                p.price | currency : "EUR" : "symbol" : "1.0-0"
               }}</span>
             </div>
             <div class="flex justify-between items-center">
               <span class="text-gray-500">Durata</span>
-              <span class="font-medium text-gray-800">{{
-                product.duration
-              }}</span>
+              <span class="font-medium text-gray-800">{{ p.duration }}</span>
             </div>
           </div>
         </div>
@@ -59,7 +57,7 @@
             ID Prodotto
           </div>
           <div class="font-mono text-sm text-gray-600 select-all">
-            {{ product.id }}
+            {{ p.id }}
           </div>
         </div>
       </div>
