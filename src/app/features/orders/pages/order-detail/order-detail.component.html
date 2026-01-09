@@ -1,4 +1,4 @@
-@if (order$ | async; as order) {
+@if (order(); as order) {
 <div class="dashboard-container">
   <app-page-header
     [title]="'Dettaglio Ordine #' + order.id"
