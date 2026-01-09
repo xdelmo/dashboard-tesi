@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { combineLatest, BehaviorSubject } from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Customer } from '../../../../core/models/customer.model';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
@@ -16,11 +16,11 @@ export class CustomerListComponent {
   private customerService = inject(CustomerService);
   private customerStatsService = inject(CustomerStatsService);
 
-  private refresh$ = new BehaviorSubject<void>(undefined);
+  private refreshTrigger = signal(0);
   isModalOpen = false;
 
   customers = toSignal(
-    this.refresh$.pipe(
+    toObservable(this.refreshTrigger).pipe(
       switchMap(() =>
         combineLatest([
           this.customerService.getCustomers(),
@@ -41,7 +41,7 @@ export class CustomerListComponent {
   );
 
   refreshData(): void {
-    this.refresh$.next();
+    this.refreshTrigger.update((n) => n + 1);
   }
 
   openModal(): void {
