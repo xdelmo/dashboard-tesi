@@ -28,24 +28,23 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
   - **Generazione ID Casuali:** Utilizzo di ID alfanumerici univoci a 16 caratteri (`IdGenerator`).
   - **Form Ottimizzato:** Creazione/Modifica semplificata con gestione implicita dei valori di business (es. Revenue).
 - **Prodotti (Catalogo Servizi):**
-  - **Gestione Completa:** Visualizzazione lista prodotti con stati (Attivo/Bozza) e dettagli completi.
+  - **Gestione Completa:** Visualizzazione lista prodotti, dettaglio servizio (`/products/:id`) e modifica stato rapida (Attivo/Bozza) tramite ottimistic updates.
 - **Ordini & Transazioni:**
-  - **Creazione Avanzata:** Modale ordini con selezione multipla dei prodotti.
-  - **Metriche Finanziarie:** Calcolo dinamico del fatturato totale, MRR (Monthly Recurring Revenue) e crescita mensile basato sui dati reali.
+  - **Creazione Avanzata:** Modale ordini reattivo basato su **Signals** con selezione multipla prodotti e calcolo automatico.
+  - **Financial Engine:** Logica integrata per calcolo Subtotale, Sconti Piano (0%, 10%, 20%) e **IVA automatica (11%)**.
+  - **Metriche Real-Time:** Dashboard collegata ai dati reali per calcolo fatturato e KPI.
 
 ### 📊 Dashboard & Analytics
 
-- **Data Visualization:** Grafici dinamici tramite **PrimeNG Charts** (Chart.js wrapper) che mostrano dati finanziari in tempo reale basati sugli ordini effettivi.
-- **Dynamic Filtering:** Possibilità di filtrare le statistiche di fatturato per anno (2024, 2025, 2026) con aggiornamento immediato del grafico.
-- **Smart Stat Cards:** Indicatori di performance (KPI) reattivi basati sui dati del server.
-- **PrimeNG Integration:** Utilizzo del tema **Aura** personalizzato e icone **PrimeIcons** per un'interfaccia coerente.
+- **Data Visualization:** Grafici dinamici tramite **PrimeNG Charts** collegati all'`OrderService`.
+- **KPI Reattivi:** Card statistiche aggiornate in tempo reale (es. "Fatturato Totale" calcolato al centesimo).
+- **PrimeNG Integration:** Utilizzo del tema **Aura** personalizzato e icone **PrimeIcons**.
 
 ### 🛠 Architettura Tecnica
 
-- **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`, `input`, `output`) e della nuova sintassi `@if` / `@for`. Esempio concreto nel `ProductDetailComponent` che utilizza `toSignal` per convertire i parametri della rotta.
-- **UX/UI Components:** Implementazione di componenti riutilizzabili per **Empty States** e **Loading States** per garantire un'esperienza utente coerente in tutte le liste.
-- **Reactive Architecture:** Componenti modulari con caricamento **Lazy Loading**.
-- **Custom RxJS Operators:** Utilizzo di operatori custom (es. `notifySuccess`) per standardizzare il feedback utente e pulire il codice dei servizi.
+- **Angular Signals (Core):** Migrazione estensiva a Signals per componenti chiave (`OrderDetail`, `OrderModal`, `ProductDetail`). Eliminazione di RxJS subscriptions manuali e pipe `async`.
+- **Hybrid Reactivity:** Utilizzo di `toSignal` e `toObservable` per il bridging tra form reattivi e segnali.
+- **Custom RxJS Operators:** Utilizzo di operatori custom (es. `notifySuccess`) per standardizzare il feedback.
 - **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
 - **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`, `_loading.scss`).
 - **Quality Assurance:** Suite di Unit Test completa per `AuthService` utilizzando **Jasmine** e **Karma**, con mocking delle dipendenze HTTP (`provideHttpClientTesting`) e verifica dei flussi asincroni reattivi (`Observable`).
