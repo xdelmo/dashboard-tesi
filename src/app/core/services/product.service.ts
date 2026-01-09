@@ -17,4 +17,11 @@ export class ProductService {
   getProduct(id: string): Observable<Product> {
     return this.http.get<Product>(`${API_CONFIG.baseUrl}/products/${id}`);
   }
+
+  updateProduct(id: string, product: Partial<Product>): Observable<Product> {
+    return this.http.patch<Product>(
+      `${API_CONFIG.baseUrl}/products/${id}`,
+      product
+    );
+  }
 }

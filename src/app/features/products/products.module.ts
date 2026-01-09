@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
+import { MenuModule } from 'primeng/menu';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     TableModule,
     ButtonModule,
     TagModule,
+    MenuModule,
     RouterModule.forChild(routes),
   ],
 })
