@@ -75,256 +75,58 @@
   ],
   "customerStats": [
     {
-      "id": "cs-1",
-      "customerId": "A1b2C3d4E5f6G7h8",
-      "totalRevenue": 5000,
-      "totalOrders": 2
-    },
-    {
-      "id": "cs-2",
+      "id": "cs-1767988302598",
       "customerId": "I9j0K1l2M3n4O5p6",
-      "totalRevenue": 0,
-      "totalOrders": 1
+      "totalRevenue": 499.5,
+      "totalOrders": 1,
+      "lastOrderDate": "2026-01-09T19:51:42.598Z"
     },
     {
-      "id": "cs-3",
+      "id": "cs-1767988641922",
       "customerId": "Q7r8S9t0U1v2W3x4",
-      "totalRevenue": 800,
-      "totalOrders": 1
-    },
-    {
-      "id": "cs-4",
-      "customerId": "Y5z6A7b8C9d0E1f2",
-      "totalRevenue": 1500,
-      "totalOrders": 2,
-      "lastOrderDate": "2026-01-06T21:38:48.215Z"
-    },
-    {
-      "id": "cs-5",
-      "customerId": "G3h4I5j6K7l8M9n0",
-      "totalRevenue": 10000,
-      "totalOrders": 2
-    },
-    {
-      "id": "cs-6",
-      "customerId": "O1p2Q3r4S5t6U7v8",
-      "totalRevenue": 3500,
-      "totalOrders": 1
+      "totalRevenue": 1198.8,
+      "totalOrders": 1,
+      "lastOrderDate": "2026-01-09T19:57:21.922Z"
     }
   ],
   "orders": [
     {
-      "id": "ORD-001",
-      "customerId": "A1b2C3d4E5f6G7h8",
-      "date": "2024-01-01",
-      "status": "Pagato",
-      "type": "Abbonamento",
-      "subtotal": 2500,
-      "tax": 550,
-      "discountAmount": 0,
-      "total": 3050,
-      "items": [
-        {
-          "productId": "PROD-AN-001",
-          "name": "Dashboard Predittiva",
-          "category": "Analytics",
-          "price": 800,
-          "quantity": 1
-        },
-        {
-          "productId": "PROD-AI-001",
-          "name": "Analisi del Sentiment NLP",
-          "category": "AI",
-          "price": 1700,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-002",
-      "customerId": "G3h4I5j6K7l8M9n0",
-      "date": "2024-04-05",
-      "status": "Pagato",
-      "type": "Abbonamento",
-      "subtotal": 5000,
-      "tax": 1100,
-      "discountAmount": 0,
-      "total": 6100,
-      "items": [
-        {
-          "productId": "PROD-AN-001",
-          "name": "Dashboard Predittiva",
-          "category": "Analytics",
-          "price": 800,
-          "quantity": 1
-        },
-        {
-          "productId": "PROD-AI-002",
-          "name": "Riconoscimento Immagini API",
-          "category": "AI",
-          "price": 4200,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-003",
-      "customerId": "Y5z6A7b8C9d0E1f2",
-      "date": "2024-12-12",
-      "status": "Fallito",
-      "type": "Abbonamento",
-      "subtotal": 150,
-      "tax": 33,
-      "discountAmount": 0,
-      "total": 183,
-      "items": [
-        {
-          "productId": "PROD-AN-002",
-          "name": "Connettore Data Warehouse",
-          "category": "Analytics",
-          "price": 150,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-004",
-      "customerId": "A1b2C3d4E5f6G7h8",
-      "date": "2025-01-01",
-      "status": "Pagato",
-      "type": "Abbonamento",
-      "subtotal": 2500,
-      "tax": 550,
-      "discountAmount": 0,
-      "total": 3050,
-      "items": [
-        {
-          "productId": "PROD-AN-001",
-          "name": "Dashboard Predittiva",
-          "category": "Analytics",
-          "price": 800,
-          "quantity": 1
-        },
-        {
-          "productId": "PROD-AI-001",
-          "name": "Analisi del Sentiment NLP",
-          "category": "AI",
-          "price": 1700,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-005",
-      "customerId": "G3h4I5j6K7l8M9n0",
-      "date": "2025-02-05",
-      "status": "Pagato",
-      "type": "Servizi Professionali",
-      "subtotal": 5000,
-      "tax": 1100,
-      "discountAmount": 0,
-      "total": 6100,
-      "items": [
-        {
-          "productId": "PROD-CONS-001",
-          "name": "Consulenza Strategica",
-          "category": "Consulenza",
-          "price": 5000,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-006",
-      "customerId": "Q7r8S9t0U1v2W3x4",
-      "date": "2025-05-20",
-      "status": "Pagato",
-      "type": "Abbonamento",
-      "subtotal": 800,
-      "tax": 176,
-      "discountAmount": 0,
-      "total": 976,
-      "items": [
-        {
-          "productId": "PROD-AN-001",
-          "name": "Dashboard Predittiva",
-          "category": "Analytics",
-          "price": 800,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-007",
+      "id": "ORD-719",
       "customerId": "I9j0K1l2M3n4O5p6",
-      "date": "2025-06-10",
-      "status": "In Attesa",
-      "type": "Servizi Professionali",
-      "subtotal": 450,
-      "tax": 99,
-      "discountAmount": 0,
-      "total": 549,
+      "date": "2026-01-09T19:51:34.467Z",
+      "status": "Pagato",
+      "type": "Abbonamento",
+      "subtotal": 500,
+      "tax": 49.5,
+      "discountAmount": 50,
+      "total": 499.5,
       "items": [
         {
-          "productId": "PROD-CONS-002",
-          "name": "Audit Tecnico",
-          "category": "Consulenza",
-          "price": 450,
-          "quantity": 1
+          "productId": "PROD-CL-001",
+          "name": "Archiviazione Enterprise",
+          "price": 500,
+          "quantity": 1,
+          "category": "Cloud"
         }
       ]
     },
     {
-      "id": "ORD-008",
-      "customerId": "O1p2Q3r4S5t6U7v8",
-      "date": "2025-12-15",
+      "id": "ORD-4736",
+      "customerId": "Q7r8S9t0U1v2W3x4",
+      "date": "2026-01-09T19:57:10.184Z",
       "status": "Pagato",
       "type": "Abbonamento",
-      "subtotal": 3500,
-      "tax": 770,
-      "discountAmount": 0,
-      "total": 4270,
-      "items": [
-        {
-          "productId": "PROD-AI-002",
-          "name": "Riconoscimento Immagini API",
-          "category": "AI",
-          "price": 2000,
-          "quantity": 1
-        },
-        {
-          "productId": "PROD-AI-001",
-          "name": "Analisi del Sentiment NLP",
-          "category": "AI",
-          "price": 1500,
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": "ORD-4816",
-      "customerId": "Y5z6A7b8C9d0E1f2",
-      "date": "2026-01-06T21:38:15.831Z",
-      "status": "Pagato",
-      "type": "Abbonamento",
-      "subtotal": 1500,
-      "tax": 330,
-      "discountAmount": 0,
-      "total": 1830,
+      "subtotal": 1200,
+      "tax": 118.8,
+      "discountAmount": 120,
+      "total": 1198.8,
       "items": [
         {
           "productId": "PROD-CL-002",
           "name": "Calcolo Serverless",
-          "category": "Cloud",
           "price": 1200,
-          "quantity": 1
-        },
-        {
-          "productId": "PROD-AN-002",
-          "name": "Connettore Data Warehouse",
-          "category": "Analytics",
-          "price": 300,
-          "quantity": 1
+          "quantity": 1,
+          "category": "Cloud"
         }
       ]
     }

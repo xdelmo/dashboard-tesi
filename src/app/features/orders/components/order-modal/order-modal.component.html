@@ -12,7 +12,7 @@
       <label for="customer" class="font-semibold">Cliente</label>
       <p-select
         id="customer"
-        [options]="(customers$ | async) || []"
+        [options]="customers()"
         formControlName="customerId"
         optionLabel="name"
         optionValue="id"
@@ -59,6 +59,10 @@
             discountDetails.discountPercentage
           }}% (-{{ discountDetails.discountAmount | currency : "EUR" }})
         </small>
+        } @if (calculatedFinancials.tax > 0) {
+        <small class="text-gray-500 font-semibold block">
+          + IVA 11% ({{ calculatedFinancials.tax | currency : "EUR" }})
+        </small>
         }
       </div>
     </div>
@@ -68,7 +72,7 @@
         <label for="products" class="font-semibold">Prodotti</label>
         <p-multiSelect
           id="products"
-          [options]="(products$ | async) || []"
+          [options]="products()"
           formControlName="products"
           optionLabel="name"
           placeholder="Seleziona prodotti"

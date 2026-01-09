@@ -7,12 +7,13 @@ import {
   inject,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { ProductService } from '../../../../core/services/product.service';
 import { Order } from '../../../../core/models/order.model';
 import { Product } from '../../../../core/models/product.model';
 
-import { map, combineLatest } from 'rxjs';
+import { map, combineLatest, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-order-modal',
@@ -29,10 +30,15 @@ export class OrderModalComponent implements OnInit {
   private customerService = inject(CustomerService);
   private productService = inject(ProductService);
 
-  customers$ = this.customerService.getCustomers();
-  products$ = this.productService
-    .getProducts()
-    .pipe(map((products) => products.filter((p) => p.status === 'Attivo')));
+  customers = toSignal(this.customerService.getCustomers(), {
+    initialValue: [],
+  });
+  products = toSignal(
+    this.productService
+      .getProducts()
+      .pipe(map((products) => products.filter((p) => p.status === 'Attivo'))),
+    { initialValue: [] }
+  );
 
   orderForm!: FormGroup;
 
@@ -41,6 +47,8 @@ export class OrderModalComponent implements OnInit {
     { label: 'In Attesa', value: 'In Attesa' },
     { label: 'Fallito', value: 'Fallito' },
   ];
+
+  quantities: { [productId: string]: number } = {};
 
   ngOnInit() {
     this.initForm();
@@ -76,68 +84,79 @@ export class OrderModalComponent implements OnInit {
     total: 0,
   };
 
+  get selectedProducts(): Product[] {
+    return (this.orderForm.get('products')?.value as Product[]) || [];
+  }
+
   setupAmountCalculation() {
     combineLatest([
-      this.orderForm.get('products')?.valueChanges || [],
-      this.orderForm.get('customerId')?.valueChanges || [],
-      this.customers$,
-    ]).subscribe(
-      ([selectedProducts, customerId, customers]: [any, any, any]) => {
-        // safe casting inside
-        const products = (selectedProducts as Product[]) || [];
-        const custId = customerId as string;
-        const custs = (customers as any[]) || [];
+      this.orderForm.get('products')?.valueChanges.pipe(startWith([])) || [],
+      this.orderForm.get('customerId')?.valueChanges.pipe(startWith('')) || [],
+    ]).subscribe(([selectedProducts, customerId]: [any, any]) => {
+      // safe casting inside
+      const products = (selectedProducts as Product[]) || [];
+      const custId = customerId as string;
+      const custs = this.customers();
 
-        const subtotal = products.reduce(
-          (sum, product) => sum + product.price,
-          0
-        );
+      const subtotal = products.reduce(
+        (sum, product) =>
+          sum + product.price * (this.quantities[product.id] || 1),
+        0
+      );
 
-        this.discountDetails.originalAmount = subtotal;
-        this.discountDetails.discountPercentage = 0;
-        this.discountDetails.discountAmount = 0;
-        this.discountDetails.plan = '';
+      this.discountDetails.originalAmount = subtotal;
+      this.discountDetails.discountPercentage = 0;
+      this.discountDetails.discountAmount = 0;
+      this.discountDetails.plan = '';
 
-        if (custId && custs) {
-          const customer = custs.find((c: any) => c.id === custId);
-          if (customer && customer.plan) {
-            this.discountDetails.plan = customer.plan;
-            switch (customer.plan) {
-              case 'Professional':
-                this.discountDetails.discountPercentage = 10;
-                break;
-              case 'Enterprise':
-                this.discountDetails.discountPercentage = 20;
-                break;
-              default:
-                this.discountDetails.discountPercentage = 0;
-            }
+      if (custId && custs) {
+        const customer = custs.find((c: any) => c.id === custId);
+        if (customer && customer.plan) {
+          this.discountDetails.plan = customer.plan;
+          switch (customer.plan) {
+            case 'Professional':
+              this.discountDetails.discountPercentage = 10;
+              break;
+            case 'Enterprise':
+              this.discountDetails.discountPercentage = 20;
+              break;
+            default:
+              this.discountDetails.discountPercentage = 0;
+          }
 
-            if (this.discountDetails.discountPercentage > 0) {
-              this.discountDetails.discountAmount =
-                subtotal * (this.discountDetails.discountPercentage / 100);
-            }
+          if (this.discountDetails.discountPercentage > 0) {
+            this.discountDetails.discountAmount =
+              subtotal * (this.discountDetails.discountPercentage / 100);
           }
         }
-
-        const discountedSubtotal =
-          subtotal - this.discountDetails.discountAmount;
-        const tax = 0;
-        const total = discountedSubtotal;
-
-        this.discountDetails.finalAmount = total;
-
-        // Store calculated values in the component to access them in onSave
-        this.calculatedFinancials = {
-          subtotal,
-          tax,
-          discountAmount: this.discountDetails.discountAmount,
-          total,
-        };
-
-        this.orderForm.patchValue({ amount: total }, { emitEvent: false });
       }
-    );
+
+      this.updateFinancials(subtotal, custId, custs);
+    });
+  }
+
+  updateFinancials(subtotal: number, custId: string, custs: any[]) {
+    const discountedSubtotal = subtotal - this.discountDetails.discountAmount;
+    const tax = discountedSubtotal * 0.11;
+    const total = discountedSubtotal + tax;
+
+    this.discountDetails.finalAmount = total;
+
+    // Store calculated values in the component to access them in onSave
+    this.calculatedFinancials = {
+      subtotal,
+      tax,
+      discountAmount: this.discountDetails.discountAmount,
+      total,
+    };
+
+    this.orderForm.patchValue({ amount: total }, { emitEvent: false });
+  }
+
+  updateQuantity(productId: string, quantity: number) {
+    this.quantities[productId] = quantity;
+    // Trigger recalculation by updating form validaty or emitting check
+    this.orderForm.get('products')?.updateValueAndValidity({ emitEvent: true });
   }
 
   onSave() {
