@@ -1,10 +1,10 @@
-import { Component, computed, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { OrderService } from '../../../../core/services/order.service';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 import { MessageService } from 'primeng/api';
-import { BehaviorSubject, switchMap, map } from 'rxjs';
+import { switchMap, map } from 'rxjs';
 
 @Component({
   selector: 'app-order-list',
@@ -18,10 +18,12 @@ export class OrderListComponent {
   private customerStatsService = inject(CustomerStatsService);
   private messageService = inject(MessageService);
 
-  private refresh$ = new BehaviorSubject<void>(undefined);
+  private refreshTrigger = signal(0);
 
   orders = toSignal(
-    this.refresh$.pipe(switchMap(() => this.orderService.getOrders())),
+    toObservable(this.refreshTrigger).pipe(
+      switchMap(() => this.orderService.getOrders())
+    ),
     { initialValue: [] }
   );
   customers = toSignal(this.customerService.getCustomers(), {
@@ -91,7 +93,7 @@ export class OrderListComponent {
           summary: 'Successo',
           detail: 'Ordine creato e statistiche aggiornate',
         });
-        this.refresh$.next();
+        this.refreshTrigger.update((n) => n + 1);
         this.closeModal();
       });
   }
