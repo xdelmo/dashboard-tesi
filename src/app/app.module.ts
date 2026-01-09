@@ -7,15 +7,17 @@ import { CoreModule } from './core/core.module';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
+import { registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localeIt);
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +30,7 @@ import Aura from '@primeuix/themes/aura';
     ToastModule,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'it-IT' },
     provideCharts(withDefaultRegisterables()),
     provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
     MessageService, // provideHttpClient ora ha interceptor dell'autenticazione e degli errori BE su ogni chiamata HTTP

@@ -10,7 +10,7 @@ export interface Customer {
   email: string;
   company: string;
   status: CustomerStatus;
-  revenue: number;
+
   industry: string;
   plan?: 'Basic' | 'Professional' | 'Enterprise';
 }

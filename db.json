@@ -24,7 +24,6 @@
       "email": "mario@rossi.tech",
       "company": "Tech Spa",
       "status": "Attivo",
-      "revenue": 5000,
       "industry": "Software",
       "plan": "Enterprise"
     },
@@ -34,7 +33,6 @@
       "email": "l.bianchi@consulting.it",
       "company": "Consulting Srl",
       "status": "In Attesa",
-      "revenue": 0,
       "industry": "Software",
       "plan": "Professional"
     },
@@ -44,7 +42,6 @@
       "email": "g.verdi@design.it",
       "company": "Design Studio",
       "status": "Attivo",
-      "revenue": 800,
       "industry": "Creative",
       "plan": "Professional"
     },
@@ -54,7 +51,6 @@
       "email": "a.neri@ecommerce.com",
       "company": "E-commerce Plus",
       "status": "Inattivo",
-      "revenue": 0,
       "industry": "Retail",
       "plan": "Basic"
     },
@@ -64,7 +60,6 @@
       "email": "p.gialli@logistica.eu",
       "company": "Fast Delivery",
       "status": "Attivo",
-      "revenue": 10000,
       "industry": "Logistics",
       "plan": "Enterprise"
     },
@@ -74,75 +69,122 @@
       "email": "elena@cyber.io",
       "company": "Cyber Shield",
       "status": "Attivo",
-      "revenue": 3500,
       "industry": "Cybersecurity",
       "plan": "Enterprise"
     }
   ],
+  "customerStats": [
+    {
+      "id": "cs-1767988302598",
+      "customerId": "I9j0K1l2M3n4O5p6",
+      "totalRevenue": 499.5,
+      "totalOrders": 1,
+      "lastOrderDate": "2026-01-09T19:51:42.598Z"
+    },
+    {
+      "id": "cs-1767988641922",
+      "customerId": "Q7r8S9t0U1v2W3x4",
+      "totalRevenue": 1198.8,
+      "totalOrders": 1,
+      "lastOrderDate": "2026-01-09T19:57:21.922Z"
+    }
+  ],
   "orders": [
     {
-      "id": "ORD-001",
-      "customerId": "A1b2C3d4E5f6G7h8",
-      "amount": 2500,
-      "date": "2024-01-01",
-      "status": "Pagato",
-      "type": "Abbonamento"
-    },
-    {
-      "id": "ORD-002",
-      "customerId": "G3h4I5j6K7l8M9n0",
-      "amount": 5000,
-      "date": "2024-04-05",
-      "status": "Pagato",
-      "type": "Abbonamento"
-    },
-    {
-      "id": "ORD-003",
-      "customerId": "Y5z6A7b8C9d0E1f2",
-      "amount": 150,
-      "date": "2024-12-12",
-      "status": "Fallito",
-      "type": "Abbonamento"
-    },
-    {
-      "id": "ORD-004",
-      "customerId": "A1b2C3d4E5f6G7h8",
-      "amount": 2500,
-      "date": "2025-01-01",
-      "status": "Pagato",
-      "type": "Abbonamento"
-    },
-    {
-      "id": "ORD-005",
-      "customerId": "G3h4I5j6K7l8M9n0",
-      "amount": 5000,
-      "date": "2025-02-05",
-      "status": "Pagato",
-      "type": "Servizi Professionali"
-    },
-    {
-      "id": "ORD-006",
-      "customerId": "Q7r8S9t0U1v2W3x4",
-      "amount": 800,
-      "date": "2025-05-20",
-      "status": "Pagato",
-      "type": "Abbonamento"
-    },
-    {
-      "id": "ORD-007",
+      "id": "ORD-719",
       "customerId": "I9j0K1l2M3n4O5p6",
-      "amount": 450,
-      "date": "2025-06-10",
-      "status": "In Attesa",
-      "type": "Abbonamento"
+      "date": "2026-01-09T19:51:34.467Z",
+      "status": "Pagato",
+      "type": "Abbonamento",
+      "subtotal": 500,
+      "tax": 49.5,
+      "discountAmount": 50,
+      "total": 499.5,
+      "items": [
+        {
+          "productId": "PROD-CL-001",
+          "name": "Archiviazione Enterprise",
+          "price": 500,
+          "quantity": 1,
+          "category": "Cloud"
+        }
+      ]
     },
     {
-      "id": "ORD-008",
-      "customerId": "O1p2Q3r4S5t6U7v8",
-      "amount": 3500,
-      "date": "2025-12-15",
+      "id": "ORD-4736",
+      "customerId": "Q7r8S9t0U1v2W3x4",
+      "date": "2026-01-09T19:57:10.184Z",
       "status": "Pagato",
-      "type": "Abbonamento"
+      "type": "Abbonamento",
+      "subtotal": 1200,
+      "tax": 118.8,
+      "discountAmount": 120,
+      "total": 1198.8,
+      "items": [
+        {
+          "productId": "PROD-CL-002",
+          "name": "Calcolo Serverless",
+          "price": 1200,
+          "quantity": 1,
+          "category": "Cloud"
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "PROD-CL-001",
+      "name": "Archiviazione Enterprise",
+      "description": "Storage cloud scalabile ad alta disponibilità",
+      "category": "Cloud",
+      "price": 500,
+      "duration": "Mensile",
+      "status": "Attivo"
+    },
+    {
+      "id": "PROD-CL-002",
+      "name": "Calcolo Serverless",
+      "description": "Risorse di calcolo on-demand",
+      "category": "Cloud",
+      "price": 1200,
+      "duration": "Mensile",
+      "status": "Attivo"
+    },
+    {
+      "id": "PROD-AN-001",
+      "name": "Dashboard Predittiva",
+      "description": "Analisi avanzata con previsioni AI",
+      "category": "Analytics",
+      "price": 800,
+      "duration": "Annuale",
+      "status": "Attivo"
+    },
+    {
+      "id": "PROD-AN-002",
+      "name": "Connettore Data Warehouse",
+      "description": "Strumento di integrazione per i principali data warehouse",
+      "category": "Analytics",
+      "price": 300,
+      "duration": "Una Tantum",
+      "status": "Attivo"
+    },
+    {
+      "id": "PROD-AI-001",
+      "name": "Analisi del Sentiment NLP",
+      "description": "API di analisi del testo basata su AI",
+      "category": "AI",
+      "price": 1500,
+      "duration": "Mensile",
+      "status": "Inattivo"
+    },
+    {
+      "id": "PROD-AI-002",
+      "name": "Riconoscimento Immagini API",
+      "description": "Computer vision per la classificazione delle immagini",
+      "category": "AI",
+      "price": 2000,
+      "duration": "Mensile",
+      "status": "Attivo"
     }
   ]
 }

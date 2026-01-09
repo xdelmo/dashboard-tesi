@@ -6,6 +6,7 @@ import { API_CONFIG } from '../config/api.config';
 import { IdGenerator } from '../../shared/utils/id-generator.util';
 import { MessageService } from 'primeng/api';
 import { notifySuccess } from '../../shared/utils/notification.operator';
+import { CustomerStatsService } from './customer-stats.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ import { notifySuccess } from '../../shared/utils/notification.operator';
 export class CustomerService {
   private http = inject(HttpClient);
   private messageService = inject(MessageService);
+  private customerStatsService = inject(CustomerStatsService);
 
   // Recupera i clienti dal JSON Server
   getCustomers(): Observable<Customer[]> {
@@ -26,9 +28,11 @@ export class CustomerService {
 
   // Calcola il totale fatturato recuperando i dati dal server
   getTotalRevenue(): Observable<number> {
-    return this.getCustomers().pipe(
-      map((customers) => customers.reduce((acc, curr) => acc + curr.revenue, 0))
-    );
+    return this.customerStatsService
+      .getAllStats()
+      .pipe(
+        map((stats) => stats.reduce((acc, curr) => acc + curr.totalRevenue, 0))
+      );
   }
 
   // Aggiunge un nuovo cliente con ID random

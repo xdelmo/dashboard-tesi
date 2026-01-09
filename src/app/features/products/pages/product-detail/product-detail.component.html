@@ -1,0 +1,91 @@
+@if (product(); as p) {
+<div class="dashboard-container">
+  <app-page-header
+    [title]="p.name"
+    subtitle="Dettagli servizio"
+  ></app-page-header>
+
+  <main class="content-area">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main Info -->
+      <div class="lg:col-span-2">
+        <div class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                {{ p.name }}
+              </h2>
+              <app-status-tag [value]="p.category"></app-status-tag>
+            </div>
+            <div class="flex items-center gap-3">
+              <app-status-tag [value]="p.status"></app-status-tag>
+              <p-button
+                icon="pi pi-pencil"
+                [rounded]="true"
+                [text]="true"
+                size="small"
+                (onClick)="menu.toggle($event)"
+              ></p-button>
+              <p-menu #menu [model]="statusOptions" [popup]="true"></p-menu>
+            </div>
+          </div>
+
+          <div class="prose max-w-none text-gray-600">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">
+              Descrizione
+            </h3>
+            <p>{{ p.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Info -->
+      <div class="flex flex-col gap-6">
+        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-800">
+            Dettagli Prezzo
+          </h3>
+
+          <div class="flex flex-col gap-4">
+            <div
+              class="flex justify-between items-center pb-4 border-b border-gray-100"
+            >
+              <span class="text-gray-500">Prezzo</span>
+              <span class="text-2xl font-bold text-primary">{{
+                p.price | currency : "EUR" : "symbol" : "1.0-0"
+              }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-500">Durata</span>
+              <span class="font-medium text-gray-800">{{ p.duration }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+          <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">
+            ID Prodotto
+          </div>
+          <div class="font-mono text-sm text-gray-600 select-all">
+            {{ p.id }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <p-button
+        label="Indietro"
+        icon="pi pi-arrow-left"
+        [outlined]="true"
+        (onClick)="goBack()"
+      ></p-button>
+    </div>
+  </main>
+</div>
+} @else {
+<div class="loading-state">
+  <div class="spinner"></div>
+  <p>Caricamento dettagli prodotto...</p>
+</div>
+}

@@ -56,6 +56,15 @@ const routes: Routes = [
           import('./features/orders/orders.module').then((m) => m.OrdersModule),
       },
 
+      // Modulo Prodotti (Lazy Loading)
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./features/products/products.module').then(
+            (m) => m.ProductsModule
+          ),
+      },
+
       // Modulo Settings (Admin Only)
       {
         path: 'settings',

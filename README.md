@@ -27,8 +27,11 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
   - Gestione di aziende con attributi specifici come `Industry` e `Subscription Plan`.
   - **Generazione ID Casuali:** Utilizzo di ID alfanumerici univoci a 16 caratteri (`IdGenerator`).
   - **Form Ottimizzato:** Creazione/Modifica semplificata con gestione implicita dei valori di business (es. Revenue).
-- **Ordini:** Monitoraggio di transazioni storiche, rinnovi di abbonamenti e servizi professionali.
-- **Metriche Finanziarie:** Calcolo dinamico del fatturato totale, MRR (Monthly Recurring Revenue) e crescita mensile.
+- **Prodotti (Catalogo Servizi):**
+  - **Gestione Completa:** Visualizzazione lista prodotti con stati (Attivo/Bozza) e dettagli completi.
+- **Ordini & Transazioni:**
+  - **Creazione Avanzata:** Modale ordini con selezione multipla dei prodotti.
+  - **Metriche Finanziarie:** Calcolo dinamico del fatturato totale, MRR (Monthly Recurring Revenue) e crescita mensile basato sui dati reali.
 
 ### 📊 Dashboard & Analytics
 
@@ -39,11 +42,12 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 
 ### 🛠 Architettura Tecnica
 
-- **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`, `input`, `output`) e della nuova sintassi `@if` / `@for`.
+- **Signals & Control Flow:** Utilizzo delle ultime feature di Angular 19 (`signal`, `computed`, `effect`, `input`, `output`) e della nuova sintassi `@if` / `@for`. Esempio concreto nel `ProductDetailComponent` che utilizza `toSignal` per convertire i parametri della rotta.
+- **UX/UI Components:** Implementazione di componenti riutilizzabili per **Empty States** e **Loading States** per garantire un'esperienza utente coerente in tutte le liste.
 - **Reactive Architecture:** Componenti modulari con caricamento **Lazy Loading**.
 - **Custom RxJS Operators:** Utilizzo di operatori custom (es. `notifySuccess`) per standardizzare il feedback utente e pulire il codice dei servizi.
 - **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
-- **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`).
+- **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`, `_loading.scss`).
 - **Quality Assurance:** Suite di Unit Test completa per `AuthService` utilizzando **Jasmine** e **Karma**, con mocking delle dipendenze HTTP (`provideHttpClientTesting`) e verifica dei flussi asincroni reattivi (`Observable`).
 
 ---

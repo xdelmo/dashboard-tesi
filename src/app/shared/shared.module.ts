@@ -7,6 +7,8 @@ import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { StatusTagComponent } from './components/status-tag/status-tag.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { LoadingStateComponent } from './components/loading-state/loading-state.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { StatusTagComponent } from './components/status-tag/status-tag.component
     StatCardComponent,
     PageHeaderComponent,
     StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
   ],
   imports: [CommonModule, ChartModule, CardModule, TagModule],
   exports: [
@@ -24,6 +28,8 @@ import { StatusTagComponent } from './components/status-tag/status-tag.component
     CardModule,
     TagModule,
     StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
   ],
 })
 export class SharedModule {}

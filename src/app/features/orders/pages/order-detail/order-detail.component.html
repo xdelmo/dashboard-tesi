@@ -1,0 +1,153 @@
+@if (order(); as order) {
+<div class="dashboard-container">
+  <app-page-header
+    [title]="'Dettaglio Ordine #' + order.id"
+    subtitle="Visualizza le informazioni complete dell'ordine"
+  ></app-page-header>
+
+  <main class="content-area">
+    <div class="bg-white p-8 rounded-2xl shadow-lg">
+      <!-- Header -->
+      <div
+        class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100"
+      >
+        <div>
+          <h2 class="m-0 text-2xl font-bold text-gray-800">
+            Ordine del {{ order.date | date : "dd MMMM yyyy" | titlecase }}
+          </h2>
+          <span class="text-gray-500 text-sm">ID: {{ order.id }}</span>
+        </div>
+        <app-status-tag [value]="order.status"></app-status-tag>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Items Ordine -->
+        <div class="lg:col-span-2 flex flex-col gap-8">
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">
+              Articoli Acquistati
+            </h3>
+
+            <p-table
+              [value]="order.items"
+              [tableStyle]="{ 'min-width': '100%' }"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Prodotto</th>
+                  <th>Categoria</th>
+                  <th class="text-right">Prezzo</th>
+                  <th class="text-right">Q.tà</th>
+                  <th class="text-right">Totale</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-item>
+                <tr>
+                  <td class="font-medium">{{ item.name }}</td>
+                  <td>
+                    <app-status-tag [value]="item.category"></app-status-tag>
+                  </td>
+                  <td class="text-right">
+                    {{ item.price | currency : "EUR" }}
+                  </td>
+                  <td class="text-right">{{ item.quantity }}</td>
+                  <td class="text-right font-bold">
+                    {{ item.price * item.quantity | currency : "EUR" }}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+
+        <!-- Cliente & Prezzi -->
+        <div class="flex flex-col gap-6">
+          <div
+            class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-bl-full -mr-10 -mt-10"
+            ></div>
+            <h3 class="text-lg font-semibold mb-4 text-gray-800 relative z-10">
+              Cliente
+            </h3>
+
+            @if (order.customer) {
+            <div class="flex flex-col gap-2 relative z-10">
+              <span
+                class="text-xl font-bold text-primary cursor-pointer hover:underline"
+                [routerLink]="['/customers', order.customer.id]"
+                >{{ order.customer.name }}</span
+              >
+              <span class="text-gray-600">{{ order.customer.company }}</span>
+              <span class="text-gray-500 text-sm">{{
+                order.customer.email
+              }}</span>
+              <app-status-tag
+                [value]="order.customer.status"
+                class="mt-2 text-sm"
+              ></app-status-tag>
+            </div>
+            } @else {
+            <p class="text-gray-500 italic">Cliente sconosciuto</p>
+            }
+          </div>
+
+          <!-- Resoconto Prezzi -->
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">Riepilogo</h3>
+
+            <div class="flex flex-col gap-3 text-gray-700">
+              <div class="flex justify-between">
+                <span>Subtotale</span>
+                <span class="font-medium">{{
+                  order.subtotal | currency : "EUR"
+                }}</span>
+              </div>
+
+              @if(order.discountAmount > 0) {
+              <div class="flex justify-between text-green-600">
+                <span>Sconto</span>
+                <span class="font-medium"
+                  >-{{ order.discountAmount | currency : "EUR" }}</span
+                >
+              </div>
+              }
+
+              <div class="flex justify-between text-gray-500">
+                <span>Tasse (IVA)</span>
+                <span class="font-medium">{{
+                  order.tax | currency : "EUR"
+                }}</span>
+              </div>
+
+              <div
+                class="border-t border-gray-300 my-2 pt-2 flex justify-between items-center"
+              >
+                <span class="text-lg font-bold text-gray-900">Totale</span>
+                <span class="text-2xl font-bold text-primary">{{
+                  order.total | currency : "EUR"
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end border-t border-gray-100 pt-6 mt-8">
+        <p-button
+          label="Indietro"
+          icon="pi pi-arrow-left"
+          [outlined]="true"
+          (onClick)="goBack()"
+        ></p-button>
+      </div>
+    </div>
+  </main>
+</div>
+} @else {
+<div class="loading-state">
+  <div class="spinner"></div>
+  <p>Caricamento dettagli ordine...</p>
+</div>
+}

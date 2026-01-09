@@ -1,14 +1,32 @@
+import { Product, ProductCategory } from './product.model';
+
 export enum OrderStatus {
   Paid = 'Pagato',
   Pending = 'In Attesa',
   Failed = 'Fallito',
 }
 
+export interface OrderItem {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  category: ProductCategory;
+}
+
 export interface Order {
   id: string;
   customerId: string;
-  amount: number;
   date: string;
   status: OrderStatus;
-  type: 'Abbonamento' | 'Servizi Professionali';
+
+  subtotal: number;
+  tax: number;
+  discountAmount: number;
+  total: number;
+
+  type: string;
+  items: OrderItem[];
+
+  products?: Product[];
 }

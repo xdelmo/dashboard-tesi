@@ -1,0 +1,45 @@
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { combineLatest, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { CustomerService } from '../../../../core/services/customer.service';
+import { OrderService } from '../../../../core/services/order.service';
+import { Location } from '@angular/common';
+
+@Component({
+  selector: 'app-order-detail',
+  templateUrl: './order-detail.component.html',
+  styleUrls: ['./order-detail.component.scss'],
+  standalone: false,
+})
+export class OrderDetailComponent {
+  private route = inject(ActivatedRoute);
+  private orderService = inject(OrderService);
+  private customerService = inject(CustomerService);
+  private location = inject(Location);
+
+  order = toSignal(
+    this.route.paramMap.pipe(
+      switchMap((params) => {
+        const id = params.get('id');
+        if (id) {
+          return combineLatest([
+            this.orderService.getOrder(id),
+            this.customerService.getCustomers(),
+          ]).pipe(
+            map(([order, customers]) => {
+              const customer = customers.find((c) => c.id === order.customerId);
+              return { ...order, customer };
+            })
+          );
+        }
+        return of(undefined);
+      })
+    )
+  );
+
+  goBack(): void {
+    this.location.back();
+  }
+}

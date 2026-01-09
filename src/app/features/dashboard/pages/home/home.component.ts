@@ -25,7 +25,7 @@ export class HomeComponent {
   totalRevenue = computed(() => {
     return this.orders()
       .filter((o) => o.status === OrderStatus.Paid)
-      .reduce((acc, curr) => acc + curr.amount, 0);
+      .reduce((acc, curr) => acc + curr.total, 0);
   });
 
   totalCustomers = computed(() => this.customers().length);
@@ -38,10 +38,12 @@ export class HomeComponent {
   pendingOrders = computed(() => {
     return this.orders().filter((o) => o.status === OrderStatus.Pending).length;
   });
+
   // Gestione anno selezionato per il grafico
-  selectedYear = signal(2025);
+  selectedYear = signal(new Date().getFullYear());
+  years = [2026, 2025, 2024];
 
   onYearChange(event: any): void {
-    this.selectedYear.set(parseInt(event.target.value, 10));
+    this.selectedYear.set(event.value);
   }
 }

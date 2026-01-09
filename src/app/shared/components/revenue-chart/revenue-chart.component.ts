@@ -29,7 +29,7 @@ export class RevenueChartComponent {
         orderDate.getFullYear() === year &&
         order.status === OrderStatus.Paid
       ) {
-        monthlyRevenue[orderDate.getMonth()] += order.amount;
+        monthlyRevenue[orderDate.getMonth()] += order.total;
       }
     });
 

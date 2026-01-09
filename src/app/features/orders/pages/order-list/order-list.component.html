@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="dashboard-container">
   <app-page-header
     title="Ordini Recenti"
@@ -5,6 +6,14 @@
   ></app-page-header>
 
   <main class="content-area">
+    <div class="mb-5">
+      <p-button
+        label="Nuovo Ordine"
+        icon="pi pi-plus"
+        (onClick)="openModal()"
+      ></p-button>
+    </div>
+
     @if (enrichedOrders(); as ordersList) {
     <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
       <p-table
@@ -24,7 +33,14 @@
         </ng-template>
         <ng-template pTemplate="body" let-order>
           <tr>
-            <td>#{{ order.id }}</td>
+            <td>
+              <strong
+                class="cursor-pointer text-primary hover:text-primary-600 underline"
+                [routerLink]="['/orders', order.id]"
+              >
+                #{{ order.id }}
+              </strong>
+            </td>
             <td>{{ order.date | date : "dd/MM/yyyy" }}</td>
             <td>
               <strong
@@ -34,15 +50,40 @@
                 {{ order.customerName }}
               </strong>
             </td>
-            <td>{{ order.type }}</td>
-            <td class="font-bold">{{ order.amount | currency : "EUR" }}</td>
+            <td>
+              <div class="flex gap-2">
+                @for (category of order.uniqueCategories; track $index) {
+                <app-status-tag [value]="category"></app-status-tag>
+                }
+              </div>
+            </td>
+            <td class="font-bold">{{ order.total | currency : "EUR" }}</td>
             <td>
               <app-status-tag [value]="order.status"></app-status-tag>
             </td>
           </tr>
         </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              <app-empty-state
+                title="Nessun ordine trovato"
+                subtitle="Crea un nuovo ordine per iniziare a tracciare le vendite."
+                icon="pi pi-inbox"
+              ></app-empty-state>
+            </td>
+          </tr>
+        </ng-template>
       </p-table>
     </div>
+    } @else {
+    <app-loading-state message="Caricamento ordini..."></app-loading-state>
     }
+    <app-order-modal
+      [isOpen]="isModalOpen"
+      (close)="closeModal()"
+      (save)="saveOrder($event)"
+    >
+    </app-order-modal>
   </main>
 </div>

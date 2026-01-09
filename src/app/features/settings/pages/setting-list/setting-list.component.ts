@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
-import { API_CONFIG } from '../../core/config/api.config';
+import { API_CONFIG } from '../../../../core/config/api.config';
 
 @Component({
   selector: 'app-settings',
   standalone: false,
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
+  templateUrl: './setting-list.component.html',
+  styleUrl: './setting-list.component.scss',
 })
-export class SettingsComponent {
+export class SettingListComponent {
   private http = inject(HttpClient);
 
   downloadBackup() {
@@ -17,6 +17,8 @@ export class SettingsComponent {
       customers: this.http.get(`${API_CONFIG.baseUrl}/customers`),
       orders: this.http.get(`${API_CONFIG.baseUrl}/orders`),
       users: this.http.get(`${API_CONFIG.baseUrl}/users`),
+      customerStats: this.http.get(`${API_CONFIG.baseUrl}/customerStats`),
+      products: this.http.get(`${API_CONFIG.baseUrl}/products`),
     }).subscribe((data) => {
       const blob = new Blob([JSON.stringify(data, null, 2)], {
         type: 'application/json',
