@@ -8,6 +8,7 @@ import { MenuModule } from 'primeng/menu';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProductModalComponent } from './components/product-modal/product-modal.component';
 
 const routes: Routes = [
   { path: '', component: ProductListComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     TagModule,
     MenuModule,
     RouterModule.forChild(routes),
+    ProductModalComponent,
   ],
 })
 export class ProductsModule {}

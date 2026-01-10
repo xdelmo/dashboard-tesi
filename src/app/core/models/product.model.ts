@@ -1,5 +1,11 @@
 export type ProductCategory = 'Cloud' | 'Analytics' | 'AI' | 'Consulenza';
 
+export enum ProductStatus {
+  Active = 'Attivo',
+  Draft = 'Bozza',
+  Inactive = 'Disattivato',
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -7,5 +13,5 @@ export interface Product {
   category: ProductCategory;
   price: number;
   duration?: 'Mensile' | 'Annuale' | 'Una Tantum';
-  status: 'Attivo' | 'Bozza' | 'Disattivato';
+  status: ProductStatus;
 }

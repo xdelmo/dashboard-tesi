@@ -1,4 +1,4 @@
-@if (customer$ | async; as customer) {
+@if (customer(); as customer) {
 <div class="dashboard-container">
   <app-page-header
     [title]="'Dettaglio Cliente: ' + customer.name"

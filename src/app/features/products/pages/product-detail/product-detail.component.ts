@@ -5,7 +5,6 @@ import { switchMap } from 'rxjs/operators';
 import { ProductService } from '../../../../core/services/product.service';
 import { Location } from '@angular/common';
 import { of, combineLatest } from 'rxjs';
-import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,12 +18,7 @@ export class ProductDetailComponent {
   private location = inject(Location);
 
   private refreshTrigger = signal(0);
-
-  statusOptions: MenuItem[] = [
-    { label: 'Attivo', command: () => this.updateStatus('Attivo') },
-    { label: 'Bozza', command: () => this.updateStatus('Bozza') },
-    { label: 'Disattivato', command: () => this.updateStatus('Disattivato') },
-  ];
+  isModalOpen = false;
 
   product = toSignal(
     combineLatest([
@@ -38,13 +32,22 @@ export class ProductDetailComponent {
     )
   );
 
-  updateStatus(status: string) {
+  openEditModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  saveProduct(product: Partial<any>) {
     const currentProduct = this.product();
     if (currentProduct) {
       this.productService
-        .updateProduct(currentProduct.id, { status: status as any })
+        .updateProduct(currentProduct.id, product)
         .subscribe(() => {
           this.refreshTrigger.update((n) => n + 1);
+          this.closeModal();
         });
     }
   }

@@ -5,6 +5,13 @@
   ></app-page-header>
 
   <main class="content-area">
+    <div style="margin-bottom: 20px">
+      <p-button
+        label="Aggiungi Prodotto"
+        icon="pi pi-plus"
+        (onClick)="openModal()"
+      ></p-button>
+    </div>
     @if (products(); as productsList) {
     <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
       <p-table
@@ -66,5 +73,11 @@
     } @else {
     <app-loading-state message="Caricamento prodotti..."></app-loading-state>
     }
+
+    <app-product-modal
+      [isOpen]="isModalOpen"
+      (close)="closeModal()"
+      (save)="saveProduct($event)"
+    ></app-product-modal>
   </main>
 </div>

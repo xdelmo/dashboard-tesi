@@ -1,7 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, combineLatest } from 'rxjs';
+import { combineLatest, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { Customer } from '../../../../core/models/customer.model';
 import { CustomerService } from '../../../../core/services/customer.service';
 
@@ -14,28 +15,23 @@ import { CustomerStatsService } from '../../../../core/services/customer-stats.s
   templateUrl: './customer-detail.component.html',
   styleUrl: './customer-detail.component.scss',
 })
-export class CustomerDetailComponent implements OnInit {
-  customer$!: Observable<Customer & { revenue: number }>;
-  isModalOpen = false;
-  selectedCustomer: Customer | null = null;
-
+export class CustomerDetailComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private customerService = inject(CustomerService);
   private location = inject(Location);
   private customerStatsService = inject(CustomerStatsService);
 
-  goBack(): void {
-    this.location.back();
-  }
+  private refreshTrigger = signal(0);
+  isModalOpen = false;
+  selectedCustomer: Customer | null = null;
 
-  ngOnInit(): void {
-    this.refreshData();
-  }
-
-  refreshData(): void {
-    this.customer$ = this.route.paramMap.pipe(
-      switchMap((params) => {
+  customer = toSignal(
+    combineLatest([
+      this.route.paramMap,
+      toObservable(this.refreshTrigger),
+    ]).pipe(
+      switchMap(([params]) => {
         const id = params.get('id');
         if (id) {
           return combineLatest([
@@ -48,9 +44,13 @@ export class CustomerDetailComponent implements OnInit {
             })
           );
         }
-        return new Observable<Customer & { revenue: number }>();
+        return of(undefined);
       })
-    );
+    )
+  );
+
+  goBack(): void {
+    this.location.back();
   }
 
   deleteCustomer(id: string): void {
@@ -76,7 +76,7 @@ export class CustomerDetailComponent implements OnInit {
       this.customerService
         .updateCustomer(this.selectedCustomer.id, customerData)
         .subscribe(() => {
-          this.refreshData();
+          this.refreshTrigger.update((n) => n + 1);
           this.closeModal();
         });
     }
