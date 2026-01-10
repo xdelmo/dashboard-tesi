@@ -26,6 +26,7 @@ export class StatusTagComponent {
       case 'Inattivo':
       case 'Fallito':
       case 'Archiviato':
+      case 'Disattivato':
         return 'danger';
       default:
         return 'info';

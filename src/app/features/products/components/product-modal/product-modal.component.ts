@@ -11,6 +11,7 @@ import {
   Product,
   ProductCategory,
   ProductStatus,
+  ProductDuration,
 } from '../../../../core/models/product.model';
 
 @Component({
@@ -43,7 +44,7 @@ export class ProductModalComponent {
     description: ['', Validators.required],
     category: [null as ProductCategory | null, Validators.required],
     price: [0, [Validators.required, Validators.min(0)]],
-    duration: ['Mensile', Validators.required],
+    duration: [ProductDuration.Monthly, Validators.required],
     status: [ProductStatus.Active, Validators.required],
   });
 
@@ -55,9 +56,9 @@ export class ProductModalComponent {
   ];
 
   durationOptions = [
-    { label: 'Mensile', value: 'Mensile' },
-    { label: 'Annuale', value: 'Annuale' },
-    { label: 'Una Tantum', value: 'Una Tantum' },
+    { label: 'Mensile', value: ProductDuration.Monthly },
+    { label: 'Annuale', value: ProductDuration.Yearly },
+    { label: 'Una Tantum', value: ProductDuration.OneTime },
   ];
 
   statusOptions = [
@@ -76,7 +77,7 @@ export class ProductModalComponent {
           description: product.description,
           category: product.category,
           price: product.price,
-          duration: product.duration || 'Mensile',
+          duration: product.duration || ProductDuration.Monthly,
           status: product.status,
         });
       } else {
@@ -86,7 +87,7 @@ export class ProductModalComponent {
           description: '',
           category: null,
           price: 0,
-          duration: 'Mensile',
+          duration: ProductDuration.Monthly,
           status: ProductStatus.Active,
         });
       }

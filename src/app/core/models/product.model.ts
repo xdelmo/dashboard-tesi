@@ -6,12 +6,18 @@ export enum ProductStatus {
   Inactive = 'Disattivato',
 }
 
+export enum ProductDuration {
+  Monthly = 'Mensile',
+  Yearly = 'Annuale',
+  OneTime = 'Una Tantum',
+}
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   category: ProductCategory;
   price: number;
-  duration?: 'Mensile' | 'Annuale' | 'Una Tantum';
+  duration: ProductDuration;
   status: ProductStatus;
 }
