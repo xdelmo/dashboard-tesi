@@ -12,14 +12,13 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectModule } from 'primeng/select';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ReactiveFormsModule } from '@angular/forms';
-import { OrderModalComponent } from './components/order-modal/order-modal.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
-
+import { OrderModalComponent } from './components/order-modal/order-modal.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @NgModule({
-  declarations: [OrderListComponent, OrderModalComponent, OrderDetailComponent],
+  declarations: [OrderListComponent, OrderDetailComponent],
   imports: [
     CommonModule,
     OrdersRoutingModule,
@@ -33,6 +32,7 @@ import { MessageService } from 'primeng/api';
     MultiSelectModule,
     ReactiveFormsModule,
     ToastModule,
+    OrderModalComponent,
   ],
   providers: [MessageService],
 })

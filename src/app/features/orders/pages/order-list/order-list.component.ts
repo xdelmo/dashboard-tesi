@@ -4,7 +4,7 @@ import { OrderService } from '../../../../core/services/order.service';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 import { MessageService } from 'primeng/api';
-import { switchMap, map } from 'rxjs';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-order-list',

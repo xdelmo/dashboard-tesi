@@ -1,51 +1,79 @@
+import { Component, OnInit, inject, input, output } from '@angular/core';
 import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnInit,
-  inject,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { ProductService } from '../../../../core/services/product.service';
-import { Order } from '../../../../core/models/order.model';
-import { Product } from '../../../../core/models/product.model';
+import { Order, OrderStatus } from '../../../../core/models/order.model';
+import { Product, ProductStatus } from '../../../../core/models/product.model';
 
 import { map, combineLatest, startWith } from 'rxjs';
+import { DialogModule } from 'primeng/dialog';
+import { Select } from 'primeng/select';
+import { DatePicker } from 'primeng/datepicker';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MultiSelect } from 'primeng/multiselect';
+import { Button } from 'primeng/button';
+import { CurrencyPipe } from '@angular/common';
+import { CustomerStatus } from '../../../../core/models/customer.model';
 
 @Component({
   selector: 'app-order-modal',
   templateUrl: './order-modal.component.html',
   styleUrls: ['./order-modal.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    DialogModule,
+    Select,
+    DatePicker,
+    InputNumberModule,
+    MultiSelect,
+    Button,
+    FormsModule,
+    ReactiveFormsModule,
+    CurrencyPipe,
+  ],
 })
 export class OrderModalComponent implements OnInit {
-  @Input() isOpen = false;
-  @Output() close = new EventEmitter<void>();
-  @Output() save = new EventEmitter<Partial<Order>>();
+  isOpen = input<boolean>(false);
+  close = output<void>();
+  save = output<Partial<Order>>();
 
   private fb = inject(FormBuilder);
   private customerService = inject(CustomerService);
   private productService = inject(ProductService);
 
-  customers = toSignal(this.customerService.getCustomers(), {
-    initialValue: [],
-  });
+  customers = toSignal(
+    this.customerService
+      .getCustomers()
+      .pipe(map((c) => c.filter((c) => c.status === CustomerStatus.Active))),
+    {
+      initialValue: [],
+    }
+  );
+
   products = toSignal(
     this.productService
       .getProducts()
-      .pipe(map((products) => products.filter((p) => p.status === 'Attivo'))),
+      .pipe(
+        map((products) =>
+          products.filter((p) => p.status === ProductStatus.Active)
+        )
+      ),
     { initialValue: [] }
   );
 
   orderForm!: FormGroup;
 
   orderStatuses = [
-    { label: 'Pagato', value: 'Pagato' },
-    { label: 'In Attesa', value: 'In Attesa' },
-    { label: 'Fallito', value: 'Fallito' },
+    { label: OrderStatus.Paid, value: OrderStatus.Paid },
+    { label: OrderStatus.Pending, value: OrderStatus.Pending },
+    { label: OrderStatus.Failed, value: OrderStatus.Failed },
   ];
 
   quantities: { [productId: string]: number } = {};
@@ -63,7 +91,7 @@ export class OrderModalComponent implements OnInit {
         { value: 0, disabled: true },
         [Validators.required, Validators.min(0)],
       ],
-      status: ['In Attesa', Validators.required],
+      status: [OrderStatus.Pending, Validators.required],
       products: [[], Validators.required],
       type: ['Abbonamento'],
     });
@@ -188,7 +216,7 @@ export class OrderModalComponent implements OnInit {
       this.orderForm.reset({
         date: new Date(),
         amount: 0,
-        status: 'In Attesa',
+        status: OrderStatus.Pending,
         type: 'Abbonamento',
         products: [],
       });
