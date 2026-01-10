@@ -22,15 +22,10 @@
             productForm.get('name')?.invalid && productForm.get('name')?.touched
         }"
       />
-      <small
-        class="text-red-500"
-        *ngIf="
-          productForm.get('name')?.hasError('required') &&
-          productForm.get('name')?.touched
-        "
-      >
-        Nome richiesto
-      </small>
+      @if (productForm.get('name')?.hasError('required') &&
+      productForm.get('name')?.touched) {
+      <small class="text-red-500"> Nome richiesto </small>
+      }
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -104,15 +99,10 @@
         class="w-full"
         [autoResize]="true"
       ></textarea>
-      <small
-        class="text-red-500"
-        *ngIf="
-          productForm.get('description')?.hasError('required') &&
-          productForm.get('description')?.touched
-        "
-      >
-        Descrizione richiesta
-      </small>
+      @if (productForm.get('description')?.hasError('required') &&
+      productForm.get('description')?.touched) {
+      <small class="text-red-500"> Descrizione richiesta </small>
+      }
     </div>
   </form>
 
