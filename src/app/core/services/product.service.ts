@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product.model';
+import { Product, ProductStatus } from '../models/product.model';
 import { API_CONFIG } from '../config/api.config';
 import { notifySuccess } from '../../shared/utils/notification.operator';
 import { MessageService } from 'primeng/api';
@@ -37,6 +37,16 @@ export class ProductService {
       .post<Product>(`${API_CONFIG.baseUrl}/products`, newProductWithId)
       .pipe(
         notifySuccess(this.messageService, 'Prodotto aggiornato correttamente')
+      );
+  }
+  // Soft delete: imposta lo stato a Inactive
+  deleteProduct(id: string): Observable<Product> {
+    return this.http
+      .patch<Product>(`${API_CONFIG.baseUrl}/products/${id}`, {
+        status: ProductStatus.Inactive,
+      })
+      .pipe(
+        notifySuccess(this.messageService, 'Prodotto disattivato correttamente')
       );
   }
 }

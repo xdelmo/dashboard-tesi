@@ -47,12 +47,14 @@ export class CustomerService {
       );
   }
 
-  // Elimina un cliente
-  deleteCustomer(id: string): Observable<void> {
+  // Soft delete: imposta lo stato a "Inattivo"
+  deleteCustomer(id: string): Observable<Customer> {
     return this.http
-      .delete<void>(`${API_CONFIG.baseUrl}/customers/${id}`)
+      .patch<Customer>(`${API_CONFIG.baseUrl}/customers/${id}`, {
+        status: 'Inattivo',
+      })
       .pipe(
-        notifySuccess(this.messageService, 'Cliente eliminato correttamente')
+        notifySuccess(this.messageService, 'Cliente disattivato correttamente')
       );
   }
 

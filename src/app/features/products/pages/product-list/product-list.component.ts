@@ -39,4 +39,10 @@ export class ProductListComponent {
       this.closeModal();
     });
   }
+
+  deleteProduct(id: string): void {
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.refreshData();
+    });
+  }
 }

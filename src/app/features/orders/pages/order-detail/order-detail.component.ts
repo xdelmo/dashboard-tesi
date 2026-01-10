@@ -5,6 +5,7 @@ import { combineLatest, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { OrderService } from '../../../../core/services/order.service';
+import { OrderStatus } from '../../../../core/models/order.model';
 import { Location } from '@angular/common';
 
 @Component({
@@ -38,6 +39,16 @@ export class OrderDetailComponent {
       })
     )
   );
+
+  deleteOrder(id: string): void {
+    this.orderService.deleteOrder(id).subscribe(() => {
+      this.goBack();
+    });
+  }
+
+  isPending(status: OrderStatus): boolean {
+    return status === OrderStatus.Pending;
+  }
 
   goBack(): void {
     this.location.back();

@@ -25,4 +25,7 @@ export class OrderService {
     };
     return this.http.post<Order>(`${API_CONFIG.baseUrl}/orders`, newOrder);
   }
+  deleteOrder(id: string): Observable<void> {
+    return this.http.delete<void>(`${API_CONFIG.baseUrl}/orders/${id}`);
+  }
 }
