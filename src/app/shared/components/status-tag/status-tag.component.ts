@@ -28,6 +28,8 @@ export class StatusTagComponent {
       case 'Archiviato':
       case 'Disattivato':
         return 'danger';
+      case 'Admin Only':
+        return 'contrast';
       default:
         return 'info';
     }

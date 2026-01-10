@@ -44,6 +44,11 @@ export class OrderModalComponent {
   close = output<void>();
   save = output<Partial<Order>>();
 
+  // Explicit getter to resolve template type checking issue with SignalInput
+  get dialogVisible(): boolean {
+    return this.isOpen();
+  }
+
   private fb = inject(FormBuilder);
   private customerService = inject(CustomerService);
   private productService = inject(ProductService);

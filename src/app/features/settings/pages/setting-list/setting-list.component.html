@@ -1,20 +1,37 @@
 <app-page-header title="Impostazioni" subtitle="Area Riservata Amministratori">
-  <app-status-tag value="Admin Only" severity="danger"></app-status-tag>
+  <app-status-tag value="Admin Only"></app-status-tag>
 </app-page-header>
 
 <div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="p-4 card bg-white rounded-2xl shadow-lg">
+    <div class="p-4 card bg-white rounded-2xl shadow-lg flex flex-col h-full">
       <h4 class="font-bold mb-2">Manutenzione</h4>
-      <p class="text-sm text-gray-600 mb-3">
+      <p class="text-sm text-gray-600 mb-3 flex-grow">
         Strumenti di manutenzione del database.
       </p>
-      <p-button
-        label="Esegui Backup"
-        icon="pi pi-database"
-        severity="warn"
-        (onClick)="downloadBackup()"
-      ></p-button>
+      <div class="mt-auto">
+        <p-button
+          label="Esegui Backup"
+          icon="pi pi-database"
+          severity="warn"
+          (onClick)="downloadBackup()"
+        ></p-button>
+      </div>
+    </div>
+
+    <div class="p-4 card bg-white rounded-2xl shadow-lg flex flex-col h-full">
+      <h4 class="font-bold mb-2">Gestione Utenti</h4>
+      <p class="text-sm text-gray-600 mb-3 flex-grow">
+        Visualizza la lista degli utenti e gestisci i loro ruoli e permessi.
+      </p>
+      <div class="mt-auto">
+        <p-button
+          label="Gestisci Utenti"
+          icon="pi pi-users"
+          [routerLink]="['users']"
+          severity="info"
+        ></p-button>
+      </div>
     </div>
   </div>
 </div>

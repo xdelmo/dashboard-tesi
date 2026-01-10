@@ -3,9 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { API_CONFIG } from '../../../../core/config/api.config';
 
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../../shared/shared.module';
+import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-settings',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, SharedModule, ButtonModule, RouterModule],
   templateUrl: './setting-list.component.html',
   styleUrl: './setting-list.component.scss',
 })

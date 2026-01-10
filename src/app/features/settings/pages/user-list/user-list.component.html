@@ -1,0 +1,74 @@
+<app-page-header title="Gestione Utenti" subtitle="Modifica ruoli e permessi">
+</app-page-header>
+
+<div class="p-4 card bg-white rounded-2xl shadow-lg mt-4">
+  <p-table [value]="users()" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ruolo</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <div class="flex items-center gap-2">
+            <img
+              [src]="user.avatar"
+              [alt]="user.name"
+              width="32"
+              class="rounded-full"
+            />
+            <span class="font-medium">{{ user.name }}</span>
+          </div>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <p-select
+            [options]="roles"
+            [ngModel]="user.role"
+            (ngModelChange)="updateRole(user, $event)"
+            optionLabel="label"
+            optionValue="value"
+            appendTo="body"
+            [style]="{ width: '150px' }"
+          >
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex items-center gap-2" *ngIf="selectedOption">
+                <i
+                  class="pi"
+                  [ngClass]="{
+                    'pi-lock text-red-500': selectedOption.value === 'admin',
+                    'pi-user text-blue-500': selectedOption.value === 'user'
+                  }"
+                ></i>
+                <div>{{ selectedOption.label }}</div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="item" let-option>
+              <div class="flex items-center gap-2">
+                <i
+                  class="pi"
+                  [ngClass]="{
+                    'pi-lock text-red-500': option.value === 'admin',
+                    'pi-user text-blue-500': option.value === 'user'
+                  }"
+                ></i>
+                <div>{{ option.label }}</div>
+              </div>
+            </ng-template>
+          </p-select>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<div class="flex justify-end border-t border-gray-100 pt-6 gap-4">
+  <p-button
+    label="Indietro"
+    icon="pi pi-arrow-left"
+    [outlined]="true"
+    [routerLink]="['..']"
+  ></p-button>
+</div>
