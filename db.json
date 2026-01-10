@@ -185,15 +185,6 @@
       "price": 2000,
       "duration": "Mensile",
       "status": "Attivo"
-    },
-    {
-      "id": "xI59b7fTTazk0GEs",
-      "name": "agent",
-      "description": "ss",
-      "category": "Analytics",
-      "price": 100,
-      "duration": "Mensile",
-      "status": "Disattivato"
     }
   ]
 }
