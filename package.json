@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start:springboot": "ng serve --configuration=springboot",
+    "start:render": "ng serve --configuration=render",
     "server": "json-server --watch db.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
