@@ -17,6 +17,7 @@ Applicazione gestionale Single Page Application (SPA) **ApexFlow**, basata su un
 ### ⚙️ Gestione & Manutenzione
 
 - **Area Impostazioni (Admin Only):** Sezione protetta per la manutenzione del sistema.
+- **Gestione Utenti:** Interfaccia dedicata (`/settings/users`) per visualizzare gli utenti registrati e modificarne i ruoli (Admin/User).
 - **Backup Dati:** Funzionalità di backup one-click che scarica un'istantanea completa del database (`db.json`) in formato JSON direttamente dal browser.
 
 ### 💼 Modello di Business (SaaS Domain)
@@ -25,12 +26,14 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 
 - **Clienti (Anagrafica):**
   - Gestione di aziende con attributi specifici come `Industry` e `Subscription Plan`.
+  - **Soft Delete:** Eliminazione logica (stato "Inattivo") per preservare lo storico degli ordini collegati.
   - **Generazione ID Casuali:** Utilizzo di ID alfanumerici univoci a 16 caratteri (`IdGenerator`).
   - **Form Ottimizzato:** Creazione/Modifica semplificata con gestione implicita dei valori di business (es. Revenue).
 - **Prodotti (Catalogo Servizi):**
-  - **Gestione Completa:** Visualizzazione lista prodotti, dettaglio servizio (`/products/:id`) e modifica stato rapida (Attivo/Bozza) tramite ottimistic updates.
+  - **Gestione Completa:** Visualizzazione lista prodotti, dettaglio servizio (`/products/:id`) e modifica stato rapida.
+  - **Soft Delete:** Supporto per disattivazione prodotti ("Disattivato") mantenendoli visibili negli ordini storici.
 - **Ordini & Transazioni:**
-  - **Creazione Avanzata:** Modale ordini reattivo basato su **Signals** con selezione multipla prodotti e calcolo automatico.
+  - **Creazione Avanzata:** Modale ordini reattivo basato su **Signals** con selezione multipla prodotti e **quantità variabile**.
   - **Financial Engine:** Logica integrata per calcolo Subtotale, Sconti Piano (0%, 10%, 20%) e **IVA automatica (11%)**.
   - **Metriche Real-Time:** Dashboard collegata ai dati reali per calcolo fatturato e KPI.
 
@@ -59,6 +62,13 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 - **State Management:** Angular Signals & RxJS
 - **Visualizzazione Dati:** PrimeNG Charts (Chart.js)
 - **Tooling:** Angular CLI, JSON Server (Mock API)
+
+## 🔗 Backend Integration (WIP)
+
+Esiste un repository separato per il backend sviluppato con **Spring Boot**, attualmente in fase di sviluppo (Work in Progress).
+Il backend replicherà le funzionalità simulate attualmente dal JSON Server.
+
+👉 **Repository Backend:** [github.com/xdelmo/backend-tesi](https://github.com/xdelmo/backend-tesi)
 
 ---
 
