@@ -85,7 +85,7 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="status" class="font-semibold">Stato</label>
+        <label for="status" class="font-semibold">Stato Ordine</label>
         <p-select
           id="status"
           [options]="orderStatuses"
@@ -98,6 +98,31 @@
         >
         </p-select>
       </div>
+
+      @if (selectedProducts.length > 0) {
+      <div class="flex flex-col gap-2">
+        <label class="font-semibold">Quantità Prodotti</label>
+        <div class="flex flex-col gap-2 bg-gray-50 p-3 rounded-lg">
+          @for (product of selectedProducts; track product.id) {
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-sm font-medium">{{ product.name }}</span>
+            <p-inputNumber
+              [ngModel]="quantities[product.id] || 1"
+              (ngModelChange)="updateQuantity(product.id, $event)"
+              [min]="1"
+              [showButtons]="true"
+              buttonLayout="horizontal"
+              inputId="qty-{{ product.id }}"
+              [ngModelOptions]="{ standalone: true }"
+              class="w-32"
+              inputStyleClass="w-12 text-center p-1"
+            >
+            </p-inputNumber>
+          </div>
+          }
+        </div>
+      </div>
+      }
     </div>
   </form>
 

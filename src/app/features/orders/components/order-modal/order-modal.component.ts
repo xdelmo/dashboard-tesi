@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -39,7 +39,7 @@ import { CustomerStatus } from '../../../../core/models/customer.model';
     CurrencyPipe,
   ],
 })
-export class OrderModalComponent implements OnInit {
+export class OrderModalComponent {
   isOpen = input<boolean>(false);
   close = output<void>();
   save = output<Partial<Order>>();
@@ -68,7 +68,17 @@ export class OrderModalComponent implements OnInit {
     { initialValue: [] }
   );
 
-  orderForm!: FormGroup;
+  orderForm: FormGroup = this.fb.group({
+    customerId: ['', Validators.required],
+    date: [new Date(), Validators.required],
+    amount: [
+      { value: 0, disabled: true },
+      [Validators.required, Validators.min(0)],
+    ],
+    status: [OrderStatus.Pending, Validators.required],
+    products: [[], Validators.required],
+    type: ['Abbonamento'],
+  });
 
   orderStatuses = [
     { label: OrderStatus.Paid, value: OrderStatus.Paid },
@@ -78,23 +88,8 @@ export class OrderModalComponent implements OnInit {
 
   quantities: { [productId: string]: number } = {};
 
-  ngOnInit() {
-    this.initForm();
+  constructor() {
     this.setupAmountCalculation();
-  }
-
-  initForm() {
-    this.orderForm = this.fb.group({
-      customerId: ['', Validators.required],
-      date: [new Date(), Validators.required],
-      amount: [
-        { value: 0, disabled: true },
-        [Validators.required, Validators.min(0)],
-      ],
-      status: [OrderStatus.Pending, Validators.required],
-      products: [[], Validators.required],
-      type: ['Abbonamento'],
-    });
   }
 
   discountDetails = {
@@ -183,7 +178,8 @@ export class OrderModalComponent implements OnInit {
 
   updateQuantity(productId: string, quantity: number) {
     this.quantities[productId] = quantity;
-    // Trigger recalculation by updating form validaty or emitting check
+    // Trigger recalculation by explicitly updating the form control validity
+    // which triggers the valueChanges subscription in setupAmountCalculation
     this.orderForm.get('products')?.updateValueAndValidity({ emitEvent: true });
   }
 
@@ -207,23 +203,42 @@ export class OrderModalComponent implements OnInit {
           productId: p.id,
           name: p.name,
           price: p.price,
-          quantity: 1, // Default
+          quantity: this.quantities[p.id] || 1,
           category: p.category,
         })),
       };
 
       this.save.emit(order);
-      this.orderForm.reset({
-        date: new Date(),
-        amount: 0,
-        status: OrderStatus.Pending,
-        type: 'Abbonamento',
-        products: [],
-      });
+      this.resetForm();
     }
   }
 
   onCancel() {
+    this.resetForm();
     this.close.emit();
+  }
+
+  private resetForm() {
+    this.orderForm.reset({
+      date: new Date(),
+      amount: 0,
+      status: OrderStatus.Pending,
+      type: 'Abbonamento',
+      products: [],
+    });
+    this.quantities = {};
+    this.calculatedFinancials = {
+      subtotal: 0,
+      tax: 0,
+      discountAmount: 0,
+      total: 0,
+    };
+    this.discountDetails = {
+      originalAmount: 0,
+      discountPercentage: 0,
+      discountAmount: 0,
+      finalAmount: 0,
+      plan: '',
+    };
   }
 }
