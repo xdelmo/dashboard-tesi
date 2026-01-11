@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderProfileComponent } from './layout/components/header-profile/header-profile.component';
 
 import { SidebarComponent } from './layout/components/sidebar/sidebar.component';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SidebarComponent } from './layout/components/sidebar/sidebar.component'
     Message,
     Avatar,
     Menu,
+    AccordionModule,
   ],
   exports: [LoginComponent],
 })

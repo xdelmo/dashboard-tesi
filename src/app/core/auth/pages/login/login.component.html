@@ -100,44 +100,46 @@
       </form>
     </div>
 
-    <div
-      class="mt-6 mx-auto p-6 bg-white/60 backdrop-blur-sm border border-indigo-100 rounded-2xl shadow-sm max-w-sm w-full text-left"
-    >
-      <h3
-        class="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-3"
-      >
-        Credenziali Demo
-      </h3>
-      <div class="space-y-3">
-        <div
-          (click)="fillCredentials('admin&#64;demo.com', 'password')"
-          class="flex items-center justify-between p-2 bg-white rounded border border-gray-100 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all group"
-        >
-          <div class="flex flex-col">
-            <span class="text-xs text-gray-400 group-hover:text-indigo-500"
-              >Admin</span
-            >
-            <code class="text-sm font-mono text-gray-800"
-              >admin&#64;demo.com</code
-            >
-          </div>
-          <code class="text-sm font-mono text-gray-500">password</code>
-        </div>
-        <div
-          (click)="fillCredentials('user&#64;demo.com', 'password')"
-          class="flex items-center justify-between p-2 bg-white rounded border border-gray-100 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all group"
-        >
-          <div class="flex flex-col">
-            <span class="text-xs text-gray-400 group-hover:text-indigo-500"
-              >User</span
-            >
-            <code class="text-sm font-mono text-gray-800"
-              >user&#64;demo.com</code
-            >
-          </div>
-          <code class="text-sm font-mono text-gray-500">password</code>
-        </div>
-      </div>
+    <div class="mt-6 mx-auto max-w-sm w-full">
+      <p-accordion>
+        <p-accordion-panel value="0">
+          <p-accordion-header>Credenziali Demo</p-accordion-header>
+          <p-accordion-content>
+            <div class="space-y-3 pt-2">
+              <div
+                (click)="fillCredentials('admin&#64;demo.com', 'password')"
+                class="flex items-center justify-between p-2 bg-white rounded border border-gray-100 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all group"
+              >
+                <div class="flex flex-col">
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-indigo-500"
+                    >Admin</span
+                  >
+                  <code class="text-sm font-mono text-gray-800"
+                    >admin&#64;demo.com</code
+                  >
+                </div>
+                <code class="text-sm font-mono text-gray-500">password</code>
+              </div>
+              <div
+                (click)="fillCredentials('user&#64;demo.com', 'password')"
+                class="flex items-center justify-between p-2 bg-white rounded border border-gray-100 cursor-pointer hover:border-indigo-300 hover:shadow-md transition-all group"
+              >
+                <div class="flex flex-col">
+                  <span
+                    class="text-xs text-gray-400 group-hover:text-indigo-500"
+                    >User</span
+                  >
+                  <code class="text-sm font-mono text-gray-800"
+                    >user&#64;demo.com</code
+                  >
+                </div>
+                <code class="text-sm font-mono text-gray-500">password</code>
+              </div>
+            </div>
+          </p-accordion-content>
+        </p-accordion-panel>
+      </p-accordion>
     </div>
   </div>
   <div class="absolute bottom-6 w-full text-center">
