@@ -25,3 +25,13 @@ body {
   font-family: "Poppins", sans-serif !important;
   background-color: #f4f6f8;
 }
+
+// Global Toast Overrides
+.p-toast {
+  z-index: 99999 !important; // Force highest z-index
+  pointer-events: none; // Allow clicks to pass through the container
+}
+
+.p-toast-message {
+  pointer-events: auto; // Re-enable clicks on the actual message
+}
