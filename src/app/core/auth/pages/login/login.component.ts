@@ -58,4 +58,11 @@ export class LoginComponent {
       },
     });
   }
+
+  fillCredentials(email: string, pass: string) {
+    this.loginForm.patchValue({
+      email: email,
+      password: pass,
+    });
+  }
 }
