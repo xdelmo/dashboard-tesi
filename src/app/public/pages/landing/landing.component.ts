@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { MarqueeComponent } from '../../components/marquee/marquee.component';
+import { FeaturesComponent } from '../../components/features/features.component';
 
 @Component({
   selector: 'app-landing',
@@ -14,6 +15,7 @@ import { MarqueeComponent } from '../../components/marquee/marquee.component';
     ButtonModule,
     FooterComponent,
     MarqueeComponent,
+    FeaturesComponent,
   ],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
