@@ -7,6 +7,7 @@ Applicazione gestionale Single Page Application (SPA) **ApexFlow**, basata su un
 ### 🔐 Autenticazione & Sicurezza
 
 - **Reactive Login Flow:** Gestione accesso tramite **Reactive Forms** con validazione avanzata e feedback in tempo reale.
+- **Interactive Demo Login:** Pagina di login ridisegnata con blocco credenziali interattivo (One-click fill) per accesso rapido Admin/User.
 - **Role-Based Access Control (RBAC):** Gestione permessi granulare. Solo gli amministratori possono modificare lo stato dei clienti e accedere all'area Impostazioni.
   - `adminGuard`: Protezione delle rotte amministrative.
   - `customerModal`: Visualizzazione condizionale dei campi sensibili.
@@ -17,9 +18,13 @@ Applicazione gestionale Single Page Application (SPA) **ApexFlow**, basata su un
 ### 🌍 Interfaccia Pubblica
 
 - **Landing Page (Demo Gateway):** Nuova pagina di benvenuto (`/welcome`) presentata come gateway per la "Live Demo".
-  - Design premium (Light/Glassmorphism).
-  - Footer standalone componentizzato.
-  - Percorsi diretti per GitHub e Login Demo.
+  - **Design System:** Stile "Light/Glassmorphism" coerente con l'applicazione.
+  - **Componenti Modulari:**
+    - `MarqueeComponent`: Infinite scroll per loghi partner/tech stack.
+    - `FeaturesComponent`: Sezione features alternata con immagini.
+    - `FeedbackComponent`: Carosello recensioni responsive (Swipe su mobile).
+    - `CtaComponent`: Call to Action finale.
+  - **Footer:** Componente standalone con link social e copyright.
 
 ### ⚙️ Gestione & Manutenzione
 
@@ -113,6 +118,8 @@ src/app/
 5.  **Accedi:** Vai su `http://localhost:4200`
 
 ### 🔑 Credenziali Demo
+
+(Clicca sui box nella login page per l'autofill immediato)
 
 **Admin:**
 
