@@ -1,0 +1,36 @@
+<div class="marquee-container overflow-hidden whitespace-nowrap h-14 relative">
+  <div
+    class="marquee-content inline-flex gap-16 items-center animate-marquee"
+    [style.animation-direction]="direction === 'left' ? 'normal' : 'reverse'"
+  >
+    <!-- Loop 1 -->
+    @for (partner of partners; track partner.name) {
+    <div
+      class="flex items-center gap-2 text-gray-400 font-semibold text-xl opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+    >
+      <i [class]="partner.icon" style="font-size: 1.5rem"></i>
+      <span>{{ partner.name }}</span>
+    </div>
+    }
+
+    <!-- Loop 2 (Duplicate for smooth scroll) -->
+    @for (partner of partners; track partner.name) {
+    <div
+      class="flex items-center gap-2 text-gray-400 font-semibold text-xl opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+    >
+      <i [class]="partner.icon" style="font-size: 1.5rem"></i>
+      <span>{{ partner.name }}</span>
+    </div>
+    }
+
+    <!-- Loop 3 (Extra safety for wide screens) -->
+    @for (partner of partners; track partner.name) {
+    <div
+      class="flex items-center gap-2 text-gray-400 font-semibold text-xl opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+    >
+      <i [class]="partner.icon" style="font-size: 1.5rem"></i>
+      <span>{{ partner.name }}</span>
+    </div>
+    }
+  </div>
+</div>

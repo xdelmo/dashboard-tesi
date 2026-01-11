@@ -1,0 +1,19 @@
+.marquee-content {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      -33%
+    ); /* Adjust based on duplication logic, usually -50% if doubled, or -33% if tripled effectively */
+  }
+}
+
+/* Pause on hover for better UX */
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}

@@ -44,7 +44,7 @@
 
   <!-- Hero Section -->
   <main
-    class="relative z-10 flex-grow flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0"
+    class="relative z-10 flex-grow flex flex-col justify-center items-center text-center px-4 my-16"
   >
     <!-- Badge -->
     <div
@@ -139,6 +139,8 @@
         />
       </div>
     </div>
+    <app-marquee [direction]="'right'"></app-marquee>
+    <app-marquee [direction]="'left'"></app-marquee>
   </main>
   <app-footer></app-footer>
 </div>
