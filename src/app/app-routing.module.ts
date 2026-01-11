@@ -15,6 +15,14 @@ const routes: Routes = [
   // 1. ROTTA LOGIN (Pubblica, senza Sidebar)
   // -------------------------------------------------------------------------
   {
+    path: 'welcome',
+    loadComponent: () =>
+      import('./public/pages/landing/landing.component').then(
+        (m) => m.LandingPageComponent
+      ),
+    canActivate: [publicGuard],
+  },
+  {
     path: 'login',
     component: LoginComponent,
     canActivate: [publicGuard], // Se sei già loggato, ti manda alla Dashboard

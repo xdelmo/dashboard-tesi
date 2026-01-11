@@ -14,6 +14,13 @@ Applicazione gestionale Single Page Application (SPA) **ApexFlow**, basata su un
   - `AuthInterceptor`: Gestione centralizzata del token Bearer per ogni richiesta HTTP.
   - `ErrorInterceptor`: Gestione globale degli errori con notifiche toast tramite **PrimeNG MessageService**.
 
+### 🌍 Interfaccia Pubblica
+
+- **Landing Page (Demo Gateway):** Nuova pagina di benvenuto (`/welcome`) presentata come gateway per la "Live Demo".
+  - Design premium (Light/Glassmorphism).
+  - Footer standalone componentizzato.
+  - Percorsi diretti per GitHub e Login Demo.
+
 ### ⚙️ Gestione & Manutenzione
 
 - **Area Impostazioni (Admin Only):** Sezione protetta per la manutenzione del sistema.
@@ -78,7 +85,8 @@ Il backend replicherà le funzionalità simulate attualmente dal JSON Server.
 src/app/
 ├── core/           # Singleton: Auth, Services, Guards, Interceptors, Models
 ├── shared/         # Reusable: Components (Cards, Tables, Charts), Styles, Pipes
-└── features/       # Modules: Dashboard, Customers, Login (Lazy Loaded)
+├── public/         # Public: Landing Page, Login, Footer (Accessible without Auth)
+└── features/       # Modules: Dashboard, Customers, Produtcs (Lazy Loaded)
 ```
 
 ---
