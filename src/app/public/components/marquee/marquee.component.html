@@ -1,7 +1,7 @@
 <div class="marquee-container overflow-hidden whitespace-nowrap h-14 relative">
   <div
     class="marquee-content inline-flex gap-16 items-center animate-marquee"
-    [style.animation-direction]="direction === 'left' ? 'normal' : 'reverse'"
+    [style.animation-direction]="direction() === 'left' ? 'normal' : 'reverse'"
   >
     <!-- Loop 1 -->
     @for (partner of partners; track partner.name) {

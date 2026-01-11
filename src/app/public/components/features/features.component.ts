@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 
@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './features.component.scss',
 })
 export class FeaturesComponent {
-  features = [
+  features = signal([
     {
       title: 'Analytics Avanzata & Reporting',
       description:
@@ -25,5 +25,5 @@ export class FeaturesComponent {
       image: 'images/feature-security.png',
       cta: 'Vedi Funzionalità',
     },
-  ];
+  ]);
 }
