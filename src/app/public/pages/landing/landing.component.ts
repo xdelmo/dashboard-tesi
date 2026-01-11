@@ -6,6 +6,8 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { MarqueeComponent } from '../../components/marquee/marquee.component';
 import { FeaturesComponent } from '../../components/features/features.component';
 import { WordLoopComponent } from '../../components/word-loop/word-loop.component';
+import { FeedbackComponent } from '../../components/feedback/feedback.component';
+import { CtaComponent } from '../../components/cta/cta.component';
 
 @Component({
   selector: 'app-landing',
@@ -18,6 +20,8 @@ import { WordLoopComponent } from '../../components/word-loop/word-loop.componen
     MarqueeComponent,
     FeaturesComponent,
     WordLoopComponent,
+    FeedbackComponent,
+    CtaComponent,
   ],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
