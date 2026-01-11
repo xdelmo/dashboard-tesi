@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, Button],
   templateUrl: './features.component.html',
   styleUrl: './features.component.scss',
 })

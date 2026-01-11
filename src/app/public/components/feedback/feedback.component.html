@@ -30,12 +30,13 @@
       [circular]="true"
       [responsiveOptions]="responsiveOptions"
       [autoplayInterval]="5000"
+      [showNavigators]="false"
       class="custom-carousel-light"
     >
       <ng-template let-feedback pTemplate="item">
         <div class="p-6 h-full">
           <div
-            class="bg-white rounded-2xl p-8 shadow-xl shadow-indigo-100/50 border border-gray-100 h-full flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 relative group"
+            class="bg-white rounded-2xl p-6 md:p-8 shadow-xl shadow-indigo-100/50 border border-gray-100 h-full flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 relative group"
           >
             <!-- Quote Icon -->
             <div

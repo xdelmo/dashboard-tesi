@@ -12,12 +12,14 @@
     </div>
 
     <div class="flex justify-center">
-      <button
-        routerLink="/login"
-        class="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-xl shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 min-w-[200px]"
-      >
-        Entra nella Dashboard
-      </button>
+      <p-button
+        label="Accedi alla Demo"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        [rounded]="true"
+        size="large"
+        [routerLink]="['/login']"
+      ></p-button>
     </div>
   </div>
 </section>
