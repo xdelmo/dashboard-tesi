@@ -23,16 +23,20 @@ export class OrderListComponent {
   orders = toSignal(
     toObservable(this.refreshTrigger).pipe(
       switchMap(() => this.orderService.getOrders())
-    ),
-    { initialValue: [] }
+    )
   );
-  customers = toSignal(this.customerService.getCustomers(), {
-    initialValue: [],
-  });
+  // Nota: Rimuoviamo initialValue per permettere lo stato "undefined" (= loading)
+  customers = toSignal(this.customerService.getCustomers());
 
   enrichedOrders = computed(() => {
     const orders = this.orders();
     const customers = this.customers();
+
+    // Se uno dei due non è ancora caricato, restituiamo undefined per mostrare il loader
+    if (!orders || !customers) {
+      return undefined;
+    }
+
     return orders.map((order) => {
       const customer = customers.find((c) => c.id === order.customerId);
       const uniqueCategories = [

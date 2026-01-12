@@ -30,7 +30,7 @@ import { RouterModule } from '@angular/router';
 export class UserListComponent {
   private userService = inject(UserService);
 
-  users = toSignal(this.userService.getUsers(), { initialValue: [] });
+  users = toSignal(this.userService.getUsers());
 
   roles = [
     { label: 'Admin', value: 'admin' },
