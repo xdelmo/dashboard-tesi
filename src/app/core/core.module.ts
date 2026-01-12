@@ -8,7 +8,7 @@ import { InputText } from 'primeng/inputtext';
 import { Password } from 'primeng/password';
 import { Message } from 'primeng/message';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './auth/pages/login/login.component';
+
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -18,12 +18,7 @@ import { SidebarComponent } from './layout/components/sidebar/sidebar.component'
 import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    MainLayoutComponent,
-    HeaderProfileComponent,
-    SidebarComponent,
-  ],
+  declarations: [MainLayoutComponent, HeaderProfileComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -38,6 +33,5 @@ import { AccordionModule } from 'primeng/accordion';
     Menu,
     AccordionModule,
   ],
-  exports: [LoginComponent],
 })
 export class CoreModule {}

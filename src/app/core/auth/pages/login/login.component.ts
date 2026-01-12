@@ -1,14 +1,35 @@
 import { Component, signal, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { APP_CONSTANTS } from '../../../constants/app.constants';
+import { Password } from 'primeng/password';
+import { Button } from 'primeng/button';
+import { AccordionPanel, AccordionModule } from 'primeng/accordion';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    Password,
+    Button,
+    AccordionPanel,
+    AccordionModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+  ],
 })
 export class LoginComponent {
   error = signal('');
