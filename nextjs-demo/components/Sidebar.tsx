@@ -3,22 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { logout } from "@/app/actions/auth";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: "pi pi-th-large" },
   { name: "Clienti", href: "/customers", icon: "pi pi-users" },
 ];
 
-interface SidebarProps {
-  user?: {
-    name: string;
-    email: string;
-    avatar?: string;
-  } | null;
-}
-
-export default function Sidebar({ user }: SidebarProps) {
+export default function Sidebar() {
   const pathname = usePathname();
 
   return (
@@ -85,37 +76,6 @@ export default function Sidebar({ user }: SidebarProps) {
         })}
       </nav>
 
-      <div className="p-4 border-t border-gray-100 space-y-4">
-        {user && (
-          <>
-            <div className="flex items-center gap-3 px-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold shrink-0">
-                {user.avatar ? (
-                  <img
-                    src={user.avatar}
-                    alt={user.name}
-                    className="w-full h-full rounded-full object-cover"
-                  />
-                ) : (
-                  user.name.charAt(0).toUpperCase()
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  {user.name}
-                </p>
-                <p className="text-xs text-gray-500 truncate">{user.email}</p>
-              </div>
-              <button
-                onClick={() => logout()}
-                className="flex items-center gap-3  px-4 py-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all text-sm group"
-              >
-                <i className="pi pi-sign-out text-lg group-hover:text-red-500"></i>
-              </button>
-            </div>
-          </>
-        )}
-      </div>
       <div className="p-4 border-t border-gray-100 space-y-4"></div>
     </div>
   );
