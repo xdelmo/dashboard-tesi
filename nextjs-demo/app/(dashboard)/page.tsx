@@ -4,18 +4,17 @@ import PageHeader from "@/components/PageHeader";
 import RevenueChart from "@/components/RevenueChart";
 
 export default async function DashboardPage() {
-  const stats = await api.stats.getAll();
   const customers = await api.customers.getAll();
   const orders = await api.orders.getAll();
 
-  const totalRevenue = stats.reduce(
-    (acc: number, curr) => acc + curr.totalRevenue,
+  const totalRevenue = orders.reduce(
+    (acc, order) => acc + (order.status === "Pagato" ? order.total : 0),
     0
   );
-  const totalOrders = stats.reduce(
-    (acc: number, curr) => acc + curr.totalOrders,
-    0
-  );
+
+  const pendingOrdersCount = orders.filter(
+    (order) => order.status === "In Attesa"
+  ).length;
   const totalCustomers = customers.length;
 
   const activeCustomers = customers.filter((c) => c.status === "Attivo").length;
@@ -39,7 +38,7 @@ export default async function DashboardPage() {
         />
         <StatCard
           title="Ordini in Attesa"
-          value={Math.floor(totalOrders)}
+          value={pendingOrdersCount}
           icon="pi-clock"
           colorClass="purple"
         />
