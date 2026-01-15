@@ -59,7 +59,7 @@ export default function HeaderProfile({ user }: HeaderProfileProps) {
             {user.name}
           </span>
           <span className="text-xs text-slate-500 uppercase tracking-wide">
-            {user.role || "Developer"}
+            {user.role}
           </span>
         </div>
 

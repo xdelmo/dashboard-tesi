@@ -15,7 +15,7 @@ export default async function DashboardLayout({
         <Sidebar />
       </div>
       <div className="flex flex-col flex-1 md:pl-64 transition-all duration-300">
-        <header className="h-20 bg-white border-b border-gray-100 flex items-center justify-between px-8 sticky top-0 z-20">
+        <header className="h-20 bg-white border-b border-gray-100 flex items-center justify-end px-8 sticky top-0 z-20">
           <HeaderProfile user={user} />
         </header>
 
