@@ -1,4 +1,4 @@
-import { Customer, CustomerStats, Order, User } from '@/types';
+import { Customer, CustomerStats, Order, Product, User } from '@/types';
 
 const API_URL = 'http://localhost:3001';
 
@@ -63,6 +63,13 @@ export const api = {
   orders: {
     getAll: async (): Promise<Order[]> => {
       const res = await fetch(`${API_URL}/orders`, { cache: 'no-store' });
+      if (!res.ok) return [];
+      return res.json();
+    },
+  },
+  products: {
+    getAll: async (): Promise<Product[]> => {
+      const res = await fetch(`${API_URL}/products`, { cache: 'no-store' });
       if (!res.ok) return [];
       return res.json();
     },

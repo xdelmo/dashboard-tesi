@@ -40,3 +40,13 @@ export interface OrderItem {
   price: number;
   quantity: number;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+  duration: string;
+  status: 'Attivo' | 'Bozza' | 'Disattivato';
+}

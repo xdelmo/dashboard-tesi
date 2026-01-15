@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { name: "Dashboard", href: "/", icon: "pi pi-th-large" },
   { name: "Clienti", href: "/customers", icon: "pi pi-users" },
+  { name: "Ordini", href: "/orders", icon: "pi pi-shopping-cart" },
+  { name: "Prodotti", href: "/products", icon: "pi pi-tags" },
 ];
 
 export default function Sidebar() {
@@ -75,8 +77,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-
-      <div className="p-4 border-t border-gray-100 space-y-4"></div>
     </div>
   );
 }

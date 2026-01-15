@@ -21,16 +21,24 @@ export default async function CustomersPage() {
         </Link>
       </PageHeader>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-slate-50 text-slate-500">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-6 py-4 font-medium">Nome</th>
-                <th className="px-6 py-4 font-medium">Contatto</th>
-                <th className="px-6 py-4 font-medium">Stato</th>
-                <th className="px-6 py-4 font-medium">Piano</th>
-                <th className="px-6 py-4 font-medium text-right">Azioni</th>
+                <th className="px-6 py-4 font-semibold text-slate-700">Nome</th>
+                <th className="px-6 py-4 font-semibold text-slate-700">
+                  Contatto
+                </th>
+                <th className="px-6 py-4 font-semibold text-slate-700">
+                  Stato
+                </th>
+                <th className="px-6 py-4 font-semibold text-slate-700">
+                  Piano
+                </th>
+                <th className="px-6 py-4 font-semibold text-slate-700 text-right">
+                  Azioni
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
