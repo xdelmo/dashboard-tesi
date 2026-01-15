@@ -2,6 +2,7 @@ import { api } from "@/lib/api";
 import Link from "next/link";
 import { deleteCustomer } from "@/app/actions/customer";
 import PageHeader from "@/components/PageHeader";
+import StatusBadge from "@/components/StatusBadge";
 
 export default async function CustomersPage() {
   const customers = await api.customers.getAll();
@@ -57,17 +58,7 @@ export default async function CustomersPage() {
                   </td>
                   <td className="px-6 py-4 text-slate-500">{customer.email}</td>
                   <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        customer.status === "Attivo"
-                          ? "bg-green-100 text-green-800"
-                          : customer.status === "Inattivo"
-                          ? "bg-red-100 text-red-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {customer.status}
-                    </span>
+                    <StatusBadge status={customer.status} />
                   </td>
                   <td className="px-6 py-4 text-slate-500">{customer.plan}</td>
                   <td className="px-6 py-4 text-right">

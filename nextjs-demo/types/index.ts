@@ -31,6 +31,9 @@ export interface Order {
   date: string;
   status: 'Pagato' | 'In Attesa' | 'Annullato';
   total: number;
+  subtotal: number;
+  tax: number;
+  discountAmount?: number;
   items: OrderItem[];
 }
 
@@ -39,6 +42,7 @@ export interface OrderItem {
   name: string;
   price: number;
   quantity: number;
+  category?: string;
 }
 
 export interface Product {

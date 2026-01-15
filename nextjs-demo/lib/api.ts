@@ -66,6 +66,18 @@ export const api = {
       if (!res.ok) return [];
       return res.json();
     },
+    getById: async (id: string): Promise<Order | undefined> => {
+      const res = await fetch(`${API_URL}/orders/${id}`, {
+        cache: 'no-store',
+      });
+      if (!res.ok) return undefined;
+      return res.json();
+    },
+    delete: async (id: string): Promise<void> => {
+      await fetch(`${API_URL}/orders/${id}`, {
+        method: 'DELETE',
+      });
+    },
   },
   products: {
     getAll: async (): Promise<Product[]> => {

@@ -1,5 +1,7 @@
 import { api } from "@/lib/api";
 import PageHeader from "@/components/PageHeader";
+import Link from "next/link";
+import StatusBadge from "@/components/StatusBadge";
 
 export default async function OrdersPage() {
   const [orders, customers] = await Promise.all([
@@ -7,22 +9,7 @@ export default async function OrdersPage() {
     api.customers.getAll(),
   ]);
 
-  // Map customer names for easy lookup
   const customerMap = new Map(customers.map((c) => [c.id, c.name]));
-
-  // Helper for status colors
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Pagato":
-        return "bg-emerald-100 text-emerald-700";
-      case "In Attesa":
-        return "bg-amber-100 text-amber-700";
-      case "Annullato":
-        return "bg-red-100 text-red-700";
-      default:
-        return "bg-gray-100 text-gray-700";
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -65,10 +52,15 @@ export default async function OrdersPage() {
                 orders.map((order) => (
                   <tr
                     key={order.id}
-                    className="hover:bg-slate-50 transition-colors"
+                    className="hover:bg-slate-50 transition-colors group"
                   >
-                    <td className="px-6 py-4 text-slate-600 font-mono text-xs">
-                      {order.id}
+                    <td className="px-6 py-4">
+                      <Link
+                        href={`/orders/${order.id}`}
+                        className="font-mono text-xs text-indigo-600 hover:text-indigo-800 hover:underline font-medium"
+                      >
+                        {order.id}
+                      </Link>
                     </td>
                     <td className="px-6 py-4">
                       <div className="font-medium text-slate-900">
@@ -84,13 +76,7 @@ export default async function OrdersPage() {
                       })}
                     </td>
                     <td className="px-6 py-4">
-                      <span
-                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
-                          order.status
-                        )}`}
-                      >
-                        {order.status}
-                      </span>
+                      <StatusBadge status={order.status} />
                     </td>
                     <td className="px-6 py-4 text-right font-medium text-slate-900">
                       €{" "}

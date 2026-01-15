@@ -1,22 +1,9 @@
 import { api } from "@/lib/api";
 import PageHeader from "@/components/PageHeader";
+import StatusBadge from "@/components/StatusBadge";
 
 export default async function ProductsPage() {
   const products = await api.products.getAll();
-
-  // Helper for status colors
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Attivo":
-        return "bg-emerald-100 text-emerald-700";
-      case "Bozza":
-        return "bg-gray-100 text-gray-700";
-      case "Disattivato":
-        return "bg-red-100 text-red-700";
-      default:
-        return "bg-slate-100 text-slate-700";
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -83,13 +70,7 @@ export default async function ProductsPage() {
                       {product.duration}
                     </td>
                     <td className="px-6 py-4">
-                      <span
-                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
-                          product.status
-                        )}`}
-                      >
-                        {product.status}
-                      </span>
+                      <StatusBadge status={product.status} />
                     </td>
                   </tr>
                 ))
