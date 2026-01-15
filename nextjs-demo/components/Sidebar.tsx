@@ -76,6 +76,16 @@ export default function Sidebar() {
             </Link>
           );
         })}
+        <div className="my-4 border-t border-gray-100" />
+
+        <a
+          href="https://github.com/xdelmo/dashboard-tesi/tree/feature/nextjs-demo/nextjs-demo"
+          target="_blank"
+          className="hidden md:flex items-center px-4 py-3 text-gray-500 hover:text-gray-800 rounded-lg hover:bg-gray-100 transition-colors gap-3"
+        >
+          <img src="/images/github-mark.png" className="h-4" />
+          <span>Branch GitHub</span>
+        </a>
       </nav>
     </div>
   );

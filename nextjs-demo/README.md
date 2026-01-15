@@ -1,19 +1,19 @@
 # 🚀 Next.js Dashboard Demo
 
 Questa è una **Mini Applicazione** costruita con **Next.js 16+ (App Router)**, **TypeScript**, e **Tailwind CSS**.
-Replica le funzionalità principali di una Dashboard CRM per dimostrare competenze nello sviluppo React moderno, con un focus su Server Components e Server Actions.
+Replica le funzionalità principali di una Dashboard CRM per dimostrare competenze nello sviluppo React moderno, con un focus su Server Components, Server Actions e un'esperienza utente raffinata.
 
 ## ✨ Funzionalità Chiave
 
 - **Next.js App Router**: Utilizza il moderno paradigma di routing (Server Components di default).
-- **Server Actions**: Gestisce l'invio dei form (Login, CRUD Clienti) interamente sul server senza creare API REST manuali.
-- **Autenticazione Mock Sicura**:
-  - Sistema basato su **Cookie HttpOnly**.
-  - Token simulato (Base64) per mimare l'autenticazione JWT.
-  - **Middleware** personalizzato per proteggere le rotte sensibili.
+- **Server Actions**: Gestisce l'invio dei form (Login, CRUD Clienti).
 - **Data Visualization**: Grafici interattivi implementati con `chart.js` e `react-chartjs-2`.
-- **Tailwind CSS**: Styling moderno e responsivo, coerente con il design system del progetto.
-- **Persistenza Dati**: Utilizza `json-server` (`data/db.json`) per simulare un database backend REST reale.
+- **Dettaglio Ordini**: Pagina di dettaglio per ogni ordine con riepilogo finanziario completo e stato tramite componenti riutilizzabili (`StatusBadge`).
+- **Autenticazione Mock**: Sistema sicuro basato su Cookie HttpOnly per simulare un login reale.
+- **Styling Moderno**: Design pulito e professionale con **Tailwind CSS v4**.
+- **Flessibilità Backend**:
+  - **Locale**: Utilizza `json-server` per sviluppo locale con persistenza su file.
+  - **Deploy**: Predisposto per **Netlify** con supporto a `my-json-server` per demo live.
 
 ## 🛠️ Stack Tecnologico
 
@@ -21,9 +21,9 @@ Replica le funzionalità principali di una Dashboard CRM per dimostrare competen
 - **Linguaggio**: TypeScript
 - **Styling**: Tailwind CSS v4
 - **Librerie UI**: PrimeIcons, Chart.js
-- **Font**: Google Fonts (Poppins)
+- **Tooling**: json-server, Netlify Adapter
 
-## 📦 Come Avviare il Progetto
+## 📦 Come Avviare il Progetto (Locale)
 
 1.  **Installa le Dipendenze**:
 
@@ -49,6 +49,13 @@ Replica le funzionalità principali di una Dashboard CRM per dimostrare competen
 4.  **Apri il Browser**:
     Visita `http://localhost:3000`.
 
+## 🚀 Demo Live
+
+L'applicazione è deployata e accessibile qui:
+👉 **[https://dashboard-tesi-nextjs-demo.netlify.app/](https://dashboard-tesi-nextjs-demo.netlify.app/)**
+
+_Nota: Il deploy utilizza `my-json-server` per i dati mock._
+
 ## 🔐 Credenziali di Accesso
 
 Usa le seguenti credenziali di test per accedere:
@@ -58,8 +65,9 @@ Usa le seguenti credenziali di test per accedere:
 
 ## 📂 Struttura del Progetto
 
-- `app/(dashboard)`: Rotte protette (Dashboard, Clienti) che condividono il layout con Sidebar.
+- `app/(dashboard)`: Rotte protette (Dashboard, Clienti, Ordini, Prodotti) con layout condiviso.
 - `app/login`: Rotta pubblica di login.
 - `app/actions`: Server Actions per la logica di business e mutazioni dati.
-- `components`: Componenti UI riutilizzabili (Sidebar, Form, Chart).
-- `lib`: Layer di accesso ai dati (chiamate fetch tipizzate verso json-server).
+- `components`: Componenti UI riutilizzabili (`StatusBadge`, `StatCard`, `Sidebar`, `RevenueChart`).
+- `lib`: Layer di accesso ai dati (incluso client API tipizzato).
+- `data/db.json`: Mock database.
