@@ -1,7 +1,6 @@
 import { api } from "@/lib/api";
 import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
-import { deleteOrder } from "@/app/actions/order";
 import { redirect } from "next/navigation";
 import StatusBadge from "@/components/StatusBadge";
 
@@ -19,8 +18,6 @@ export default async function OrderDetailPage({
 
   const customer = await api.customers.getById(order.customerId);
 
-  const isPending = order.status === "In Attesa";
-
   return (
     <div className="space-y-6">
       <PageHeader
@@ -29,7 +26,6 @@ export default async function OrderDetailPage({
       />
 
       <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
-        {/* Header Section */}
         <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-100">
           <div>
             <h2 className="m-0 text-2xl font-bold text-slate-800 capitalize">
@@ -46,7 +42,6 @@ export default async function OrderDetailPage({
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column: Items */}
           <div className="lg:col-span-2 flex flex-col gap-8">
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
               <h3 className="text-lg font-semibold mb-4 text-slate-800">
@@ -92,9 +87,7 @@ export default async function OrderDetailPage({
             </div>
           </div>
 
-          {/* Right Column: Customer & Summary */}
           <div className="flex flex-col gap-6">
-            {/* Customer Card */}
             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-50 rounded-bl-full -mr-10 -mt-10"></div>
               <h3 className="text-lg font-semibold mb-4 text-slate-800 relative z-10">
@@ -122,7 +115,6 @@ export default async function OrderDetailPage({
               )}
             </div>
 
-            {/* Summary Card */}
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
               <h3 className="text-lg font-semibold mb-4 text-slate-800">
                 Riepilogo
@@ -175,7 +167,6 @@ export default async function OrderDetailPage({
           </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="flex justify-end border-t border-slate-100 pt-6 mt-8 gap-4">
           <Link
             href="/orders"
@@ -183,14 +174,6 @@ export default async function OrderDetailPage({
           >
             <i className="pi pi-arrow-left"></i> Indietro
           </Link>
-
-          {isPending && (
-            <form action={deleteOrder.bind(null, order.id)}>
-              <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center gap-2 shadow-sm">
-                <i className="pi pi-trash"></i> Elimina Ordine
-              </button>
-            </form>
-          )}
         </div>
       </div>
     </div>
