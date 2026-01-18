@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 // Componenti
 import { LoginComponent } from './core/auth/pages/login/login.component';
@@ -10,7 +9,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { publicGuard } from './core/guards/public.guard';
 import { adminGuard } from './core/guards/admin.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   // -------------------------------------------------------------------------
   // 1. ROTTA LOGIN (Pubblica, senza Sidebar)
   // -------------------------------------------------------------------------
@@ -18,7 +17,7 @@ const routes: Routes = [
     path: 'welcome',
     loadComponent: () =>
       import('./public/pages/landing/landing.component').then(
-        (m) => m.LandingPageComponent
+        (m) => m.LandingPageComponent,
       ),
     canActivate: [publicGuard],
   },
@@ -44,7 +43,7 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () =>
           import('./features/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
+            (m) => m.DashboardModule,
           ),
       },
 
@@ -53,7 +52,7 @@ const routes: Routes = [
         path: 'customers',
         loadChildren: () =>
           import('./features/customers/customers.module').then(
-            (m) => m.CustomersModule
+            (m) => m.CustomersModule,
           ),
       },
 
@@ -69,7 +68,7 @@ const routes: Routes = [
         path: 'products',
         loadChildren: () =>
           import('./features/products/products.module').then(
-            (m) => m.ProductsModule
+            (m) => m.ProductsModule,
           ),
       },
 
@@ -78,7 +77,7 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () =>
           import('./features/settings/settings.module').then(
-            (m) => m.SettingsModule
+            (m) => m.SettingsModule,
           ),
         canActivate: [adminGuard],
       },
@@ -90,9 +89,3 @@ const routes: Routes = [
   // -------------------------------------------------------------------------
   { path: '**', redirectTo: 'dashboard' },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

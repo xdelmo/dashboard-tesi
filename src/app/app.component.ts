@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false,
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  standalone: true,
+  imports: [RouterOutlet, ToastModule],
 })
 export class AppComponent {
   title = 'dashboard-tesi';
