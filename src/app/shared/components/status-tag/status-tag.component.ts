@@ -1,5 +1,8 @@
 import { Component, input, computed } from '@angular/core';
 
+import { TagModule } from 'primeng/tag';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-status-tag',
   template: `
@@ -10,7 +13,8 @@ import { Component, input, computed } from '@angular/core';
       class="px-3"
     ></p-tag>
   `,
-  standalone: false,
+  standalone: true,
+  imports: [TagModule, CommonModule],
 })
 export class StatusTagComponent {
   value = input.required<string>();

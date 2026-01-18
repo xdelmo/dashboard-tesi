@@ -1,11 +1,15 @@
 import { Component, input, effect } from '@angular/core';
 import { Order, OrderStatus } from '../../../core/models/order.model';
 
+import { ChartModule } from 'primeng/chart';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-revenue-chart',
   templateUrl: './revenue-chart.component.html',
   styleUrls: ['./revenue-chart.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [ChartModule, CommonModule],
 })
 export class RevenueChartComponent {
   orders = input<Order[]>([]);
@@ -36,7 +40,7 @@ export class RevenueChartComponent {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue(
-      '--text-color-secondary'
+      '--text-color-secondary',
     );
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 

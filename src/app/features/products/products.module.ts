@@ -5,7 +5,10 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { MenuModule } from 'primeng/menu';
-import { SharedModule } from '../../shared/shared.module';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../shared/components/status-tag/status-tag.component';
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../shared/components/loading-state/loading-state.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
@@ -19,7 +22,10 @@ const routes: Routes = [
   declarations: [ProductListComponent, ProductDetailComponent],
   imports: [
     CommonModule,
-    SharedModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
     TableModule,
     ButtonModule,
     TagModule,

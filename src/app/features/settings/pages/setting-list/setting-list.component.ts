@@ -4,14 +4,21 @@ import { forkJoin } from 'rxjs';
 import { API_CONFIG } from '../../../../core/config/api.config';
 
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../../../shared/shared.module';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, SharedModule, ButtonModule, RouterModule],
+  imports: [
+    CommonModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    ButtonModule,
+    RouterModule,
+  ],
   templateUrl: './setting-list.component.html',
   styleUrl: './setting-list.component.scss',
 })

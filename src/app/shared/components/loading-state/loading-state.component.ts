@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-loading-state',
   templateUrl: './loading-state.component.html',
   styleUrls: ['./loading-state.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
 })
 export class LoadingStateComponent {
   @Input() message: string = 'Caricamento in corso...';

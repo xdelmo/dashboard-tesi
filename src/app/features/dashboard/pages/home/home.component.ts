@@ -8,14 +8,23 @@ import { OrderStatus } from '../../../../core/models/order.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
-import { SharedModule } from '../../../../shared/shared.module';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { RevenueChartComponent } from '../../../../shared/components/revenue-chart/revenue-chart.component';
+import { StatCardComponent } from '../../../../shared/components/stat-card/stat-card.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, SelectModule, SharedModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SelectModule,
+    PageHeaderComponent,
+    RevenueChartComponent,
+    StatCardComponent,
+  ],
 })
 export class HomeComponent {
   private customerService = inject(CustomerService);

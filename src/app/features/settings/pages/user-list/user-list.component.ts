@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 
-import { SharedModule } from '../../../../shared/shared.module';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../../../shared/components/loading-state/loading-state.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { SelectModule } from 'primeng/select';
@@ -18,7 +20,9 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    SharedModule,
+    PageHeaderComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
     ButtonModule,
     TableModule,
     SelectModule,

@@ -1,10 +1,14 @@
 import { Component, input } from '@angular/core';
 
+import { CardModule } from 'primeng/card';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-stat-card',
   templateUrl: './stat-card.component.html',
   styleUrls: ['./stat-card.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [CardModule, CommonModule],
 })
 export class StatCardComponent {
   title = input<string>('');

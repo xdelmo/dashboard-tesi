@@ -8,7 +8,10 @@ import { CustomerService } from '../../../../core/services/customer.service';
 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../../../shared/shared.module';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
+import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../../../shared/components/loading-state/loading-state.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CustomerModalComponent } from '../../components/customer-modal/customer-modal.component';
@@ -21,7 +24,10 @@ import { CustomerModalComponent } from '../../components/customer-modal/customer
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
     ButtonModule,
     TableModule,
     CustomerModalComponent,

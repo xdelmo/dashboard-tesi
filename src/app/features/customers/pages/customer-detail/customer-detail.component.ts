@@ -10,14 +10,21 @@ import { Location } from '@angular/common';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../../../shared/shared.module';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
 import { ButtonModule } from 'primeng/button';
 import { CustomerModalComponent } from '../../components/customer-modal/customer-modal.component';
 
 @Component({
   selector: 'app-customer-detail',
   standalone: true,
-  imports: [CommonModule, SharedModule, ButtonModule, CustomerModalComponent],
+  imports: [
+    CommonModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    ButtonModule,
+    CustomerModalComponent,
+  ],
   templateUrl: './customer-detail.component.html',
   styleUrl: './customer-detail.component.scss',
 })

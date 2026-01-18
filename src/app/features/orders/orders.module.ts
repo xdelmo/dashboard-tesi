@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrderListComponent } from './pages/order-list/order-list.component';
-import { SharedModule } from '../../shared/shared.module';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../shared/components/status-tag/status-tag.component';
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../shared/components/loading-state/loading-state.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -22,7 +25,10 @@ import { MessageService } from 'primeng/api';
   imports: [
     CommonModule,
     OrdersRoutingModule,
-    SharedModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
     TableModule,
     ButtonModule,
     DialogModule,
