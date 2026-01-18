@@ -5,11 +5,17 @@ import { OrderService } from '../../../../core/services/order.service';
 import { CustomerStatus } from '../../../../core/models/customer.model';
 import { OrderStatus } from '../../../../core/models/order.model';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SelectModule } from 'primeng/select';
+import { SharedModule } from '../../../../shared/shared.module';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, FormsModule, SelectModule, SharedModule],
 })
 export class HomeComponent {
   private customerService = inject(CustomerService);

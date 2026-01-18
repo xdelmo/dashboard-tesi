@@ -38,12 +38,12 @@ export const routes: Routes = [
       // Redirect automatico alla Dashboard appena entri
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
-      // Modulo Dashboard (Lazy Loading)
+      // Modulo Dashboard (Lazy Loading Standalone)
       {
         path: 'dashboard',
         loadChildren: () =>
-          import('./features/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule,
+          import('./features/dashboard/dashboard.routes').then(
+            (m) => m.DASHBOARD_ROUTES,
           ),
       },
 
