@@ -72,12 +72,12 @@ export const routes: Routes = [
           ),
       },
 
-      // Modulo Settings (Admin Only)
+      // Modulo Impostazioni (Lazy Loading Standalone)
       {
         path: 'settings',
         loadChildren: () =>
-          import('./features/settings/settings.module').then(
-            (m) => m.SettingsModule,
+          import('./features/settings/settings.routes').then(
+            (m) => m.SETTINGS_ROUTES,
           ),
         canActivate: [adminGuard],
       },
