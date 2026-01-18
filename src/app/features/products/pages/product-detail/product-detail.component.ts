@@ -6,11 +6,24 @@ import { ProductService } from '../../../../core/services/product.service';
 import { Location } from '@angular/common';
 import { of, combineLatest } from 'rxjs';
 
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
+import { ProductModalComponent } from '../../components/product-modal/product-modal.component';
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ButtonModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    ProductModalComponent,
+  ],
 })
 export class ProductDetailComponent {
   private route = inject(ActivatedRoute);
@@ -28,8 +41,8 @@ export class ProductDetailComponent {
       switchMap(([params]) => {
         const id = params.get('id');
         return id ? this.productService.getProduct(id) : of(undefined);
-      })
-    )
+      }),
+    ),
   );
 
   openEditModal() {

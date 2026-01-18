@@ -6,9 +6,32 @@ import { CustomerStatsService } from '../../../../core/services/customer-stats.s
 import { MessageService } from 'primeng/api';
 import { switchMap } from 'rxjs';
 
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
+import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../../../shared/components/loading-state/loading-state.component';
+import { OrderModalComponent } from '../../components/order-modal/order-modal.component';
+
 @Component({
   selector: 'app-order-list',
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    ToastModule,
+    TableModule,
+    ButtonModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
+    OrderModalComponent,
+  ],
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.scss',
 })
@@ -22,8 +45,8 @@ export class OrderListComponent {
 
   orders = toSignal(
     toObservable(this.refreshTrigger).pipe(
-      switchMap(() => this.orderService.getOrders())
-    )
+      switchMap(() => this.orderService.getOrders()),
+    ),
   );
   // Nota: Rimuoviamo initialValue per permettere lo stato "undefined" (= loading)
   customers = toSignal(this.customerService.getCustomers());
@@ -87,9 +110,9 @@ export class OrderListComponent {
                 } else {
                   return this.customerStatsService.createStats(stat);
                 }
-              })
+              }),
             );
-        })
+        }),
       )
       .subscribe(() => {
         this.messageService.add({

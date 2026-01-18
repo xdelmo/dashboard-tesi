@@ -56,19 +56,21 @@ export const routes: Routes = [
           ),
       },
 
-      // Modulo Ordini (Lazy Loading)
+      // Modulo Ordini (Lazy Loading Standalone)
       {
         path: 'orders',
         loadChildren: () =>
-          import('./features/orders/orders.module').then((m) => m.OrdersModule),
+          import('./features/orders/orders.routes').then(
+            (m) => m.ORDERS_ROUTES,
+          ),
       },
 
-      // Modulo Prodotti (Lazy Loading)
+      // Modulo Prodotti (Lazy Loading Standalone)
       {
         path: 'products',
         loadChildren: () =>
-          import('./features/products/products.module').then(
-            (m) => m.ProductsModule,
+          import('./features/products/products.routes').then(
+            (m) => m.PRODUCTS_ROUTES,
           ),
       },
 

@@ -4,11 +4,34 @@ import { switchMap } from 'rxjs/operators';
 import { ProductService } from '../../../../core/services/product.service';
 import { Product } from '../../../../core/models/product.model';
 
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
+import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
+import { LoadingStateComponent } from '../../../../shared/components/loading-state/loading-state.component';
+import { ProductModalComponent } from '../../components/product-modal/product-modal.component';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TableModule,
+    ButtonModule,
+    TagModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+    EmptyStateComponent,
+    LoadingStateComponent,
+    ProductModalComponent,
+  ],
 })
 export class ProductListComponent {
   private productService = inject(ProductService);
@@ -17,8 +40,8 @@ export class ProductListComponent {
 
   products = toSignal(
     toObservable(this.refreshTrigger).pipe(
-      switchMap(() => this.productService.getProducts())
-    )
+      switchMap(() => this.productService.getProducts()),
+    ),
   );
 
   refreshData(): void {

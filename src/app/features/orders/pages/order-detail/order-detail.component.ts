@@ -8,11 +8,26 @@ import { OrderService } from '../../../../core/services/order.service';
 import { OrderStatus } from '../../../../core/models/order.model';
 import { Location } from '@angular/common';
 
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
+
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
   styleUrls: ['./order-detail.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TableModule,
+    ButtonModule,
+    PageHeaderComponent,
+    StatusTagComponent,
+  ],
 })
 export class OrderDetailComponent {
   private route = inject(ActivatedRoute);
@@ -32,12 +47,12 @@ export class OrderDetailComponent {
             map(([order, customers]) => {
               const customer = customers.find((c) => c.id === order.customerId);
               return { ...order, customer };
-            })
+            }),
           );
         }
         return of(undefined);
-      })
-    )
+      }),
+    ),
   );
 
   deleteOrder(id: string): void {
