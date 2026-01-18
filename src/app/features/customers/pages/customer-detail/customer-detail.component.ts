@@ -9,9 +9,15 @@ import { CustomerService } from '../../../../core/services/customer.service';
 import { Location } from '@angular/common';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../../shared/shared.module';
+import { ButtonModule } from 'primeng/button';
+import { CustomerModalComponent } from '../../components/customer-modal/customer-modal.component';
+
 @Component({
   selector: 'app-customer-detail',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, SharedModule, ButtonModule, CustomerModalComponent],
   templateUrl: './customer-detail.component.html',
   styleUrl: './customer-detail.component.scss',
 })
@@ -41,12 +47,12 @@ export class CustomerDetailComponent {
             map(([customer, stats]) => {
               const stat = stats[0];
               return { ...customer, revenue: stat ? stat.totalRevenue : 0 };
-            })
+            }),
           );
         }
         return of(undefined);
-      })
-    )
+      }),
+    ),
   );
 
   goBack(): void {

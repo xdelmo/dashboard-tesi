@@ -47,12 +47,12 @@ export const routes: Routes = [
           ),
       },
 
-      // Modulo Clienti / Anagrafiche (Lazy Loading)
+      // Modulo Clienti / Anagrafiche (Lazy Loading Standalone)
       {
         path: 'customers',
         loadChildren: () =>
-          import('./features/customers/customers.module').then(
-            (m) => m.CustomersModule,
+          import('./features/customers/customers.routes').then(
+            (m) => m.CUSTOMERS_ROUTES,
           ),
       },
 

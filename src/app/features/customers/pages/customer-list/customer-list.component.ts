@@ -6,11 +6,26 @@ import { Customer } from '../../../../core/models/customer.model';
 import { CustomerStatsService } from '../../../../core/services/customer-stats.service';
 import { CustomerService } from '../../../../core/services/customer.service';
 
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../../../shared/shared.module';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { CustomerModalComponent } from '../../components/customer-modal/customer-modal.component';
+
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    ButtonModule,
+    TableModule,
+    CustomerModalComponent,
+  ],
 })
 export class CustomerListComponent {
   private customerService = inject(CustomerService);
@@ -34,10 +49,10 @@ export class CustomerListComponent {
                 revenue: stat ? stat.totalRevenue : 0,
               };
             });
-          })
-        )
-      )
-    )
+          }),
+        ),
+      ),
+    ),
   );
 
   refreshData(): void {

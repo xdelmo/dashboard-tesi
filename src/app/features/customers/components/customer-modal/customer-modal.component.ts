@@ -12,12 +12,26 @@ import {
   CustomerStatus,
 } from '../../../../core/models/customer.model';
 import { AuthService } from '../../../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-customer-modal',
   templateUrl: './customer-modal.component.html',
   styleUrls: ['./customer-modal.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    SelectModule,
+  ],
 })
 export class CustomerModalComponent {
   isOpen = input(false);
