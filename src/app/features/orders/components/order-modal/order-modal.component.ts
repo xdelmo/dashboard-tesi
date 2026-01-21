@@ -23,8 +23,9 @@ import { DatePicker } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelect } from 'primeng/multiselect';
 import { Button } from 'primeng/button';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { CustomerStatus } from '../../../../core/models/customer.model';
+import { SubscriptionExpirationPreviewComponent } from '../subscription-expiration-preview/subscription-expiration-preview.component';
 
 @Component({
   selector: 'app-order-modal',
@@ -41,7 +42,8 @@ import { CustomerStatus } from '../../../../core/models/customer.model';
     FormsModule,
     ReactiveFormsModule,
     CurrencyPipe,
-    DatePipe,
+    CurrencyPipe,
+    SubscriptionExpirationPreviewComponent,
   ],
 })
 export class OrderModalComponent {
@@ -244,23 +246,6 @@ export class OrderModalComponent {
       default:
         return 'Quantità';
     }
-  }
-
-  calculateExpirationDate(product: Product, quantity: number): Date | null {
-    if (!this.isSubscription(product)) {
-      return null;
-    }
-
-    const date = new Date();
-    const multiplier = quantity || 1;
-
-    if (product.duration === ProductDuration.Monthly) {
-      date.setMonth(date.getMonth() + multiplier);
-    } else if (product.duration === ProductDuration.Yearly) {
-      date.setFullYear(date.getFullYear() + multiplier);
-    }
-
-    return date;
   }
 
   resetForm() {
