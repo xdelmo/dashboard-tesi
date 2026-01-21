@@ -103,7 +103,7 @@ export class CustomerModalComponent {
       }
 
       // read-only
-      this.customerForm.get('status')?.disable();
+      // this.customerForm.get('status')?.disable(); // Init set to disabled
 
       if (!this.isAdmin()) {
         this.customerForm.get('plan')?.disable();
