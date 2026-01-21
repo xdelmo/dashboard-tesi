@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { CustomerStatus } from '../models/customer.model';
-import { forkJoin, map, of, firstValueFrom, switchMap } from 'rxjs';
+import { forkJoin, of, firstValueFrom, switchMap, Observable } from 'rxjs';
 
 export function subscriptionCheckInitializer() {
   const customerService = inject(CustomerService);
@@ -12,7 +12,7 @@ export function subscriptionCheckInitializer() {
     customerService.getCustomers().pipe(
       switchMap((customers) => {
         const now = new Date();
-        const updateRequests: any[] = [];
+        const updateRequests: Observable<any>[] = [];
 
         customers.forEach((customer) => {
           if (
@@ -20,8 +20,7 @@ export function subscriptionCheckInitializer() {
             customer.status === CustomerStatus.Active
           ) {
             const endDate = new Date(customer.subscriptionEndDate);
-            // Normalize to start of day or direct comparison?
-            // Direct comparison: if expiry date is in the past.
+
             if (endDate < now) {
               console.log(
                 `[Auto-Expire] Customer ${customer.name} expired on ${customer.subscriptionEndDate}`,
