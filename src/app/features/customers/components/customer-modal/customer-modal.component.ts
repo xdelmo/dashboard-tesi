@@ -53,7 +53,10 @@ export class CustomerModalComponent {
     email: ['', [Validators.required, Validators.email]],
     company: ['', Validators.required],
     industry: ['', Validators.required],
-    status: [CustomerStatus.Pending, Validators.required],
+    status: [
+      { value: CustomerStatus.Pending, disabled: true },
+      Validators.required,
+    ],
     plan: ['Basic', Validators.required],
   });
 
