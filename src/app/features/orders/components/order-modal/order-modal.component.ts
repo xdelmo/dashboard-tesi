@@ -10,7 +10,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CustomerService } from '../../../../core/services/customer.service';
 import { ProductService } from '../../../../core/services/product.service';
 import { Order, OrderStatus } from '../../../../core/models/order.model';
-import { Product, ProductStatus } from '../../../../core/models/product.model';
+import {
+  Product,
+  ProductStatus,
+  ProductDuration,
+} from '../../../../core/models/product.model';
 
 import { map, combineLatest, startWith } from 'rxjs';
 import { DialogModule } from 'primeng/dialog';
@@ -19,7 +23,7 @@ import { DatePicker } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelect } from 'primeng/multiselect';
 import { Button } from 'primeng/button';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { CustomerStatus } from '../../../../core/models/customer.model';
 
 @Component({
@@ -37,6 +41,7 @@ import { CustomerStatus } from '../../../../core/models/customer.model';
     FormsModule,
     ReactiveFormsModule,
     CurrencyPipe,
+    DatePipe,
   ],
 })
 export class OrderModalComponent {
@@ -59,7 +64,7 @@ export class OrderModalComponent {
       .pipe(map((c) => c.filter((c) => c.status === CustomerStatus.Active))),
     {
       initialValue: [],
-    }
+    },
   );
 
   products = toSignal(
@@ -67,10 +72,10 @@ export class OrderModalComponent {
       .getProducts()
       .pipe(
         map((products) =>
-          products.filter((p) => p.status === ProductStatus.Active)
-        )
+          products.filter((p) => p.status === ProductStatus.Active),
+        ),
       ),
-    { initialValue: [] }
+    { initialValue: [] },
   );
 
   orderForm: FormGroup = this.fb.group({
@@ -129,7 +134,7 @@ export class OrderModalComponent {
       const subtotal = products.reduce(
         (sum, product) =>
           sum + product.price * (this.quantities[product.id] || 1),
-        0
+        0,
       );
 
       this.discountDetails.originalAmount = subtotal;
@@ -223,7 +228,42 @@ export class OrderModalComponent {
     this.close.emit();
   }
 
-  private resetForm() {
+  isSubscription(product: Product): boolean {
+    return (
+      product.duration === ProductDuration.Monthly ||
+      product.duration === ProductDuration.Yearly
+    );
+  }
+
+  getUnitLabel(product: Product): string {
+    switch (product.duration) {
+      case ProductDuration.Monthly:
+        return 'Mesi';
+      case ProductDuration.Yearly:
+        return 'Anni';
+      default:
+        return 'Quantità';
+    }
+  }
+
+  calculateExpirationDate(product: Product, quantity: number): Date | null {
+    if (!this.isSubscription(product)) {
+      return null;
+    }
+
+    const date = new Date();
+    const multiplier = quantity || 1;
+
+    if (product.duration === ProductDuration.Monthly) {
+      date.setMonth(date.getMonth() + multiplier);
+    } else if (product.duration === ProductDuration.Yearly) {
+      date.setFullYear(date.getFullYear() + multiplier);
+    }
+
+    return date;
+  }
+
+  resetForm() {
     this.orderForm.reset({
       date: new Date(),
       amount: 0,

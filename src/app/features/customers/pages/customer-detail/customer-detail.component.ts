@@ -14,6 +14,7 @@ import { PageHeaderComponent } from '../../../../shared/components/page-header/p
 import { StatusTagComponent } from '../../../../shared/components/status-tag/status-tag.component';
 import { ButtonModule } from 'primeng/button';
 import { CustomerModalComponent } from '../../components/customer-modal/customer-modal.component';
+import { SubscriptionExpiryComponent } from '../../components/subscription-expiry/subscription-expiry.component';
 
 @Component({
   selector: 'app-customer-detail',
@@ -24,6 +25,7 @@ import { CustomerModalComponent } from '../../components/customer-modal/customer
     StatusTagComponent,
     ButtonModule,
     CustomerModalComponent,
+    SubscriptionExpiryComponent,
   ],
   templateUrl: './customer-detail.component.html',
   styleUrl: './customer-detail.component.scss',

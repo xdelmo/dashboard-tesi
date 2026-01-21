@@ -18,6 +18,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-customer-modal',
@@ -31,6 +32,7 @@ import { SelectModule } from 'primeng/select';
     ButtonModule,
     InputTextModule,
     SelectModule,
+    TooltipModule,
   ],
 })
 export class CustomerModalComponent {
@@ -66,6 +68,8 @@ export class CustomerModalComponent {
     { label: 'Attivo', value: CustomerStatus.Active },
     { label: 'In Attesa', value: CustomerStatus.Pending },
     { label: 'Inattivo', value: CustomerStatus.Inactive },
+    { label: 'Scaduto', value: CustomerStatus.Expired },
+    { label: 'Sospeso', value: CustomerStatus.Suspended },
   ];
 
   industryOptions = [
@@ -95,6 +99,9 @@ export class CustomerModalComponent {
         });
       }
 
+      // read-only
+      this.customerForm.get('status')?.disable();
+
       if (!this.isAdmin()) {
         this.customerForm.get('plan')?.disable();
       } else {
@@ -110,7 +117,8 @@ export class CustomerModalComponent {
 
   onSave(): void {
     if (this.customerForm.valid) {
-      let formValue = this.customerForm.value as Partial<Customer>;
+      // Use getRawValue() to include disabled fields (like status)
+      let formValue = this.customerForm.getRawValue() as Partial<Customer>;
 
       if (!this.customerToEdit()) {
         formValue = { ...formValue };

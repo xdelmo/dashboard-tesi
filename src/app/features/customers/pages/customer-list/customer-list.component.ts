@@ -15,6 +15,7 @@ import { LoadingStateComponent } from '../../../../shared/components/loading-sta
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CustomerModalComponent } from '../../components/customer-modal/customer-modal.component';
+import { SubscriptionExpiryComponent } from '../../components/subscription-expiry/subscription-expiry.component';
 
 @Component({
   selector: 'app-customer-list',
@@ -31,6 +32,7 @@ import { CustomerModalComponent } from '../../components/customer-modal/customer
     ButtonModule,
     TableModule,
     CustomerModalComponent,
+    SubscriptionExpiryComponent,
   ],
 })
 export class CustomerListComponent {

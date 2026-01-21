@@ -2,6 +2,8 @@ export enum CustomerStatus {
   Active = 'Attivo',
   Pending = 'In Attesa',
   Inactive = 'Inattivo',
+  Expired = 'Scaduto',
+  Suspended = 'Sospeso',
 }
 
 export interface Customer {
@@ -13,4 +15,5 @@ export interface Customer {
 
   industry: string;
   plan?: 'Basic' | 'Professional' | 'Enterprise';
+  subscriptionEndDate?: string;
 }

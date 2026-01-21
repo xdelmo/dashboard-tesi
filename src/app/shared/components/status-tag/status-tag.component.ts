@@ -26,11 +26,13 @@ export class StatusTagComponent {
         return 'success';
       case 'In Attesa':
       case 'Bozza':
+      case 'Sospeso':
         return 'warn';
       case 'Inattivo':
       case 'Fallito':
       case 'Archiviato':
       case 'Disattivato':
+      case 'Scaduto':
         return 'danger';
       case 'Admin Only':
         return 'contrast';

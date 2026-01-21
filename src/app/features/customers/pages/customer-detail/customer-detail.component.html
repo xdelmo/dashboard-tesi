@@ -1,111 +1,116 @@
 @if (customer(); as customer) {
-<div class="dashboard-container">
-  <app-page-header
-    [title]="'Dettaglio Cliente: ' + customer.name"
-    subtitle="Visualizza le informazioni complete del cliente"
-  ></app-page-header>
+  <div class="dashboard-container">
+    <app-page-header
+      [title]="'Dettaglio Cliente: ' + customer.name"
+      subtitle="Visualizza le informazioni complete del cliente"
+    ></app-page-header>
 
-  <main class="content-area">
-    <div class="bg-white p-8 rounded-2xl shadow-lg">
-      <div
-        class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100"
-      >
-        <h2 class="m-0 text-2xl font-bold text-gray-800">
-          Informazioni Generali
-        </h2>
-        <app-status-tag [value]="customer.status"></app-status-tag>
+    <main class="content-area">
+      <div class="bg-white p-8 rounded-2xl shadow-lg">
+        <div
+          class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100"
+        >
+          <h2 class="m-0 text-2xl font-bold text-gray-800">
+            Informazioni Generali
+          </h2>
+          <div class="flex gap-2 items-center">
+            <app-subscription-expiry
+              [date]="customer.subscriptionEndDate"
+            ></app-subscription-expiry>
+            <app-status-tag [value]="customer.status"></app-status-tag>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <label
+              class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+              >ID Cliente</label
+            >
+            <p class="m-0 text-lg font-medium text-gray-800">
+              #{{ customer.id }}
+            </p>
+          </div>
+          <div>
+            <label
+              class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+              >Email</label
+            >
+            <p class="m-0 text-lg font-medium text-gray-800">
+              {{ customer.email }}
+            </p>
+          </div>
+          <div>
+            <label
+              class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+              >Azienda</label
+            >
+            <p class="m-0 text-lg font-medium text-gray-800">
+              {{ customer.company }}
+            </p>
+          </div>
+          <div>
+            <label
+              class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+              >Settore</label
+            >
+            <p class="m-0 text-lg font-medium text-gray-800">
+              {{ customer.industry }}
+            </p>
+          </div>
+          <div>
+            <label
+              class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+              >Piano</label
+            >
+            <p class="m-0 text-lg font-medium text-gray-800">
+              {{ customer.plan || "N/D" }}
+            </p>
+          </div>
+          <div>
+            <label
+              class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
+              >Fatturato Annuo</label
+            >
+            <p class="m-0 text-xl font-mono font-bold text-green-600">
+              {{ customer.revenue | currency: "EUR" }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-end border-t border-gray-100 pt-6 gap-4">
+          <p-button
+            label="Indietro"
+            icon="pi pi-arrow-left"
+            [outlined]="true"
+            (onClick)="goBack()"
+          ></p-button>
+          <p-button
+            label="Modifica"
+            icon="pi pi-pencil"
+            severity="info"
+            (onClick)="openEditModal(customer)"
+          ></p-button>
+          <p-button
+            label="Elimina"
+            icon="pi pi-trash"
+            severity="danger"
+            (onClick)="deleteCustomer(customer.id)"
+          ></p-button>
+        </div>
       </div>
+    </main>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div>
-          <label
-            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
-            >ID Cliente</label
-          >
-          <p class="m-0 text-lg font-medium text-gray-800">
-            #{{ customer.id }}
-          </p>
-        </div>
-        <div>
-          <label
-            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
-            >Email</label
-          >
-          <p class="m-0 text-lg font-medium text-gray-800">
-            {{ customer.email }}
-          </p>
-        </div>
-        <div>
-          <label
-            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
-            >Azienda</label
-          >
-          <p class="m-0 text-lg font-medium text-gray-800">
-            {{ customer.company }}
-          </p>
-        </div>
-        <div>
-          <label
-            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
-            >Settore</label
-          >
-          <p class="m-0 text-lg font-medium text-gray-800">
-            {{ customer.industry }}
-          </p>
-        </div>
-        <div>
-          <label
-            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
-            >Piano</label
-          >
-          <p class="m-0 text-lg font-medium text-gray-800">
-            {{ customer.plan || "N/D" }}
-          </p>
-        </div>
-        <div>
-          <label
-            class="block text-sm text-gray-500 mb-2 uppercase tracking-wide"
-            >Fatturato Annuo</label
-          >
-          <p class="m-0 text-xl font-mono font-bold text-green-600">
-            {{ customer.revenue | currency : "EUR" }}
-          </p>
-        </div>
-      </div>
-
-      <div class="flex justify-end border-t border-gray-100 pt-6 gap-4">
-        <p-button
-          label="Indietro"
-          icon="pi pi-arrow-left"
-          [outlined]="true"
-          (onClick)="goBack()"
-        ></p-button>
-        <p-button
-          label="Modifica"
-          icon="pi pi-pencil"
-          severity="info"
-          (onClick)="openEditModal(customer)"
-        ></p-button>
-        <p-button
-          label="Elimina"
-          icon="pi pi-trash"
-          severity="danger"
-          (onClick)="deleteCustomer(customer.id)"
-        ></p-button>
-      </div>
-    </div>
-  </main>
-
-  <app-customer-modal
-    [isOpen]="isModalOpen"
-    [customerToEdit]="selectedCustomer"
-    (close)="closeModal()"
-    (save)="saveCustomer($event)"
-  ></app-customer-modal>
-</div>
+    <app-customer-modal
+      [isOpen]="isModalOpen"
+      [customerToEdit]="selectedCustomer"
+      (close)="closeModal()"
+      (save)="saveCustomer($event)"
+    ></app-customer-modal>
+  </div>
 } @else {
-<div class="loading-state">
-  <div class="spinner"></div>
-  <p>Caricamento dettagli cliente...</p>
-</div>
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Caricamento dettagli cliente...</p>
+  </div>
 }
