@@ -25,25 +25,28 @@
       "company": "Tech Spa",
       "status": "Attivo",
       "industry": "Software",
-      "plan": "Enterprise"
+      "plan": "Enterprise",
+      "subscriptionEndDate": "2027-01-21"
     },
     {
       "id": "I9j0K1l2M3n4O5p6",
       "name": "Luca Bianchi",
       "email": "l.bianchi@consulting.it",
       "company": "Consulting Srl",
-      "status": "In Attesa",
+      "status": "Attivo",
       "industry": "Software",
-      "plan": "Professional"
+      "plan": "Professional",
+      "subscriptionEndDate": "2026-02-09"
     },
     {
       "id": "Q7r8S9t0U1v2W3x4",
       "name": "Giulia Verdi",
       "email": "g.verdi@design.it",
       "company": "Design Studio",
-      "status": "Attivo",
+      "status": "Scaduto",
       "industry": "Creative",
-      "plan": "Professional"
+      "plan": "Professional",
+      "subscriptionEndDate": "2026-01-20"
     },
     {
       "id": "Y5z6A7b8C9d0E1f2",
@@ -87,6 +90,13 @@
       "totalRevenue": 1198.8,
       "totalOrders": 1,
       "lastOrderDate": "2026-01-09T19:57:21.922Z"
+    },
+    {
+      "id": "cs-1769035371113",
+      "customerId": "A1b2C3d4E5f6G7h8",
+      "totalRevenue": 2752.8,
+      "totalOrders": 2,
+      "lastOrderDate": "2026-01-21T22:56:10.767Z"
     }
   ],
   "orders": [
@@ -127,6 +137,53 @@
           "price": 1200,
           "quantity": 1,
           "category": "Cloud"
+        }
+      ]
+    },
+    {
+      "id": "ORD-2278",
+      "customerId": "A1b2C3d4E5f6G7h8",
+      "date": "2026-01-21T22:42:30.320Z",
+      "status": "Pagato",
+      "type": "Abbonamento",
+      "subtotal": 1100,
+      "tax": 96.8,
+      "discountAmount": 220,
+      "total": 976.8,
+      "items": [
+        {
+          "productId": "PROD-AN-002",
+          "name": "Connettore Data Warehouse",
+          "price": 300,
+          "quantity": 1,
+          "category": "Analytics"
+        },
+        {
+          "productId": "PROD-AN-001",
+          "name": "Dashboard Predittiva",
+          "price": 800,
+          "quantity": 1,
+          "category": "Analytics"
+        }
+      ]
+    },
+    {
+      "id": "ORD-4739",
+      "customerId": "A1b2C3d4E5f6G7h8",
+      "date": "2026-01-21T22:55:27.404Z",
+      "status": "Pagato",
+      "type": "Abbonamento",
+      "subtotal": 2000,
+      "tax": 176,
+      "discountAmount": 400,
+      "total": 1776,
+      "items": [
+        {
+          "productId": "PROD-AI-002",
+          "name": "Riconoscimento Immagini API",
+          "price": 2000,
+          "quantity": 1,
+          "category": "AI"
         }
       ]
     }
