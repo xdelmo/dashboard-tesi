@@ -20,12 +20,14 @@
           [ngClass]="{
             'ng-invalid ng-dirty':
               customerForm.get('name')?.invalid &&
-              customerForm.get('name')?.touched
+              customerForm.get('name')?.touched,
           }"
         />
-        @if (customerForm.get('name')?.hasError('required') &&
-        customerForm.get('name')?.touched) {
-        <small class="text-red-500"> Nome richiesto </small>
+        @if (
+          customerForm.get("name")?.hasError("required") &&
+          customerForm.get("name")?.touched
+        ) {
+          <small class="text-red-500"> Nome richiesto </small>
         }
       </div>
 
@@ -40,15 +42,16 @@
           [ngClass]="{
             'ng-invalid ng-dirty':
               customerForm.get('email')?.invalid &&
-              customerForm.get('email')?.touched
+              customerForm.get('email')?.touched,
           }"
         />
-        @if (customerForm.get('email')?.touched) { @if
-        (customerForm.get('email')?.hasError('required')) {
-        <small class="text-red-500"> Email richiesta </small>
-        } @else if (customerForm.get('email')?.hasError('email')) {
-        <small class="text-red-500"> Email non valida </small>
-        } }
+        @if (customerForm.get("email")?.touched) {
+          @if (customerForm.get("email")?.hasError("required")) {
+            <small class="text-red-500"> Email richiesta </small>
+          } @else if (customerForm.get("email")?.hasError("email")) {
+            <small class="text-red-500"> Email non valida </small>
+          }
+        }
       </div>
     </div>
 
@@ -64,12 +67,14 @@
           [ngClass]="{
             'ng-invalid ng-dirty':
               customerForm.get('company')?.invalid &&
-              customerForm.get('company')?.touched
+              customerForm.get('company')?.touched,
           }"
         />
-        @if (customerForm.get('company')?.hasError('required') &&
-        customerForm.get('company')?.touched) {
-        <small class="text-red-500"> Azienda richiesta </small>
+        @if (
+          customerForm.get("company")?.hasError("required") &&
+          customerForm.get("company")?.touched
+        ) {
+          <small class="text-red-500"> Azienda richiesta </small>
         }
       </div>
 
@@ -83,38 +88,40 @@
           optionValue="value"
           placeholder="Seleziona un settore"
           appendTo="body"
-          styleClass="w-full"
+          class="w-full"
           [ngClass]="{
             'ng-invalid ng-dirty':
               customerForm.get('industry')?.invalid &&
-              customerForm.get('industry')?.touched
+              customerForm.get('industry')?.touched,
           }"
         >
         </p-select>
-        @if (customerForm.get('industry')?.hasError('required') &&
-        customerForm.get('industry')?.touched) {
-        <small class="text-red-500"> Settore richiesto </small>
+        @if (
+          customerForm.get("industry")?.hasError("required") &&
+          customerForm.get("industry")?.touched
+        ) {
+          <small class="text-red-500"> Settore richiesto </small>
         }
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       @if (isAdmin()) {
-      <div class="flex flex-col gap-2">
-        <label for="status" class="font-semibold">Stato</label>
+        <div class="flex flex-col gap-2">
+          <label for="status" class="font-semibold">Stato</label>
 
-        <p-select
-          id="status"
-          formControlName="status"
-          [options]="statusOptions"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Seleziona stato"
-          appendTo="body"
-          styleClass="w-full"
-        >
-        </p-select>
-      </div>
+          <p-select
+            id="status"
+            formControlName="status"
+            [options]="statusOptions"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Seleziona stato"
+            appendTo="body"
+            class="w-full"
+          >
+          </p-select>
+        </div>
       }
 
       <div class="flex flex-col gap-2">

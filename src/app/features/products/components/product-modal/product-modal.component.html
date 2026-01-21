@@ -19,12 +19,15 @@
         class="w-full"
         [ngClass]="{
           'ng-invalid ng-dirty':
-            productForm.get('name')?.invalid && productForm.get('name')?.touched
+            productForm.get('name')?.invalid &&
+            productForm.get('name')?.touched,
         }"
       />
-      @if (productForm.get('name')?.hasError('required') &&
-      productForm.get('name')?.touched) {
-      <small class="text-red-500"> Nome richiesto </small>
+      @if (
+        productForm.get("name")?.hasError("required") &&
+        productForm.get("name")?.touched
+      ) {
+        <small class="text-red-500"> Nome richiesto </small>
       }
     </div>
 
@@ -39,7 +42,7 @@
           optionValue="value"
           placeholder="Seleziona categoria"
           appendTo="body"
-          styleClass="w-full"
+          class="w-full"
         >
         </p-select>
       </div>
@@ -69,7 +72,7 @@
           optionLabel="label"
           optionValue="value"
           appendTo="body"
-          styleClass="w-full"
+          class="w-full"
         >
         </p-select>
       </div>
@@ -83,7 +86,7 @@
           optionLabel="label"
           optionValue="value"
           appendTo="body"
-          styleClass="w-full"
+          class="w-full"
         >
         </p-select>
       </div>
@@ -99,9 +102,11 @@
         class="w-full"
         [autoResize]="true"
       ></textarea>
-      @if (productForm.get('description')?.hasError('required') &&
-      productForm.get('description')?.touched) {
-      <small class="text-red-500"> Descrizione richiesta </small>
+      @if (
+        productForm.get("description")?.hasError("required") &&
+        productForm.get("description")?.touched
+      ) {
+        <small class="text-red-500"> Descrizione richiesta </small>
       }
     </div>
   </form>
