@@ -1,0 +1,10 @@
+@if (isExpiringSoon()) {
+  <p-tag
+    severity="warn"
+    value="In Scadenza"
+    icon="pi pi-exclamation-triangle"
+    pTooltip="Abbonamento in scadenza fra meno di 30 giorni"
+    [rounded]="true"
+    class="cursor-help"
+  ></p-tag>
+}
