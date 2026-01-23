@@ -1,4 +1,4 @@
-<p-menu #userMenu [model]="userMenuItems" [popup]="true" />
+<p-menu #userMenu [model]="userMenuItems" [popup]="true" appendTo="body" />
 
 <div class="user-trigger" (click)="userMenu.toggle($event)">
   <div class="md:flex justify-center hidden">
