@@ -40,13 +40,15 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
   - Gestione di aziende con attributi specifici come `Industry` e `Subscription Plan`.
   - **Soft Delete:** Eliminazione logica (stato "Inattivo") per preservare lo storico degli ordini collegati.
   - **Generazione ID Casuali:** Utilizzo di ID alfanumerici univoci a 16 caratteri (`IdGenerator`).
-  - **Form Ottimizzato:** Creazione/Modifica semplificata con gestione implicita dei valori di business (es. Revenue).
+  - **Status Lifecycle:** Gestione automatica dello stato (`Active`, `Expired`, `Suspended`). Il cliente diventa attivo al primo acquisto e scade automaticamente al termine del periodo.
+  - **Controllo Scadenze:** Tag "In Scadenza" automatico per abbonamenti che terminano entro 30 giorni.
 - **Prodotti (Catalogo Servizi):**
   - **Gestione Completa:** Visualizzazione lista prodotti, dettaglio servizio (`/products/:id`) e modifica stato rapida.
   - **Soft Delete:** Supporto per disattivazione prodotti ("Disattivato") mantenendoli visibili negli ordini storici.
 - **Ordini & Transazioni:**
-  - **Creazione Avanzata:** Modale ordini reattivo basato su **Signals** con selezione multipla prodotti e **quantità variabile**.
+  - **Supporto Ibrido:** Gestione unificata per **Prodotti Una-Tantum** (basati su Quantità) e **Abbonamenti** (basati su Durata Mesi/anni).
   - **Financial Engine:** Logica integrata per calcolo Subtotale, Sconti Piano (0%, 10%, 20%) e **IVA automatica (11%)**.
+  - **Estensione Automatica:** L'acquisto di un abbonamento estende dinamicamente la data di scadenza del cliente.
   - **Metriche Real-Time:** Dashboard collegata ai dati reali per calcolo fatturato e KPI.
 
 ### 📊 Dashboard & Analytics
@@ -62,6 +64,7 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 - **Custom RxJS Operators:** Utilizzo di operatori custom (es. `notifySuccess`) per standardizzare il feedback.
 - **CSS Strategy:** Gestione avanzata dei livelli CSS (`@layer`) per risolvere i conflitti tra **Tailwind CSS** e **PrimeNG**.
 - **Shared Styles:** Design system centralizzato gestito tramite SCSS (`_forms.scss`, `_cards.scss`, `_loading.scss`).
+- **Simulazione Backend Job:** Utilizzo di `provideAppInitializer` per simulare un Cron Job all'avvio dell'applicazione che invalida automaticamente le sottoscrizioni scadute.
 - **Quality Assurance:** Suite di Unit Test completa per `AuthService` utilizzando **Jasmine** e **Karma**, con mocking delle dipendenze HTTP (`provideHttpClientTesting`) e verifica dei flussi asincroni reattivi (`Observable`).
 
 ---
