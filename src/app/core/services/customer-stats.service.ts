@@ -13,7 +13,7 @@ export class CustomerStatsService {
 
   getStatsByCustomerId(customerId: string): Observable<CustomerStats[]> {
     return this.http.get<CustomerStats[]>(
-      `${this.apiUrl}?customerId=${customerId}`
+      `${this.apiUrl}?customerId=${customerId}`,
     );
   }
 
@@ -26,6 +26,6 @@ export class CustomerStatsService {
   }
 
   updateStats(stats: CustomerStats): Observable<CustomerStats> {
-    return this.http.put<CustomerStats>(`${this.apiUrl}/${stats.id}`, stats);
+    return this.http.patch<CustomerStats>(`${this.apiUrl}/${stats.id}`, stats);
   }
 }
