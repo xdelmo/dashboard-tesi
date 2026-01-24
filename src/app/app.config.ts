@@ -2,7 +2,6 @@ import {
   ApplicationConfig,
   LOCALE_ID,
   importProvidersFrom,
-  provideAppInitializer,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -15,7 +14,6 @@ import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 
 import { routes } from './app.routes';
-import { subscriptionCheckInitializer } from './core/initializers/subscription-check.initializer';
 
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
@@ -57,6 +55,5 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
-    provideAppInitializer(subscriptionCheckInitializer),
   ],
 };
