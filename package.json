@@ -1,6 +1,11 @@
 {
   "name": "dashboard-tesi",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=22.0.0 <23.0.0",
+    "npm": ">=10.0.0",
+    "description": "Utilizza Node v22 (Jod) per garantire il supporto LTS"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
