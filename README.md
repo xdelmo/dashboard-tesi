@@ -71,8 +71,8 @@ L'applicazione simula una piattaforma gestionale per aziende tecnologiche:
 
 ## 🛠 Tech Stack
 
-- **Framework:** [Angular 19](https://angular.dev/)
-- **UI Library:** [PrimeNG v19+](https://primeng.org/) (Theme: Aura)
+- **Framework:** [Angular 19](https://angular.dev/) (Fully Standalone Architecture)
+- **UI Library:** [PrimeNG v21+](https://primeng.org/) (Theme: Aura)
 - **Styling:** Tailwind CSS + SCSS Modules
 - **State Management:** Angular Signals & RxJS
 - **Visualizzazione Dati:** PrimeNG Charts (Chart.js)
